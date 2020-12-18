@@ -18,29 +18,22 @@ export function activate(context: vscode.ExtensionContext) {
   disposable.push(
     vscode.commands.registerCommand(
       "codepal.createContestDirectories",
-      (contestID: string) => {
-        createContestDirectories(contestID);
+      (contestID: string,rootPath: string='/') => {
+        createContestDirectories(contestID,rootPath);
       }
     )
   );
 
-  console.log(
-    `workspace ${
-      vscode.workspace.workspaceFolders
-        ? vscode.workspace.workspaceFolders[0].name
-        : "/"
-    }`
-  );
   disposable.push(
     vscode.window.registerTreeDataProvider(
       "codepalContests",
-      new ContestsProvider("/")
+      new ContestsProvider(vscode.workspace.workspaceFolders?vscode.workspace.workspaceFolders[0].uri.fsPath+'/':'/')
     )
   );
   disposable.push(
     vscode.window.registerTreeDataProvider(
       "codepalProblems",
-      new ProblemsProvider("/")
+      new ProblemsProvider(vscode.workspace.workspaceFolders?vscode.workspace.workspaceFolders[0].uri.fsPath+'/':'/')
     )
   );
   context.subscriptions.push(...disposable);
