@@ -4,7 +4,7 @@ import { getProblems } from "../../utils/utils";
 
 export class ProblemsProvider
   implements vscode.TreeDataProvider<ProblemTreeItem> {
-  private rootPath;
+  private rootPath: any;
   constructor(private workspaceRoot: string) {
     console.log(workspaceRoot);
     this.rootPath = workspaceRoot;
