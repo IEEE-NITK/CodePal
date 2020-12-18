@@ -6,11 +6,11 @@ import { ProblemTreeItem } from "../data_providers/problems/problem_tree_item";
 
 export const createContestDirectories = (contestID:string): void=>{
   //TODO: ADD FUNCTION THAT CREATES CONTEST DIRECTORY STRUCTURE.
-}
+};
 
 export const getProblems = ():ProblemTreeItem[]=>{
   return []; //TODO: CALL FUNCTION THAT FETCHES PROBLEMS IN PLACE OF [] 
-}
+};
 
 // export const getRatings = ():RatingsTreeItem[]=>{
 //   return []; //TODO: CALL FUNCTION THAT FETCHES Ratings IN PLACE OF [] 
