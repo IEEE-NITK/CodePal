@@ -1,5 +1,5 @@
 {
-  "name": "codepal",
+	"name": "codepal",
 	"displayName": "CodePal",
 	"description": "A VS Code extension to access information of codeforces directly from VSC.",
 	"version": "0.0.1",
@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:codepal.helloWorld"
+		"onCommand:codepal.helloWorld"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -72,7 +72,6 @@
 				}
 			]
 		}
-
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
@@ -86,18 +85,18 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.52.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
-		"eslint": "^7.15.0",
+		"@types/vscode": "^1.52.0",
 		"@typescript-eslint/eslint-plugin": "^4.9.0",
 		"@typescript-eslint/parser": "^4.9.0",
+		"eslint": "^7.15.0",
 		"glob": "^7.1.6",
 		"mocha": "^8.1.3",
+		"ts-loader": "^8.0.11",
 		"typescript": "^4.1.2",
 		"vscode-test": "^1.4.1",
-		"ts-loader": "^8.0.11",
 		"webpack": "^5.10.0",
 		"webpack-cli": "^4.2.0"
 	}
