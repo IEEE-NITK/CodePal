@@ -1,27 +1,28 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
 const fs = require("fs").promises;
-const { assert } = require('console');
+import { assert } from 'console';
 
 import {ProblemClass} from "./problem";
 
 export class ContestClass{
     problems: ProblemClass[] = [];
     name: string;
-    contestID: string;
+    contestID: number;
     contestLink: string;
     type: string;
 
-    constructor(contestID: string){
+    constructor(contestID: number, type: string){
         this.problems = [];
         this.name = '';
-        this.type = '';
+        this.type = type; // PAST, RUNNING OR FUTURE
         this.contestID = contestID;
         this.contestLink = `https://codeforces.com/contest/${this.contestID}`;
     }
 
     async init(){
         try{
+            assert(this.type !== "FUTURE");
             const { data } = await axios.get(this.contestLink);
                                     
             const $ = cheerio.load(data);

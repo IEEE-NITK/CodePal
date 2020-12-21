@@ -1,14 +1,14 @@
 export class ProblemClass {
     index: string;
-    contestID: string;
+    contestID: number;
     problemID: string;
     name: string;
     tags: string[];
-    rating: string;
+    rating: number;
     problemsetLink: string;
     contestLink: string;
 
-    constructor (contestID: string, problemIndex: string, problemName = '', tags = [], rating = '') {
+    constructor (contestID: number, problemIndex: string, problemName:string = '', tags:string[] = [], rating:number = 0) {
         this.index = problemIndex;
         this.contestID = contestID;
         this.problemID = contestID + problemIndex;
