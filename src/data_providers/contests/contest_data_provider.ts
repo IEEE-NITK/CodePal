@@ -4,7 +4,7 @@ import { getContests } from "../../utils/utils";
 
 export class ContestsProvider
   implements vscode.TreeDataProvider<ContestTreeItem> {
-  private rootPath: any;
+  private rootPath: string;
   constructor(private workspaceRoot: string) {
     console.log(workspaceRoot);
     this.rootPath = workspaceRoot;
