@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ContestTreeItem } from "./contest_tree_item";
-import { getContests } from "../../utils/utils";
+import { fetchContests } from "../../utils/utils";
 
 export class ContestsProvider
   implements vscode.TreeDataProvider<ContestTreeItem> {
@@ -22,11 +22,11 @@ export class ContestsProvider
       return this.getContestTypes();
     } 
     else if (element.label === "Running") {
-      return getContests(element.label);
+      return fetchContests(element.label);
     } else if (element.label === "Future") {
-      return getContests(element.label);
+      return fetchContests(element.label);
     } else if (element.label === "Past") {
-      return getContests(element.label);
+      return fetchContests(element.label);
     }
      else {
       console.log("get children []");

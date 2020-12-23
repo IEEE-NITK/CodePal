@@ -11,7 +11,6 @@ export class ContestTreeItem extends vscode.TreeItem {
     public readonly command?: vscode.Command
   ) {
     super(label, collapsibleState);
-    console.log(`contest tree item ${label} ${contextValue}`);
     this.contextValue = contextValue;
     this.type=type;
     this.contest=contest;
