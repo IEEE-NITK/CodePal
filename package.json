@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:codepal.helloWorld"
+		"*"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
