@@ -14,6 +14,14 @@ export class Utils {
     console.log(rootPath);
   };
 
+  static createProblemFolder= (
+    problem: ProblemClass | undefined,
+    rootPath: string
+  ): void => {
+    //TODO: ADD FUNCTION THAT CREATES PROBLEM DIRECTORY STRUCTURE.
+    console.log(rootPath);
+  };
+
   static getProblems = async (): Promise<ProblemTreeItem[]> => {
     let problems: ProblemClass[] = await CodePalAPI.fetchProblems();
     return problems.map<ProblemTreeItem>(
