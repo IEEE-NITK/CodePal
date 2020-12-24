@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { ContestsProvider } from "./data_providers/contests/contest_data_provider";
 import { ContestTreeItem } from "./data_providers/contests/contest_tree_item";
+import { ProblemTreeItem } from "./data_providers/problems/problem_tree_item";
 import { ProblemsProvider } from "./data_providers/problems/problem_data_provider";
 import { Utils } from "./utils/utils";
 export function activate(context: vscode.ExtensionContext) {
@@ -24,6 +25,14 @@ export function activate(context: vscode.ExtensionContext) {
       "codepal.createContestDirectories",
       (param: ContestTreeItem) =>
         Utils.createContestDirectories(param.contest, rootPath)
+    )
+  );
+
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.createProblemFolder",
+      (param: ProblemTreeItem) =>
+        Utils.createProblemFolder(param.problem, rootPath)
     )
   );
 
