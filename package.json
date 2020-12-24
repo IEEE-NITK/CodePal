@@ -26,7 +26,12 @@
 			{
 				"command": "codepal.createContestDirectories",
 				"title": "Create Contest Folder",
-				"icon": "res/svg/icon.svg"
+				"icon": "res/svg/CreateFolder.png"
+			},
+			{
+				"command": "codepal.createProblemFolder",
+				"title": "Create Problem Folder",
+				"icon": "res/svg/CreateFolder.png"
 			}
 		],
 		"viewsContainers": {
@@ -68,6 +73,11 @@
 				{
 					"command": "codepal.createContestDirectories",
 					"when": "view == codepalContests && viewItem==contest",
+					"group": "inline"
+				},
+				{
+					"command": "codepal.createProblemFolder",
+					"when": "view == codepalProblems && viewItem==problem",
 					"group": "inline"
 				}
 			]
