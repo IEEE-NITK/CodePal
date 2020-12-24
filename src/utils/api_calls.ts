@@ -20,8 +20,7 @@ export class CodePalAPI {
         return arr;
       })
       .then(async (users: { result: string | any[] }) => {
-        let i: number;
-        for (i = 0; i < users.result.length; i++) {
+        for (let i:number = 0; i < users.result.length; i++) {
           let contestID = users.result[i].id;
           let type = "";
           let x = users.result[i].phase;
