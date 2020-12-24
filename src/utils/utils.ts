@@ -26,8 +26,8 @@ export class Utils {
     return contests.map<ContestTreeItem>(
       (contest): ContestTreeItem => {
         return new ContestTreeItem(
-          `${contest.contestID}`,
-          type === "Future" ? "FutureContest" : "contest",
+          `${contest.name}`,
+          type === "Future"?"FutureContest":"contest",
           type === "Future"
             ? vscode.TreeItemCollapsibleState.None
             : vscode.TreeItemCollapsibleState.Collapsed,
