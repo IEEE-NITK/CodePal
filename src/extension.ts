@@ -1,10 +1,14 @@
 import * as vscode from "vscode";
 import { ContestsProvider } from "./data_providers/contests/contest_data_provider";
+import { ContestTreeItem } from "./data_providers/contests/contest_tree_item";
 import { ProblemsProvider } from "./data_providers/problems/problem_data_provider";
-import { createContestDirectories } from "./utils/utils";
+import { Utils } from "./utils/utils";
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
   let disposable: vscode.Disposable[];
+  const rootPath = vscode.workspace.workspaceFolders
+    ? vscode.workspace.workspaceFolders[0].uri.fsPath + "/"
+    : "/";
   disposable = [
     vscode.commands.registerCommand("codepal.helloWorld", () => {
       vscode.window.showInformationMessage("Namaste World from IEEE/CodePal!");
@@ -18,22 +22,21 @@ export function activate(context: vscode.ExtensionContext) {
   disposable.push(
     vscode.commands.registerCommand(
       "codepal.createContestDirectories",
-      (contestID: string,rootPath: string='/') => {
-        createContestDirectories(contestID,rootPath);
-      }
+      (param: ContestTreeItem) =>
+        Utils.createContestDirectories(param.contest, rootPath)
     )
   );
 
   disposable.push(
     vscode.window.registerTreeDataProvider(
       "codepalContests",
-      new ContestsProvider(vscode.workspace.workspaceFolders?vscode.workspace.workspaceFolders[0].uri.fsPath+'/':'/')
+      new ContestsProvider(rootPath)
     )
   );
   disposable.push(
     vscode.window.registerTreeDataProvider(
       "codepalProblems",
-      new ProblemsProvider(vscode.workspace.workspaceFolders?vscode.workspace.workspaceFolders[0].uri.fsPath+'/':'/')
+      new ProblemsProvider(rootPath)
     )
   );
   context.subscriptions.push(...disposable);

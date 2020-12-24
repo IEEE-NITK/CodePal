@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ProblemTreeItem } from "./problem_tree_item";
-import { getProblems } from "../../utils/utils";
+import { Utils } from "../../utils/utils";
 
 export class ProblemsProvider
   implements vscode.TreeDataProvider<ProblemTreeItem> {
@@ -22,6 +22,6 @@ export class ProblemsProvider
   getChildren(
     element?: ProblemTreeItem
   ): vscode.ProviderResult<ProblemTreeItem[]> {
-    return getProblems();
+    return Utils.getProblems();
   }
 }

@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ContestTreeItem } from "./contest_tree_item";
-import { fetchContests } from "../../utils/utils";
+import { Utils } from "../../utils/utils";
 import { ContestClass } from "../../classes/contest";
 
 export class ContestsProvider
@@ -26,11 +26,11 @@ export class ContestsProvider
     if (!element) {
       return this.getContestTypes();
     } else if (element.label === "Running") {
-      return fetchContests(element.label);
+      return Utils.fetchContests(element.label);
     } else if (element.label === "Future") {
-      return fetchContests(element.label);
+      return Utils.fetchContests(element.label);
     } else if (element.label === "Past") {
-      return fetchContests(element.label);
+      return Utils.fetchContests(element.label);
     } else {
       if (element.contest) {
         return this.fetchProblemsOfContest(element.contest);
