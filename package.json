@@ -24,12 +24,12 @@
 				"title": "Fetch Contests"
 			},
 			{
-				"command": "codepal.createContestDirectories",
+				"command": "codepal.createContestDirectory",
 				"title": "Create Contest Folder",
 				"icon": "res/svg/CreateFolder.png"
 			},
 			{
-				"command": "codepal.createProblemFolder",
+				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
 				"icon": "res/svg/CreateFolder.png"
 			}
@@ -71,12 +71,12 @@
 			],
 			"view/item/context": [
 				{
-					"command": "codepal.createContestDirectories",
+					"command": "codepal.createContestDirectory",
 					"when": "view == codepalContests && viewItem==contest",
 					"group": "inline"
 				},
 				{
-					"command": "codepal.createProblemFolder",
+					"command": "codepal.createProblemDirectory",
 					"when": "view == codepalProblems && viewItem==problem",
 					"group": "inline"
 				}

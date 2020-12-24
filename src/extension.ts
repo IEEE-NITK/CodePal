@@ -22,17 +22,17 @@ export function activate(context: vscode.ExtensionContext) {
   );
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.createContestDirectories",
+      "codepal.createContestDirectory",
       (param: ContestTreeItem) =>
-        Utils.createContestDirectories(param.contest, rootPath)
+        Utils.createContestDirectory(param.contest, rootPath)
     )
   );
 
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.createProblemFolder",
+      "codepal.createProblemDirectory",
       (param: ProblemTreeItem) =>
-        Utils.createProblemFolder(param.problem, rootPath)
+        Utils.createProblemDirectory(param.problem, rootPath)
     )
   );
 
