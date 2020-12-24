@@ -21,7 +21,7 @@ export const fetchContests =async (type: string): Promise<ContestTreeItem[]> => 
     return contests.map<ContestTreeItem>(
       (contest): ContestTreeItem => {
         return new ContestTreeItem(
-          `${contest.contestID}`,
+          `${contest.name}`,
           type === "Future"?"FutureContest":"contest",
           type === "Future"
             ? vscode.TreeItemCollapsibleState.None
