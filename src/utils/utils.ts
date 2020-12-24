@@ -61,6 +61,10 @@ export class Utils {
       return;
     }
 
+    if(contest.problems.length === 0) {
+        await contest.init();
+    } 
+
     templateCode = await getTemplateCode();
 
     const folderPath = rootPath +  `${contest.name}/`;

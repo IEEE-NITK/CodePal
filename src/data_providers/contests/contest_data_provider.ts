@@ -43,7 +43,9 @@ export class ContestsProvider
     contest: ContestClass
   ): Promise<ContestTreeItem[]> {
     console.log(contest.contestID);
-    await contest.init();
+    if(!contest.problems.length) {
+      await contest.init();
+    }
     return contest.problems.map<ContestTreeItem>((problem) => {
       return new ContestTreeItem(
         problem.name,
