@@ -1,11 +1,10 @@
 import fetch from "node-fetch";
-import {ContestClass} from "../classes/contest";
-
-let arr: ContestClass[] = [];
+import { ContestClass } from "../classes/contest";
 
 export const fetchContests = async (
   contestsType: string
 ): Promise<ContestClass[]> => {
+  let arr: ContestClass[] = [];
   return fetch("https://codeforces.com/api/contest.list?gym=false")
     .then((response: any) => {
       if (!response.ok) {
@@ -37,7 +36,6 @@ export const fetchContests = async (
           let c = new ContestClass(contestID, type);
           c.name = users.result[i].name;
           arr.push(c);
-          
         }
       }
       return arr;
