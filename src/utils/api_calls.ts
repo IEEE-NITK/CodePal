@@ -34,8 +34,7 @@ export class CodePalAPI {
             type = "Future";
           }
           if (type === contestsType) {
-            let c = new ContestClass(contestID, type);
-            c.name = users.result[i].name;
+            let c = new ContestClass(contestID, type,users.result[i].name);
             arr.push(c);
           }
         }
