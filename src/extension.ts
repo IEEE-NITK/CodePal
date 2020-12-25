@@ -3,7 +3,9 @@ import { ContestsProvider } from "./data_providers/contests/contest_data_provide
 import { ContestTreeItem } from "./data_providers/contests/contest_tree_item";
 import { ProblemTreeItem } from "./data_providers/problems/problem_tree_item";
 import { ProblemsProvider } from "./data_providers/problems/problem_data_provider";
-import { Utils } from "./utils/utils";
+import { createContestDirectory } from "./features/folder_creation/contest_folder_creation";
+import { createProblemDirectory } from "./features/folder_creation/problem_folder_creation";
+
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
   let disposable: vscode.Disposable[];
@@ -24,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       "codepal.createContestDirectory",
       (param: ContestTreeItem) =>
-        Utils.createContestDirectory(param.contest, rootPath)
+        createContestDirectory(param.contest, rootPath)
     )
   );
 
@@ -32,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       "codepal.createProblemDirectory",
       (param: ProblemTreeItem) =>
-        Utils.createProblemDirectory(param.problem, rootPath)
+        createProblemDirectory(param.problem, rootPath)
     )
   );
 
