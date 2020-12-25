@@ -15,13 +15,13 @@ const getInputOutput = async (problem1: ProblemClass) => {
         const postTitle = $('div > div.input > pre');
         const postTitle1 = $('div > div.output > pre');
         //console.log(postTitle.length);
-        let input:any = [];
-        let output:any = [];
-        const callbackFunctionInput = (i:any, element:any) => {
+        let input:string[] = [];
+        let output:string[] = [];
+        const callbackFunctionInput = (i:Number, element:string) => {
             input.push($(element).text());
         };
 
-        const callbackFunctionOutput = (i:any, element:any) => {
+        const callbackFunctionOutput = (i:Number, element:string) => {
             output.push($(element).text());
         };
 
