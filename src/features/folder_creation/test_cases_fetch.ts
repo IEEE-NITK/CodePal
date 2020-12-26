@@ -2,31 +2,27 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 const fs = require("fs").promises;
 import * as vscode from "vscode";
-import { assert } from 'console';
 import { ProblemClass } from '../../classes/problem';
 
 
-const getInputOutput = async (problem1: ProblemClass) => {  
+const getInputOutput = async (problem: ProblemClass) => {  
     try {
         const { data } = await axios.get(
-            `https://codeforces.com/contest/${problem1.contestID}/problem/${problem1.index}`
+            `https://codeforces.com/contest/${problem.contestID}/problem/${problem.index}`
         );
         const $ = cheerio.load(data);
-        const postTitle = $('div > div.input > pre');
-        const postTitle1 = $('div > div.output > pre');
-        //console.log(postTitle.length);
-        let input:string[] = [];
-        let output:string[] = [];
-        const callbackFunctionInput = (i:Number, element:string) => {
+        const postTitleInput = $('div > div.input > pre');
+        const postTitleOutput = $('div > div.output > pre');
+
+        let input: string[] = [];
+        let output: string[] = [];
+
+        postTitleInput.each((i: Number, element: string) => {
             input.push($(element).text());
-        };
-
-        const callbackFunctionOutput = (i:Number, element:string) => {
+        });
+        postTitleOutput.each((i: Number, element: string) => {
             output.push($(element).text());
-        };
-
-        postTitle.each(callbackFunctionInput);
-        postTitle1.each(callbackFunctionOutput);
+        });
 
         return {input,output};
 
@@ -42,12 +38,8 @@ export const fetchTestCases = async (
     problem: ProblemClass,
     folderPath: string
 ): Promise<void> => {
-    // TODO : Fill in the code for test case fetching 
-    // Create a folder called 'tests' inside the folder 'problemFolderPath' 
-    // and create input and output text files of the sample test cases
       
     const problemFolderPath = folderPath + `Tests/`;
-    //const problemFilePath = problemFolderPath + ``;
   
     try{
         await fs.mkdir(problemFolderPath);
@@ -70,6 +62,6 @@ export const fetchTestCases = async (
     }
     catch(err){
         console.log('Error');
-        vscode.window.showInformationMessage('Could not create test cases');
+        vscode.window.showInformationMessage('Could not fetch test cases');
     }
 };
