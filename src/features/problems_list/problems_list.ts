@@ -31,7 +31,7 @@ const problemsList = async (
             // Filtering the problems based on rating, and making a list of problem objects 
             // res is the json response obtained from the API call
             jsonResponse.result.problems.forEach((element: any) => {
-                if(element.rating >= fromRating && element.rating <= toRating) {
+                if((fromRating === 0 && toRating === 3500) || (element.rating >= fromRating && element.rating <= toRating)) {
                     const p = new ProblemClass (element.contestId, element.index, element.name, element.tags, element.rating);
                     problems.push(p);
                 } 
