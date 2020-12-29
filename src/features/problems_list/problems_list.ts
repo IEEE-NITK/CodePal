@@ -6,7 +6,7 @@ import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item
 const problemsList = async (
     tags: Array<string> = [], 
     fromRating: number = 0, 
-    toRating: number = 3500
+    toRating: number = 4000
 ): Promise<ProblemClass[]> => {
 
     let url = 'https://codeforces.com/api/problemset.problems';
@@ -31,7 +31,7 @@ const problemsList = async (
             // Filtering the problems based on rating, and making a list of problem objects 
             // res is the json response obtained from the API call
             jsonResponse.result.problems.forEach((element: any) => {
-                if((fromRating === 0 && toRating === 3500) || (element.rating >= fromRating && element.rating <= toRating)) {
+                if((fromRating === 0 && toRating === 4000) || (element.rating >= fromRating && element.rating <= toRating)) {
                     const p = new ProblemClass (element.contestId, element.index, element.name, element.tags, element.rating);
                     problems.push(p);
                 } 
@@ -53,7 +53,7 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
             return new ProblemTreeItem (
                 `${problem.name}`,
                 "problem",
-                vscode.TreeItemCollapsibleState.None,
+                vscode.TreeItemCollapsibleState.Collapsed,
                 problem
             );
         }
