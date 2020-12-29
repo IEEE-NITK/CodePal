@@ -47,12 +47,12 @@ export class ProblemsProvider
     return Promise.resolve([
       new ProblemTreeItem(
         `Rating : ${(problem.rating === 0 ? "Not yet defined" : problem.rating)}`,
-        "Stats",
+        "ratings",
         vscode.TreeItemCollapsibleState.None
       ),
       new ProblemTreeItem(
         `Tags : ${tagList}`,
-        "Stats",
+        "tags",
         vscode.TreeItemCollapsibleState.None
       ),
     ]);
