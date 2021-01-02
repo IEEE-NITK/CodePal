@@ -44,17 +44,17 @@ export const runTestCases = async function (
         return;
     }
 
-    let i: number = 0;
+    let i: number = 1;
     let passed: boolean = true;
     while(true) {
-        const inputFilePath: string = `${testsFolderPath}Input ${i}.txt`;
+        const inputFilePath: string = `${testsFolderPath}input_${i}.txt`;
 
         if(!fs.existsSync(inputFilePath)) {
             break;
         }
 
-        const outputFilePath: string = `${testsFolderPath}Output ${i}.txt`;
-        const codeOutputFilePath: string = `${testsFolderPath}code_output ${i}.txt`;
+        const outputFilePath: string = `${testsFolderPath}output_${i}.txt`;
+        const codeOutputFilePath: string = `${testsFolderPath}code_output_${i}.txt`;
 
         // await fs.readFile(inputFilePath, 'utf8', function(err: any, data: any) { 
         //     // Display the file content 
@@ -151,7 +151,7 @@ const compileFile = async(cppFilePath: string, testsFolderPath: string): Promise
 
 const runTests = async (inputFilePath: string, codeOutputFilePath: string, testsFolderPath: string): Promise<any> => {
 
-    const runCommand: string = `timeout 6s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
+    const runCommand: string = `timeout 3s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
 
     try {
         return new Promise(async (resolve, reject) => {
