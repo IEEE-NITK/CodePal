@@ -17,7 +17,15 @@ export const runTestCases = async function (
     path = path.replace(/\%23/g, '#');
     path = path.replace(/\%27/g, '\'');
     path = path.replace(/\%2C/g, ',');
-    path = path.slice(7);
+    path = path.replace(/\%3A/g, ':');
+    if(os === 1) {
+        // For Windows
+        path = path.slice(8);
+    }
+    else {
+        // For Linux
+        path = path.slice(7);
+    }
     console.log(path);
 
     if(!fs.existsSync(path)) {
@@ -56,15 +64,6 @@ export const runTestCases = async function (
 
         const outputFilePath: string = `${testsFolderPath}output_${i}.txt`;
         const codeOutputFilePath: string = `${testsFolderPath}code_output_${i}.txt`;
-
-        // await fs.readFile(inputFilePath, 'utf8', function(err: any, data: any) { 
-        //     // Display the file content 
-        //     console.log(data); 
-        // });
-        // await fs.readFile(outputFilePath, 'utf8', function(err: any, data: any) { 
-        //     // Display the file content 
-        //     console.log(data); 
-        // });
 
         try{
             await runTests(inputFilePath, codeOutputFilePath, testsFolderPath, os);
@@ -110,7 +109,11 @@ export const runTestCases = async function (
     }
 };
 
-const compileFile = async(cppFilePath: string, testsFolderPath: string): Promise<any> => {
+const compileFile = async(
+    cppFilePath: string, 
+    testsFolderPath: string
+): Promise<any> => {
+
     const compileCommand: string = `g++ "${cppFilePath}" -std=c++14`;
 
     if(fs.existsSync(`${testsFolderPath}result.txt`)) {
@@ -150,14 +153,22 @@ const compileFile = async(cppFilePath: string, testsFolderPath: string): Promise
     }
 };
 
-const runTests = async (inputFilePath: string, codeOutputFilePath: string, testsFolderPath: string, os: number): Promise<any> => {
+const runTests = async (
+    inputFilePath: string, 
+    codeOutputFilePath: string, 
+    testsFolderPath: string, 
+    os: number
+): Promise<any> => {
 
     let runCommand: string;
     if(os === 0) {
-        runCommand = `timeout 3s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
+        // Command for linux
+        runCommand = `timeout 6s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
     }
     else if(os === 1) {
-        runCommand = `timeout 3s a.exe < "${inputFilePath}" > "${codeOutputFilePath}"`;
+        // Command for windows
+        // TODO : Add a timeout of 6s for the command
+        runCommand = `a.exe < "${inputFilePath}" > "${codeOutputFilePath}"`;
     }
     else {
         vscode.window.showErrorMessage("Operating System not supported.");
@@ -189,7 +200,11 @@ const runTests = async (inputFilePath: string, codeOutputFilePath: string, tests
     }
 };
 
-const reportError = async (error: string, errorType: string, testsFolderPath: string): Promise<void> => {
+const reportError = async (
+    error: string, 
+    errorType: string, 
+    testsFolderPath: string
+): Promise<void> => {
     const click: string | undefined = await vscode.window.showErrorMessage(`${errorType} Error!!!`, "Show Error");
     if(click === "Show Error") {
         const errorFilePath: string = `${testsFolderPath}error.txt`;
@@ -215,14 +230,8 @@ const compareOutputs = async (outputFilePath: string, codeOutputFilePath: string
 
     // console.log("Expected Output : ");
     // console.log(expectedOutput);
-    // for(let i=0; i<expectedOutput.length; i++) {
-    //     console.log(expectedOutput.charCodeAt(i));
-    // }
     // console.log("Obtained Output : ");
     // console.log(obtainedOutput);
-    // for(let i=0; i<obtainedOutput.length; i++) {
-    //     console.log(obtainedOutput.charCodeAt(i));
-    // }
 
     // console.log(expectedOutput === obtainedOutput);
 
