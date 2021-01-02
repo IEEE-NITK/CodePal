@@ -12,9 +12,9 @@ export class ContestClass{
     contestLink: string;
     type: string;
 
-    constructor(contestID: number, type: string){
+    constructor(contestID: number, type: string,name:string){
         this.problems = [];
-        this.name = '';
+        this.name = name;
         this.type = type; // PAST, RUNNING OR FUTURE
         this.contestID = contestID;
         this.contestLink = `https://codeforces.com/contest/${this.contestID}`;
@@ -27,8 +27,8 @@ export class ContestClass{
                                     
             const $ = cheerio.load(data);
 
-            const contestName = $('.rtable > tbody:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > a:nth-child(1)');
-            this.name = contestName.text();
+            // const contestName = $('.rtable > tbody:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > a:nth-child(1)');
+            // this.name = contestName.text();
 
             let problemIndices = $('table.problems > tbody > tr > td.id > a');
             let problemNames = $('tr > td > div > div > a');

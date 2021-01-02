@@ -4,7 +4,7 @@ export class ProblemClass {
     problemID: string;
     name: string;
     tags: string[];
-    rating: number;
+    rating: number | undefined;
     problemsetLink: string;
     contestLink: string;
 
