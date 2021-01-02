@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { ProblemTreeItem } from "./problem_tree_item";
-import { getProblems } from "../../utils/utils";
+import { fetchProblems } from "../../features/problems_list/problems_list";
+import { ProblemClass } from "../../classes/problem";
 
 export class ProblemsProvider
   implements vscode.TreeDataProvider<ProblemTreeItem> {
@@ -22,6 +23,39 @@ export class ProblemsProvider
   getChildren(
     element?: ProblemTreeItem
   ): vscode.ProviderResult<ProblemTreeItem[]> {
-    return getProblems();
+    if (!element) {
+      return fetchProblems();
+    } else if (element.problem) {
+      return this.problemStats(element.problem);
+    } 
+    
   }
+
+  problemStats(
+    problem: ProblemClass
+    ): Thenable<ProblemTreeItem[]> {
+    let tagList : string = "";
+    
+    for(let i = 0; i < problem.tags.length; i+=1){
+      if (i === 0) {
+        tagList += problem.tags[i];
+      } else {
+        tagList += " , " + problem.tags[i];
+      }
+    }
+    
+    return Promise.resolve([
+      new ProblemTreeItem(
+        `Rating : ${(problem.rating === 0 ? "Not yet defined" : problem.rating)}`,
+        "ratings",
+        vscode.TreeItemCollapsibleState.None
+      ),
+      new ProblemTreeItem(
+        `Tags : ${tagList}`,
+        "tags",
+        vscode.TreeItemCollapsibleState.None
+      ),
+    ]);
+  }
+
 }
