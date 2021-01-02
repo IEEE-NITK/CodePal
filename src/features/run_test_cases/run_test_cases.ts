@@ -4,7 +4,8 @@ const { exec } = require("child_process");
 
 
 export const runTestCases = async function (
-    filePath: string
+    filePath: string,
+    os: number
 ): Promise<void> {
     // Code for running test cases and returning verdict
     console.log(filePath);
@@ -66,7 +67,7 @@ export const runTestCases = async function (
         // });
 
         try{
-            await runTests(inputFilePath, codeOutputFilePath, testsFolderPath);
+            await runTests(inputFilePath, codeOutputFilePath, testsFolderPath, os);
 
             let testResult: boolean = await compareOutputs(outputFilePath, codeOutputFilePath);
             console.log(testResult);
@@ -149,9 +150,19 @@ const compileFile = async(cppFilePath: string, testsFolderPath: string): Promise
     }
 };
 
-const runTests = async (inputFilePath: string, codeOutputFilePath: string, testsFolderPath: string): Promise<any> => {
+const runTests = async (inputFilePath: string, codeOutputFilePath: string, testsFolderPath: string, os: number): Promise<any> => {
 
-    const runCommand: string = `timeout 3s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
+    let runCommand: string;
+    if(os === 0) {
+        runCommand = `timeout 3s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
+    }
+    else if(os === 1) {
+        runCommand = `timeout 3s a.exe < "${inputFilePath}" > "${codeOutputFilePath}"`;
+    }
+    else {
+        vscode.window.showErrorMessage("Operating System not supported.");
+        return;
+    }
 
     try {
         return new Promise(async (resolve, reject) => {

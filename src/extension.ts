@@ -41,10 +41,20 @@ export function activate(context: vscode.ExtensionContext) {
 
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.runTestCases",
+      "codepal.runTestCasesLinux",
       (param: any) => {
         // console.log("Run test cases icon parameter : " + String(param));
-        runTestCases(String(param));
+        runTestCases(String(param), 0);
+      }
+    )
+  );
+
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.runTestCasesWindows",
+      (param: any) => {
+        // console.log("Run test cases icon parameter : " + String(param));
+        runTestCases(String(param), 1);
       }
     )
   );

@@ -34,7 +34,12 @@
 				"icon": "res/svg/CreateFolder.png"
 			},
 			{
-				"command": "codepal.runTestCases",
+				"command": "codepal.runTestCasesLinux",
+				"title": "Run Test Cases",
+				"icon": "res/svg/play_button.png"
+			},
+			{
+				"command": "codepal.runTestCasesWindows",
 				"title": "Run Test Cases",
 				"icon": "res/svg/play_button.png"
 			}
@@ -88,8 +93,13 @@
 			],
 			"editor/title": [
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' ",
-					"command": "codepal.runTestCases",
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isLinux",
+					"command": "codepal.runTestCasesLinux",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isWindows",
+					"command": "codepal.runTestCasesWindows",
 					"group": "navigation"
 				}
 			]
