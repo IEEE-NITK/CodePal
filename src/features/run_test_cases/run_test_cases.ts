@@ -66,7 +66,10 @@ export const runTestCases = async function (
         const codeOutputFilePath: string = `${testsFolderPath}code_output_${i}.txt`;
 
         try{
-            await runTests(inputFilePath, codeOutputFilePath, testsFolderPath, os);
+            let runResult = await runTestsWithTimeout(inputFilePath, codeOutputFilePath, testsFolderPath, os);
+            if(runResult === "Run time error") {
+                return;
+            }
 
             let testResult: boolean = await compareOutputs(outputFilePath, codeOutputFilePath);
             console.log(testResult);
@@ -95,9 +98,10 @@ export const runTestCases = async function (
             }
         }
         catch(err) {
-            // console.log(err);
-            // Compilation / Runtime errors also get logged here
+            console.log("Inside catch block of while loop : " + err);
+            // Runtime errors also get logged here
             passed = false;
+            return;
         }
         
 
@@ -153,6 +157,45 @@ const compileFile = async(
     }
 };
 
+const runTestsWithTimeout = async (inputFilePath: string, 
+    codeOutputFilePath: string, 
+    testsFolderPath: string, 
+    os: number
+): Promise<any> => {
+
+    let timeoutHandle: NodeJS.Timeout;
+    // Declaring a promise that rejects after 6s
+    const timeoutPromise = new Promise((resolve, reject) => {
+        timeoutHandle = setTimeout(() => reject("Time limit exceeded"), 6000);
+    });
+
+    return Promise.race([
+        runTests(inputFilePath, codeOutputFilePath, testsFolderPath, os),
+        timeoutPromise
+    ])
+    .then((result)=> {
+        clearTimeout(timeoutHandle);
+        return result;
+    })
+    .catch(async (error) => {
+        console.log("Inside catch block of runTestsWithTimeout : " + error);
+        if(error === "Time limit exceeded") {
+            vscode.window.showErrorMessage("Time limit exceeded!!");
+            // Kill the executing process
+            await exec("taskkill /F /IM a.exe", (error: any, stdout: any, stderr: any) => {
+                if (error) {
+                    console.log(`Could not kill timed out process.\nError: ${error.message}`);
+                }
+                if (stderr) {
+                    console.log(`Could not kill timed out process.\nstderr: ${stderr}`);
+                }
+            });
+        }
+        
+        return "Run time error";
+    });
+};
+
 const runTests = async (
     inputFilePath: string, 
     codeOutputFilePath: string, 
@@ -163,11 +206,10 @@ const runTests = async (
     let runCommand: string;
     if(os === 0) {
         // Command for linux
-        runCommand = `timeout 6s ./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
+        runCommand = `./a.out < "${inputFilePath}" > "${codeOutputFilePath}"`;
     }
     else if(os === 1) {
         // Command for windows
-        // TODO : Add a timeout of 6s for the command
         runCommand = `a.exe < "${inputFilePath}" > "${codeOutputFilePath}"`;
     }
     else {
@@ -179,14 +221,14 @@ const runTests = async (
         return new Promise(async (resolve, reject) => {
             await exec(runCommand, async (error: any, stdout: any, stderr: any) => {
                 if (error) {
-                    // console.log(`Runtime Error: ${error.message}`);
+                    console.log(`Runtime Error: ${error}`);
                     await reportError(error.message, "Run Time", testsFolderPath);
                     reject(error.message);
                     return;
                 }
                 if (stderr) {
-                    // console.log(`stderr: ${stderr}`);
-                    await reportError(error.message, "Run Time", testsFolderPath);
+                    console.log(`stderr: ${stderr}`);
+                    await reportError(stderr, "Run Time", testsFolderPath);
                     reject(stderr);
                     return;
                 }
@@ -196,7 +238,7 @@ const runTests = async (
         });
     }
     catch(err) {
-        console.log(err);
+        console.log("Run time error: " + err);
     }
 };
 
