@@ -9,23 +9,7 @@ export const runTestCases = async function (
 ): Promise<void> {
     // Code for running test cases and returning verdict
     console.log(filePath);
-    let path = String(filePath);
-    path = path.replace(/\%20/g, ' ');
-    path = path.replace(/\%21/g, '!');
-    path = path.replace(/\%28/g, '(');
-    path = path.replace(/\%29/g, ')');
-    path = path.replace(/\%23/g, '#');
-    path = path.replace(/\%27/g, '\'');
-    path = path.replace(/\%2C/g, ',');
-    path = path.replace(/\%3A/g, ':');
-    if(os === 1) {
-        // For Windows
-        path = path.slice(8);
-    }
-    else {
-        // For Linux
-        path = path.slice(7);
-    }
+    let path = pathRefine(filePath, os);
     console.log(path);
 
     if(!fs.existsSync(path)) {
@@ -53,6 +37,8 @@ export const runTestCases = async function (
         return;
     }
 
+    const resultFilePath: string = `${testsFolderPath}result.txt`;
+    
     let i: number = 1;
     let passed: boolean = true;
     while(true) {
@@ -64,38 +50,40 @@ export const runTestCases = async function (
 
         const outputFilePath: string = `${testsFolderPath}output_${i}.txt`;
         const codeOutputFilePath: string = `${testsFolderPath}code_output_${i}.txt`;
+        const stderrFilePath: string = `${testsFolderPath}stderr_${i}.txt`;
 
         try{
-            let runResult = await runTestsWithTimeout(inputFilePath, codeOutputFilePath, testsFolderPath, os);
+            let runResult = await runTestsWithTimeout(inputFilePath, codeOutputFilePath, testsFolderPath, stderrFilePath, os);
             if(runResult === "Run time error") {
                 return;
             }
 
             let testResult: boolean = await compareOutputs(outputFilePath, codeOutputFilePath);
-            console.log(testResult);
+            // console.log(testResult);
 
-            if(testResult) {
-                // vscode.window.showInformationMessage(`Test ${i} passed.`);
-                // console.log(`Test ${i} passed.`);
+            let input: string = await readFile(inputFilePath);
+            let expectedOutput: string = await readFile(outputFilePath);
+            let codeOutput: string = await readFile(codeOutputFilePath);
+            let result: string = `Input ${i}: \n${input}\n\nExpected Output : \n${expectedOutput}\n\nObtained Output : \n${codeOutput}\n\n`;
+            if(fs.existsSync(stderrFilePath)) {
+                let stderr: string = await readFile(stderrFilePath);
+                result = `${result}Standard Error : \n${stderr}\n\n`;
             }
-            else {
+            result = result + "________________________________________________________\n\n";
+            fs.appendFileSync(resultFilePath, result, (err: any) => {
+                if(err) {
+                    vscode.window.showErrorMessage("Could not write result.");
+                }
+            });
+
+            if(!testResult) {
                 // console.log(`Test ${i} failed.`);
-                let input: string = await readFile(inputFilePath);
-                let expectedOutput: string = await readFile(outputFilePath);
-                let codeOutput: string = await readFile(codeOutputFilePath);
-                const result: string = `Input ${i}: \n${input}\n\nExpected Output : \n${expectedOutput}\n\nObtained Output : \n${codeOutput}\n\n`;
-                const click: string | undefined = await vscode.window.showErrorMessage(`Test ${i} failed`, "Open the Result");
-                if(click === "Open the Result") {
-                    const resultFilePath: string = `${testsFolderPath}result.txt`;
-                    fs.appendFileSync(resultFilePath, result, (err: any) => {
-                        if(err) {
-                            vscode.window.showErrorMessage("Could not fetch result.");
-                        }
-                    });
+                const click: string | undefined = await vscode.window.showErrorMessage(`Test ${i} failed`, "Show Result");
+                if(click === "Show Result") {
                     vscode.window.showTextDocument(vscode.Uri.file(resultFilePath), {preview: false, viewColumn: vscode.ViewColumn.Beside, preserveFocus: true});
                 }
                 passed = false;
-            }
+            }    
         }
         catch(err) {
             console.log("Inside catch block of while loop : " + err);
@@ -109,7 +97,10 @@ export const runTestCases = async function (
     }
 
     if(passed === true) {
-        vscode.window.showInformationMessage(`All test cases passed.`);
+        const click: string | undefined = await vscode.window.showInformationMessage(`All test cases passed.`, "Show Results");
+        if(click === "Show Results") {
+            vscode.window.showTextDocument(vscode.Uri.file(resultFilePath), {preview: false, viewColumn: vscode.ViewColumn.Beside, preserveFocus: true});
+        }
     }
 };
 
@@ -157,9 +148,11 @@ const compileFile = async(
     }
 };
 
-const runTestsWithTimeout = async (inputFilePath: string, 
+const runTestsWithTimeout = async (
+    inputFilePath: string, 
     codeOutputFilePath: string, 
     testsFolderPath: string, 
+    stderrFilePath: string,
     os: number
 ): Promise<any> => {
 
@@ -170,7 +163,7 @@ const runTestsWithTimeout = async (inputFilePath: string,
     });
 
     return Promise.race([
-        runTests(inputFilePath, codeOutputFilePath, testsFolderPath, os),
+        runTests(inputFilePath, codeOutputFilePath, testsFolderPath, stderrFilePath, os),
         timeoutPromise
     ])
     .then((result)=> {
@@ -200,6 +193,7 @@ const runTests = async (
     inputFilePath: string, 
     codeOutputFilePath: string, 
     testsFolderPath: string, 
+    stderrFilePath: string,
     os: number
 ): Promise<any> => {
 
@@ -228,9 +222,16 @@ const runTests = async (
                 }
                 if (stderr) {
                     console.log(`stderr: ${stderr}`);
-                    await reportError(stderr, "Run Time", testsFolderPath);
-                    reject(stderr);
-                    return;
+                    fs.writeFileSync(stderrFilePath, stderr, (err: any) => {
+                        if(err) {
+                            vscode.window.showErrorMessage("Could not write stderr.");
+                        }
+                    });
+                }
+                else if(fs.existsSync(stderrFilePath)) {
+                    fs.unlinkSync(stderrFilePath, (err: any) => {
+                        console.log(err);
+                    });
                 }
                 // console.log("Output Written.");
                 resolve(stdout);
@@ -270,12 +271,18 @@ const compareOutputs = async (outputFilePath: string, codeOutputFilePath: string
     expectedOutput = refine(expectedOutput);
     obtainedOutput = refine(obtainedOutput);
 
-    // console.log("Expected Output : ");
+    console.log("Expected Output : ");
+    for(let i = 0; i<expectedOutput.length; i++) {
+        console.log(expectedOutput.charCodeAt(i));
+    }
     // console.log(expectedOutput);
-    // console.log("Obtained Output : ");
+    console.log("Obtained Output : ");
+    for(let i = 0; i<obtainedOutput.length; i++) {
+        console.log(obtainedOutput.charCodeAt(i));
+    }
     // console.log(obtainedOutput);
 
-    // console.log(expectedOutput === obtainedOutput);
+    console.log(expectedOutput === obtainedOutput);
 
     if(expectedOutput === obtainedOutput) {
         return true;
@@ -286,17 +293,35 @@ const compareOutputs = async (outputFilePath: string, codeOutputFilePath: string
 };
 
 const refine = (content: string): string => {
-    while(content.slice(-1) === '\n') {
-        content = content.slice(0, content.lastIndexOf('\n'));
-    }
-
-    while(content[0] === '\n') {
-        content = content.slice(1);
-    }
-
+    content = content.trim();
     content = content.replace(/\r/g, '');
+    content = content.replace(/ \n/g, '\n');
 
     return content;
+};
+
+const pathRefine = (filePath: string, os: number): string => {
+    let path = String(filePath);
+    path = path.replace(/\%20/g, ' ');
+    path = path.replace(/\%21/g, '!');
+    path = path.replace(/\%28/g, '(');
+    path = path.replace(/\%29/g, ')');
+    path = path.replace(/\%23/g, '#');
+    path = path.replace(/\%27/g, '\'');
+    path = path.replace(/\%2C/g, ',');
+    path = path.replace(/\%3A/g, ':');
+    path = path.replace(/\%2B/g, '+');
+    path = path.replace(/\%3D/g, '=');
+    if(os === 1) {
+        // For Windows
+        path = path.slice(8);
+    }
+    else {
+        // For Linux
+        path = path.slice(7);
+    }
+
+    return path;
 };
 
 const readFile = (filePath: string): Promise<string> => {
