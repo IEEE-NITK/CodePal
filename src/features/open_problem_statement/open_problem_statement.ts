@@ -1,14 +1,14 @@
 import * as open from "open";
-export enum SubmitProblemType {
+export enum OpenProblemType {
   contest,
   problemset,
 }
 export const openProblemStatement = (
-  type: SubmitProblemType,
+  type: OpenProblemType,
   contestID: number,
   index: String
 ) => {
-  type === SubmitProblemType.problemset
+  type === OpenProblemType.problemset
     ? open(`https://codeforces.com/problemset/problem/${contestID}/${index}`)
     : open(`https://codeforces.com/contest/${contestID}/problem/${index}`);
 };
