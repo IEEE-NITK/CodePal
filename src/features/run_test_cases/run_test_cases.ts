@@ -19,7 +19,7 @@ export const runTestCases = async function (
 
     const lastIndexOfSlash: number = path.lastIndexOf('/');
     const problemFolderPath: string = path.slice(0, lastIndexOfSlash+1);
-    console.log(problemFolderPath);
+    // console.log(problemFolderPath);
 
     const testsFolderPath = problemFolderPath + "Tests/";
 
@@ -86,7 +86,7 @@ export const runTestCases = async function (
             }    
         }
         catch(err) {
-            console.log("Inside catch block of while loop : " + err);
+            // console.log("Inside catch block of while loop : " + err);
             // Runtime errors also get logged here
             passed = false;
             return;
@@ -171,18 +171,20 @@ const runTestsWithTimeout = async (
         return result;
     })
     .catch(async (error) => {
-        console.log("Inside catch block of runTestsWithTimeout : " + error);
+        // console.log("Inside catch block of runTestsWithTimeout : " + error);
         if(error === "Time limit exceeded") {
             vscode.window.showErrorMessage("Time limit exceeded!!");
-            // Kill the executing process
-            await exec("taskkill /F /IM a.exe", (error: any, stdout: any, stderr: any) => {
-                if (error) {
-                    console.log(`Could not kill timed out process.\nError: ${error.message}`);
-                }
-                if (stderr) {
-                    console.log(`Could not kill timed out process.\nstderr: ${stderr}`);
-                }
-            });
+            if(os === 1) {
+                // Kill the executing process
+                await exec("taskkill /F /IM a.exe", (error: any, stdout: any, stderr: any) => {
+                    if (error) {
+                        console.log(`Could not kill timed out process.\nError: ${error.message}`);
+                    }
+                    if (stderr) {
+                        console.log(`Could not kill timed out process.\nstderr: ${stderr}`);
+                    }
+                });
+            }
         }
         
         return "Run time error";
@@ -271,18 +273,18 @@ const compareOutputs = async (outputFilePath: string, codeOutputFilePath: string
     expectedOutput = refine(expectedOutput);
     obtainedOutput = refine(obtainedOutput);
 
-    console.log("Expected Output : ");
-    for(let i = 0; i<expectedOutput.length; i++) {
-        console.log(expectedOutput.charCodeAt(i));
-    }
+    // console.log("Expected Output : ");
+    // for(let i = 0; i<expectedOutput.length; i++) {
+    //     console.log(expectedOutput.charCodeAt(i));
+    // }
     // console.log(expectedOutput);
-    console.log("Obtained Output : ");
-    for(let i = 0; i<obtainedOutput.length; i++) {
-        console.log(obtainedOutput.charCodeAt(i));
-    }
+    // console.log("Obtained Output : ");
+    // for(let i = 0; i<obtainedOutput.length; i++) {
+    //     console.log(obtainedOutput.charCodeAt(i));
+    // }
     // console.log(obtainedOutput);
 
-    console.log(expectedOutput === obtainedOutput);
+    // console.log(expectedOutput === obtainedOutput);
 
     if(expectedOutput === obtainedOutput) {
         return true;
