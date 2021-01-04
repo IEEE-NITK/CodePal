@@ -81,6 +81,28 @@
 					"group": "inline"
 				}
 			]
+		},
+		"configuration": {
+			"title": "codepal",
+			"properties": {
+				"codepal.languageUsed": {
+					"type": "string",
+					"default": "c++",
+					"enum": [
+						"c++",
+						"python"
+					],
+					"enumDescriptions": [
+						"c++ is used",
+						"python is used"
+					]
+				},
+				"codepal.templateCode": {
+					"type": "string",
+					"default": "",
+					"markdownDescription": "The `template` that has to be used when a folder is created"
+				}
+			}
 		}
 	},
 	"scripts": {
