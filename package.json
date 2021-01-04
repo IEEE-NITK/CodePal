@@ -142,6 +142,7 @@
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
 		"@types/node-fetch": "^2.5.7",
+		"@types/selenium-webdriver": "^4.0.11",
 		"@types/vscode": "^1.52.0",
 		"@typescript-eslint/eslint-plugin": "^4.9.0",
 		"@typescript-eslint/parser": "^4.9.0",
@@ -160,6 +161,7 @@
 		"child_process": "^1.0.2",
 		"fs": "^0.0.1-security",
 		"node-fetch": "^2.6.1",
-		"open": "^7.3.0"
+		"open": "^7.3.0",
+		"selenium-webdriver": "^4.0.0-alpha.8"
 	}
 }
