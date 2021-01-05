@@ -111,18 +111,16 @@
 					"type": "string",
 					"default": "c++",
 					"enum": [
-						"c++",
-						"python"
+						"c++"
 					],
 					"enumDescriptions": [
-						"c++ is used",
-						"python is used"
+						"c++14 is used"
 					]
 				},
-				"codepal.templateCode": {
+				"codepal.codeTemplatePath": {
 					"type": "string",
 					"default": "",
-					"markdownDescription": "The `template` that has to be used when a folder is created"
+					"markdownDescription": "The path of the `template` that has to be used when a folder is created"
 				}
 			}
 		}
