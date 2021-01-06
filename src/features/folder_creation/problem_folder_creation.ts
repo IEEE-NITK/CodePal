@@ -5,12 +5,12 @@ import { readFileSync as fs_readFileSync } from "fs";
 import { fetchTestCases } from "./test_cases_fetch";
 import { fetchProblemPdf } from "./problem_pdf_creation";
 
-const templatePath = vscode.workspace
-  .getConfiguration("codepal")
-  .get<string>("codeTemplatePath"); // take it from settings
 let templateCode = "";
 
 const getTemplateCode = async () => {
+  const templatePath = vscode.workspace
+  .getConfiguration("codepal")
+  .get<string>("codeTemplatePath");
   let data = "";
   try {
     if (templatePath) {

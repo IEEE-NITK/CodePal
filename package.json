@@ -107,20 +107,22 @@
 		"configuration": {
 			"title": "codepal",
 			"properties": {
-				"codepal.languageUsed": {
+				"codepal.compilationLanguage": {
 					"type": "string",
 					"default": "c++",
 					"enum": [
 						"c++"
-					],
-					"enumDescriptions": [
-						"c++14 is used"
 					]
 				},
 				"codepal.codeTemplatePath": {
 					"type": "string",
 					"default": "",
 					"markdownDescription": "The path of the `template` that has to be used when a folder is created"
+				},
+				"codepal.g++ CompilerType": {
+					"type": "string",
+					"default": "-std=c++14",
+					"markdownDescription": "The type of g++ used"
 				}
 			}
 		}
