@@ -129,13 +129,16 @@ const compileFile = async (
   cppFilePath: string,
   testsFolderPath: string
 ): Promise<any> => {
-  const languageUsed = vscode.workspace
+  const compilationLanguage = vscode.workspace
     .getConfiguration("codepal")
-    .get<String>("languageUsed");
+    .get<String>("compilationLanguage");
   let compileCommand: string;
-  switch (languageUsed) {
+  switch (compilationLanguage) {
     case "c++":
-      compileCommand = `g++ "${cppFilePath}" -std=c++14`;
+      const compilationFlag = vscode.workspace
+    .getConfiguration("codepal")
+    .get<String>("g++ CompilerType");
+      compileCommand = `g++ "${cppFilePath}" ${compilationFlag}`;
       break;
     default:
       vscode.window.showErrorMessage("Language used is not supported");
@@ -155,7 +158,7 @@ const compileFile = async (
 
   try {
     return new Promise(async (resolve, reject) => {
-      await exec(
+      exec(
         compileCommand,
         async (error: any, stdout: any, stderr: any) => {
           if (error) {
@@ -214,7 +217,7 @@ const runTestsWithTimeout = async (
         vscode.window.showErrorMessage("Time limit exceeded!!");
         if (os === 1) {
           // Kill the executing process
-          await exec(
+          exec(
             "taskkill /F /IM a.exe",
             (error: any, stdout: any, stderr: any) => {
               if (error) {
@@ -258,7 +261,7 @@ const runTests = async (
 
   try {
     return new Promise(async (resolve, reject) => {
-      await exec(runCommand, async (error: any, stdout: any, stderr: any) => {
+      exec(runCommand, async (error: any, stdout: any, stderr: any) => {
         if (error) {
           console.log(`Runtime Error: ${error}`);
           await reportError(error.message, "Run Time", testsFolderPath);
