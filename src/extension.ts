@@ -12,6 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
   const rootPath = vscode.workspace.workspaceFolders
     ? vscode.workspace.workspaceFolders[0].uri.fsPath + "/"
     : "/";
+  const problemProvider = new ProblemsProvider(rootPath);
   disposable = [
     vscode.commands.registerCommand("codepal.helloWorld", () => {
       vscode.window.showInformationMessage("Namaste World from IEEE/CodePal!");
@@ -20,6 +21,28 @@ export function activate(context: vscode.ExtensionContext) {
   disposable.push(
     vscode.commands.registerCommand("codepal.fetchContests", () => {
       vscode.window.showInformationMessage("Fetch Contests");
+    })
+  );
+  disposable.push(
+    vscode.commands.registerCommand("codepal.getProblemFilters", async() => {
+      let fromRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's lower limit. Leave blank for defaulting to 0."}); 
+      let toRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's upper limit. Leave blank for defaulting to 4000."}); 
+      let tags = ""; // read tags here with quick input and assign to the variable
+      if(typeof(fromRating)==="string" && typeof(toRating)==="string"){
+        if(toRating===""){
+          toRating = "4000";
+        }
+        if(fromRating===""){
+          fromRating = "0";
+        }
+        problemProvider.refresh(parseInt(fromRating),parseInt(toRating),tags);
+      }
+
+    })
+  );
+  disposable.push(
+    vscode.commands.registerCommand("codepal.reloadProblems", () => {
+      problemProvider.reload();
     })
   );
   disposable.push(
@@ -47,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
   disposable.push(
     vscode.window.registerTreeDataProvider(
       "codepalProblems",
-      new ProblemsProvider(rootPath)
+      problemProvider
     )
   );
   context.subscriptions.push(...disposable);
