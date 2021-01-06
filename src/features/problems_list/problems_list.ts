@@ -4,20 +4,9 @@ import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
 
 const problemsList = async (
-    tags: Array<string> = [], 
-    fromRating: number = 0, 
-    toRating: number = 4000
 ): Promise<ProblemClass[]> => {
 
     let url = 'https://codeforces.com/api/problemset.problems';
-
-    // Appending the tags to the url
-    if(tags.length) {
-        url = `${url}?tags=`;
-    }
-    tags.forEach((element) => {
-        url = `${url}${element};`;
-    });
 
     console.log(url);
 
@@ -28,13 +17,10 @@ const problemsList = async (
             const jsonResponse = await response.json();
             let problems: ProblemClass[] = [];
 
-            // Filtering the problems based on rating, and making a list of problem objects 
             // res is the json response obtained from the API call
             jsonResponse.result.problems.forEach((element: any) => {
-                if((fromRating === 0 && toRating === 4000) || (element.rating >= fromRating && element.rating <= toRating)) {
-                    const p = new ProblemClass (element.contestId, element.index, element.name, element.tags, element.rating);
-                    problems.push(p);
-                } 
+                const p = new ProblemClass (element.contestId, element.index, element.name, element.tags, element.rating);
+                problems.push(p); 
             });
             return problems;
         }
@@ -51,11 +37,30 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     return problems.map<ProblemTreeItem> (
         (problem: ProblemClass): ProblemTreeItem => {
             return new ProblemTreeItem (
-                `${problem.name}`,
+                `${problem.name} ( ${(problem.rating === 0 ? "Not yet defined" : problem.rating)} )`,
                 "problem",
                 vscode.TreeItemCollapsibleState.Collapsed,
                 problem
             );
         }
     ); 
+};
+
+// filter the problems from already fetched list
+export const filterProblems = (
+    problems : ProblemTreeItem[],
+    fromRating : number,
+    toRating : number,
+    tags : string
+    ) : ProblemTreeItem[] => {
+    let filteredProblems : ProblemTreeItem[] = [];
+    problems.forEach(function(problem : ProblemTreeItem) : void{
+    let currentProblem : ProblemClass | undefined = problem.problem;
+    if(currentProblem && currentProblem.rating){
+        if(currentProblem.rating >= fromRating && currentProblem.rating <= toRating){
+            filteredProblems.push(problem);
+        }
+    }
+    });
+    return filteredProblems;
 };
