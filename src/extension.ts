@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("codepal.getProblemFilters", async() => {
       let fromRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's lower limit. Leave blank for defaulting to 0."}); 
       let toRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's upper limit. Leave blank for defaulting to 4000."}); 
-      let tags = ""; // read tags here with quick input and assign to the variable
+      let tags : string[] = []; // read tags here with quick input and assign to the variable
       if(typeof(fromRating)==="string" && typeof(toRating)==="string"){
         if(toRating===""){
           toRating = "4000";

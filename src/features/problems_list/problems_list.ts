@@ -51,7 +51,7 @@ export const filterProblems = (
     problems : ProblemTreeItem[],
     fromRating : number,
     toRating : number,
-    tags : string
+    tags : string[]
     ) : ProblemTreeItem[] => {
     let filteredProblems : ProblemTreeItem[] = [];
     problems.forEach(function(problem : ProblemTreeItem) : void{

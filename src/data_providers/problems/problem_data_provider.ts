@@ -9,7 +9,7 @@ export class ProblemsProvider
   private alreadyfetched : boolean;
   private fromRating : number;
   private toRating : number;
-  private tags : string;
+  private tags : string[];
   private allProblems : ProblemTreeItem[];
 
   constructor(private workspaceRoot: string) {
@@ -17,7 +17,7 @@ export class ProblemsProvider
     this.alreadyfetched = false;
     this.fromRating = 0;
     this.toRating = 4000;
-    this.tags = "";
+    this.tags = [];
     this.allProblems = [];
     this.rootPath = workspaceRoot;
   }
@@ -25,7 +25,7 @@ export class ProblemsProvider
 	private _onDidChangeTreeData: vscode.EventEmitter<ProblemTreeItem | undefined | void> = new vscode.EventEmitter<ProblemTreeItem | undefined | void>();
 	readonly onDidChangeTreeData: vscode.Event<ProblemTreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
-  refresh(newFromRating : number,newToRating : number,newtags : string): void {
+  refresh(newFromRating : number,newToRating : number,newtags : string[]): void {
     this.fromRating = newFromRating;
     this.toRating = newToRating;
     this.tags = newtags;
@@ -34,7 +34,7 @@ export class ProblemsProvider
   
   reload():void {
     this.alreadyfetched = false;
-    this.refresh(0,4000,"");
+    this.refresh(0,4000,[]);
   }
 
   getTreeItem(
