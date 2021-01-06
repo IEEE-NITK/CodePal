@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
-const fs = require("fs");
-const { exec } = require("child_process");
-
+const fs= require("fs");
+import { exec } from "child_process";
+import {Utils} from "../../utils/utils";
 
 export const runTestCases = async function (
     filePath: string,
@@ -9,7 +9,7 @@ export const runTestCases = async function (
 ): Promise<void> {
     // Code for running test cases and returning verdict
     console.log(filePath);
-    let path = pathRefine(filePath, os);
+    let path = Utils.pathRefine(filePath, os);
     console.log(path);
 
     if(!fs.existsSync(path)) {
@@ -300,29 +300,7 @@ const refine = (content: string): string => {
     return content;
 };
 
-const pathRefine = (filePath: string, os: number): string => {
-    let path = String(filePath);
-    path = path.replace(/\%20/g, ' ');
-    path = path.replace(/\%21/g, '!');
-    path = path.replace(/\%28/g, '(');
-    path = path.replace(/\%29/g, ')');
-    path = path.replace(/\%23/g, '#');
-    path = path.replace(/\%27/g, '\'');
-    path = path.replace(/\%2C/g, ',');
-    path = path.replace(/\%3A/g, ':');
-    path = path.replace(/\%2B/g, '+');
-    path = path.replace(/\%3D/g, '=');
-    if(os === 1) {
-        // For Windows
-        path = path.slice(8);
-    }
-    else {
-        // For Linux
-        path = path.slice(7);
-    }
 
-    return path;
-};
 
 const readFile = (filePath: string): Promise<string> => {
     return new Promise((resolve, reject) => {
