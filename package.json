@@ -42,6 +42,16 @@
 				"command": "codepal.runTestCasesWindows",
 				"title": "Run Test Cases",
 				"icon": "res/svg/play_button.png"
+			},
+			{
+				"command": "codepal.addTestCasesLinux",
+				"title": "Add Test Cases",
+				"icon": "res/svg/add_TestCase.png"
+			},
+			{
+				"command": "codepal.addTestCasesWindows",
+				"title": "Add Test Cases",
+				"icon": "res/svg/add_TestCase.png"
 			}
 		],
 		"viewsContainers": {
@@ -100,6 +110,16 @@
 				{
 					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isWindows",
 					"command": "codepal.runTestCasesWindows",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && isLinux",
+					"command": "codepal.addTestCasesLinux",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
+					"command": "codepal.addTestCasesWindows",
 					"group": "navigation"
 				}
 			]
