@@ -47,7 +47,7 @@ export const fetchTestCases = async (
         .then((data) => {
             for(let i=0; i<data.input.length; i++) {
                 const problemFilePath = problemFolderPath + `input_${i+1}.txt`;
-                fs.writeFile(problemFilePath, data.input[i],function(err: any, result: any) {
+                fs.writeFile(problemFilePath, data.input[i] + "\n",function(err: any, result: any) {
                     if (err) {console.log('error', err);}
                 });
             }
@@ -57,7 +57,7 @@ export const fetchTestCases = async (
         .then((data) => {
             for(let i=0; i<data.output.length; i++) {
                 const problemFilePath = problemFolderPath + `output_${i+1}.txt`;
-                fs.writeFile(problemFilePath, data.output[i],function(err: any, result: any) {
+                fs.writeFile(problemFilePath, data.output[i] + "\n",function(err: any, result: any) {
                     if (err) {console.log('error', err);}
                 });
             }
