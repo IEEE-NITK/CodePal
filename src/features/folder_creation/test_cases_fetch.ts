@@ -46,16 +46,20 @@ export const fetchTestCases = async (
         getInputOutput(problem)
         .then((data) => {
             for(let i=0; i<data.input.length; i++) {
-                const problemFilePath = problemFolderPath + `Input ${i}.txt`;
-                fs.writeFile(problemFilePath, data.input[i],);
+                const problemFilePath = problemFolderPath + `input_${i+1}.txt`;
+                fs.writeFile(problemFilePath, data.input[i],function(err: any, result: any) {
+                    if (err) {console.log('error', err);}
+                });
             }
         });
   
         getInputOutput(problem)
         .then((data) => {
             for(let i=0; i<data.output.length; i++) {
-                const problemFilePath = problemFolderPath + `Output ${i}.txt`;
-                fs.writeFile(problemFilePath, data.output[i],);
+                const problemFilePath = problemFolderPath + `output_${i+1}.txt`;
+                fs.writeFile(problemFilePath, data.output[i],function(err: any, result: any) {
+                    if (err) {console.log('error', err);}
+                });
             }
         });
   

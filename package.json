@@ -32,6 +32,26 @@
 				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
 				"icon": "res/svg/CreateFolder.png"
+			},
+			{
+				"command": "codepal.runTestCasesLinux",
+				"title": "Run Test Cases",
+				"icon": "res/svg/play_button.png"
+			},
+			{
+				"command": "codepal.runTestCasesWindows",
+				"title": "Run Test Cases",
+				"icon": "res/svg/play_button.png"
+			},
+			{
+				"command": "codepal.addTestCasesLinux",
+				"title": "Add Test Cases",
+				"icon": "res/svg/add_TestCase.png"
+			},
+			{
+				"command": "codepal.addTestCasesWindows",
+				"title": "Add Test Cases",
+				"icon": "res/svg/add_TestCase.png"
 			}
 		],
 		"viewsContainers": {
@@ -80,6 +100,28 @@
 					"when": "view == codepalProblems && viewItem==problem",
 					"group": "inline"
 				}
+			],
+			"editor/title": [
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isLinux",
+					"command": "codepal.runTestCasesLinux",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isWindows",
+					"command": "codepal.runTestCasesWindows",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && isLinux",
+					"command": "codepal.addTestCasesLinux",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
+					"command": "codepal.addTestCasesWindows",
+					"group": "navigation"
+				}
 			]
 		}
 	},
@@ -115,6 +157,8 @@
 	"dependencies": {
 		"axios": "^0.21.1",
 		"cheerio": "^1.0.0-rc.5",
+		"child_process": "^1.0.2",
+		"fs": "^0.0.1-security",
 		"node-fetch": "^2.6.1"
 	}
 }
