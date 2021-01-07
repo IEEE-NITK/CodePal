@@ -52,6 +52,16 @@
 				"command": "codepal.addTestCasesWindows",
 				"title": "Add Test Cases",
 				"icon": "res/svg/add_TestCase.png"
+			},
+			{
+				"command": "codepal.openProblemStatement",
+				"title": "Open Problem Statement",
+				"icon": "res/svg/question_mark.png"
+			},
+			{
+				"command": "codepal.submitProblem",
+				"title": "Submit Problem",
+				"icon": "res/svg/upload.png"
 			}
 		],
 		"viewsContainers": {
@@ -119,10 +129,41 @@
 				},
 				{
 					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
-					"command": "codepal.addTestCasesWindows",
+					"command": "codepal.addTestCasesWindows"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/'",
+					"command": "codepal.submitProblem",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/'",
+					"command": "codepal.openProblemStatement",
 					"group": "navigation"
 				}
 			]
+		},
+		"configuration": {
+			"title": "codepal",
+			"properties": {
+				"codepal.compilationLanguage": {
+					"type": "string",
+					"default": "c++",
+					"enum": [
+						"c++"
+					]
+				},
+				"codepal.codeTemplatePath": {
+					"type": "string",
+					"default": "",
+					"markdownDescription": "The path of the `template` that has to be used when a folder is created"
+				},
+				"codepal.g++ CompilerType": {
+					"type": "string",
+					"default": "-std=c++14",
+					"markdownDescription": "The type of g++ used"
+				}
+			}
 		}
 	},
 	"scripts": {
@@ -142,6 +183,7 @@
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
 		"@types/node-fetch": "^2.5.7",
+		"@types/selenium-webdriver": "^4.0.11",
 		"@types/vscode": "^1.52.0",
 		"@typescript-eslint/eslint-plugin": "^4.9.0",
 		"@typescript-eslint/parser": "^4.9.0",
@@ -159,6 +201,8 @@
 		"cheerio": "^1.0.0-rc.5",
 		"child_process": "^1.0.2",
 		"fs": "^0.0.1-security",
-		"node-fetch": "^2.6.1"
+		"node-fetch": "^2.6.1",
+		"open": "^7.3.0",
+		"selenium-webdriver": "^4.0.0-alpha.8"
 	}
 }

@@ -1,8 +1,5 @@
 import * as vscode from "vscode";
 import { ContestClass } from "../../classes/contest";
-import { ProblemClass } from "../../classes/problem";
-import { ContestTreeItem } from "../../data_providers/contests/contest_tree_item";
-import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
 import {promises as fs} from "fs";
 import { createProblemDirectory } from "./problem_folder_creation";
 
