@@ -7,6 +7,8 @@ import { createContestDirectory } from "./features/folder_creation/contest_folde
 import { createProblemDirectory } from "./features/folder_creation/problem_folder_creation";
 import { runTestCases } from "./features/run_test_cases/run_test_cases";
 import { addTestCases } from "./features/run_test_cases/add_test_cases";
+import { submitProblem } from "./features/submit_problem/submit_problem";
+import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
@@ -56,6 +58,22 @@ export function activate(context: vscode.ExtensionContext) {
       (param: any) => {
         // console.log("Run test cases icon parameter : " + String(param));
         runTestCases(String(param), 1);
+      }
+    )
+  );
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.openProblemStatement",
+      (param: any) => {
+        openProblemStatement(String(param));
+      }
+    )
+  );
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.submitProblem",
+      async (param: any) => {
+        await submitProblem(String(param));
       }
     )
   );
