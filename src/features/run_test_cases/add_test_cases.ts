@@ -57,16 +57,18 @@ export const addTestCases = async function (
         groups: [{ groups: [{}], size: 1 }, { groups: [{}, {}], size: 0.5 }] 
     });
 
-    vscode.commands.executeCommand(
-        "vscode.open",
-        vscode.Uri.file(addedInputFilePath),
-        vscode.ViewColumn.One
-    );
+    vscode.window.showInformationMessage(`Input and Output files created successfully. Please enter the input and expected output in the input${i}.txt and output${i}.txt respectively`);
 
     vscode.commands.executeCommand(
         "vscode.open",
         vscode.Uri.file(addedOutputFilePath),
         vscode.ViewColumn.Two
+    );
+
+    vscode.commands.executeCommand(
+        "vscode.open",
+        vscode.Uri.file(addedInputFilePath),
+        vscode.ViewColumn.One
     );
 
     //vscode.window.showTextDocument(vscode.Uri.file(addedInputFilePath), {preview: false, viewColumn: vscode.ViewColumn.Beside, preserveFocus: true});
