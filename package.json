@@ -113,12 +113,12 @@
 			],
 			"editor/title": [
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isLinux",
+					"when": "resourceScheme == file && resourceExtname == .cpp && isLinux",
 					"command": "codepal.runTestCasesLinux",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/' && isWindows",
+					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
 					"command": "codepal.runTestCasesWindows",
 					"group": "navigation"
 				},
@@ -129,7 +129,8 @@
 				},
 				{
 					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
-					"command": "codepal.addTestCasesWindows"
+					"command": "codepal.addTestCasesWindows",
+					"group": "navigation"
 				},
 				{
 					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/'",
