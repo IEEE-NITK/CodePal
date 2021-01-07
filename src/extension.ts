@@ -6,6 +6,7 @@ import { ProblemsProvider } from "./data_providers/problems/problem_data_provide
 import { createContestDirectory } from "./features/folder_creation/contest_folder_creation";
 import { createProblemDirectory } from "./features/folder_creation/problem_folder_creation";
 import { runTestCases } from "./features/run_test_cases/run_test_cases";
+import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
 
@@ -73,6 +74,25 @@ export function activate(context: vscode.ExtensionContext) {
       "codepal.submitProblem",
       async (param: any) => {
         await submitProblem(String(param));
+      }
+    )
+  );
+
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.addTestCasesLinux",
+      (param: any) => {
+        console.log("Add test cases icon parameter : " + String(param));
+        addTestCases(String(param), 0);
+      }
+    )
+  );
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.addTestCasesWindows",
+      (param: any) => {
+        console.log("Add test cases icon parameter : " + String(param));
+        addTestCases(String(param), 1);
       }
     )
   );
