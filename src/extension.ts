@@ -6,6 +6,10 @@ import { ProblemsProvider } from "./data_providers/problems/problem_data_provide
 import { createContestDirectory } from "./features/folder_creation/contest_folder_creation";
 import { createProblemDirectory } from "./features/folder_creation/problem_folder_creation";
 
+const tagOR:string = "*combine tags by OR";
+const allTags:string[] = [tagOR,"2-sat","binary search","bitmasks","brute force","chinese remainder theorem","combinatorics","constructive algorithms","data structures","dfs and similar","divide and conquer","dp","dsu","expression parsing","fft","flows","games","geometry","graph matchings","graphs","greedy","hashing","implementation","interactive","math","matrices","meet-in-the-middle","number theory","probabilities","schedules","shortest paths","sortings","string suffix structures","strings","ternary search","trees","two pointers"];
+const isNum = (val:string) => /^\d+$/.test(val); // check if a string has only digits
+
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
   let disposable: vscode.Disposable[];
@@ -28,16 +32,35 @@ export function activate(context: vscode.ExtensionContext) {
       let fromRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's lower limit. Leave blank for defaulting to 0."}); 
       let toRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's upper limit. Leave blank for defaulting to 4000."}); 
       let tags : string[] = []; // read tags here with quick input and assign to the variable
+      
       if(typeof(fromRating)==="string" && typeof(toRating)==="string"){
-        if(toRating===""){
+
+        if(toRating==="" || !isNum(toRating)){
           toRating = "4000";
         }
-        if(fromRating===""){
+        if(fromRating==="" || !isNum(fromRating)){
           fromRating = "0";
         }
-        problemProvider.refresh(parseInt(fromRating),parseInt(toRating),tags);
-      }
 
+        const quickPick = vscode.window.createQuickPick();
+        quickPick.items = allTags.map(label => ({ label }));
+        quickPick.canSelectMany = true;
+        
+        quickPick.onDidAccept(() => {
+
+          quickPick.selectedItems.forEach(item => {
+            tags.push(item.label);
+            console.log(item.label);
+          });
+
+          quickPick.hide();
+
+          problemProvider.refresh(parseInt(String(fromRating)),parseInt(String(toRating)),tags);
+        });
+
+        quickPick.onDidHide(() => quickPick.dispose());
+        quickPick.show();
+      }
     })
   );
   disposable.push(
