@@ -3,6 +3,8 @@ import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
 
+const tagOR:string = "*combine tags by OR";
+
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
 
@@ -46,6 +48,48 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     ); 
 };
 
+const validRating = (
+    problem: ProblemClass | undefined, 
+    fromRating: number, 
+    toRating: number): boolean =>{
+    if(problem === undefined || problem.rating === undefined){
+        return false;
+    }
+
+    if(fromRating <= problem.rating && problem.rating <= toRating){
+        return true;
+    }
+    else{
+        return false;
+    }
+};
+
+const validTags = (
+    problem: ProblemClass | undefined, 
+    tags:string[]): boolean =>{
+    if(problem === undefined || problem.tags === undefined){
+        return false;
+    }
+
+    if(tags.includes(tagOR)){ // union of all tags
+        if(tags.length === 1 || tags.some(tag => problem.tags.includes(tag))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    else{ // intersection of all tags
+        if(tags.length === 0 || tags.every(tag => problem.tags.includes(tag))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
+
 // filter the problems from already fetched list
 export const filterProblems = (
     problems : ProblemTreeItem[],
@@ -53,14 +97,31 @@ export const filterProblems = (
     toRating : number,
     tags : string[]
     ) : ProblemTreeItem[] => {
+
     let filteredProblems : ProblemTreeItem[] = [];
     problems.forEach(function(problem : ProblemTreeItem) : void{
-    let currentProblem : ProblemClass | undefined = problem.problem;
-    if(currentProblem && currentProblem.rating){
-        if(currentProblem.rating >= fromRating && currentProblem.rating <= toRating){
-            filteredProblems.push(problem);
+        let currentProblem : ProblemClass | undefined = problem.problem;
+        
+
+        if( currentProblem !== undefined && 
+            validRating(currentProblem,fromRating,toRating) === true && 
+            validTags(currentProblem,tags) === true){
+           
+            filteredProblems.push(new ProblemTreeItem (
+                `${currentProblem.name} ( ${(currentProblem.rating === 0 ? "Not yet defined" : currentProblem.rating)} )`,
+                "problem",
+                vscode.TreeItemCollapsibleState.Collapsed,
+                currentProblem
+            ));
         }
+    }); 
+
+    if(filteredProblems.length === 0){
+        filteredProblems.push(new ProblemTreeItem (
+            `No problem found`,
+            "empty",
+            vscode.TreeItemCollapsibleState.None,
+        ));
     }
-    });
     return filteredProblems;
 };
