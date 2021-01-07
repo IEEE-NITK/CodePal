@@ -1,20 +1,21 @@
 import * as vscode from "vscode";
-const fs = require("fs");
+const fs= require("fs");
 import { exec } from "child_process";
+import {Utils} from "../../utils/utils";
+
 export const runTestCases = async function (
   filePath: string,
   os: number
 ): Promise<void> {
-  // Code for running test cases and returning verdict
-  console.log(filePath);
-  let path = pathRefine(filePath, os);
-  console.log(path);
+    // Code for running test cases and returning verdict
+    console.log(filePath);
+    let path = Utils.pathRefine(filePath, os);
+    console.log(path);
 
-  if (!fs.existsSync(path)) {
-    vscode.window.showErrorMessage("Problem solution file not found.");
-    return;
-  }
-
+    if(!fs.existsSync(path)) {
+        vscode.window.showErrorMessage("Problem solution file not found.");
+        return;
+    }
   const lastIndexOfSlash: number = path.lastIndexOf("/");
   const problemFolderPath: string = path.slice(0, lastIndexOfSlash + 1);
   // console.log(problemFolderPath);
@@ -352,29 +353,6 @@ const refine = (content: string): string => {
   content = content.replace(/ \n/g, "\n");
 
   return content;
-};
-
-const pathRefine = (filePath: string, os: number): string => {
-  let path = String(filePath);
-  path = path.replace(/\%20/g, " ");
-  path = path.replace(/\%21/g, "!");
-  path = path.replace(/\%28/g, "(");
-  path = path.replace(/\%29/g, ")");
-  path = path.replace(/\%23/g, "#");
-  path = path.replace(/\%27/g, "'");
-  path = path.replace(/\%2C/g, ",");
-  path = path.replace(/\%3A/g, ":");
-  path = path.replace(/\%2B/g, "+");
-  path = path.replace(/\%3D/g, "=");
-  if (os === 1) {
-    // For Windows
-    path = path.slice(8);
-  } else {
-    // For Linux
-    path = path.slice(7);
-  }
-
-  return path;
 };
 
 const readFile = (filePath: string): Promise<string> => {
