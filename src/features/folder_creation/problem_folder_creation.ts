@@ -55,6 +55,11 @@ export const createProblemDirectory = async (
 
     await fetchProblemPdf(problem, problemFolderPath); // Fetch pdf of problem statement
 
+    vscode.window.showTextDocument(vscode.Uri.file(problemFilePath), {
+      preview: false,
+      preserveFocus: true,
+    });
+
     console.log("Problem folder created");
     vscode.window.showInformationMessage("Problem folder created successfully");
   } catch (err) {
