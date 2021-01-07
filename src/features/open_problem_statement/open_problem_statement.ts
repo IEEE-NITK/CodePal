@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
 import * as open from "open";
+import * as vscode from "vscode";
 import {platform} from "os";
 import * as fs from "fs";
 import {Utils} from "../../utils/utils";
