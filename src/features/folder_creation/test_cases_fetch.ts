@@ -18,10 +18,10 @@ const getInputOutput = async (problem: ProblemClass) => {
         let output: string[] = [];
 
         postTitleInput.each((i: Number, element: string) => {
-            input.push($(element).text());
+            input.push($(element).html().replace(/<br>/g, '\n'));
         });
         postTitleOutput.each((i: Number, element: string) => {
-            output.push($(element).text());
+            output.push($(element).html().replace(/<br>/g, '\n'));
         });
 
         return {input,output};
@@ -48,7 +48,7 @@ export const fetchTestCases = async (
             for(let i=0; i<data.input.length; i++) {
                 const problemFilePath = problemFolderPath + `input_${i+1}.txt`;
                 fs.writeFile(problemFilePath, data.input[i],function(err: any, result: any) {
-                    if (err) {console.log('error', err);}
+                    if (err) { console.log('error', err);}
                 });
             }
         });
