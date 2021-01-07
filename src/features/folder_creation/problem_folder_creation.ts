@@ -40,7 +40,15 @@ export const createProblemDirectory = async (
 
   try {
     await fs.mkdir(problemFolderPath);
-
+      // creating .json
+      fs.writeFile(
+        problemFolderPath + ".problem.json",
+        JSON.stringify({
+          contestID: problem.contestID,
+          index: problem.index,
+        })
+      );
+    
     fs.writeFile(problemFilePath, templateCode); // cpp file
 
     await fetchTestCases(problem, problemFolderPath); // Fetch tests cases into the problem folder
