@@ -5,6 +5,8 @@ import { ProblemTreeItem } from "./data_providers/problems/problem_tree_item";
 import { ProblemsProvider } from "./data_providers/problems/problem_data_provider";
 import { createContestDirectory } from "./features/folder_creation/contest_folder_creation";
 import { createProblemDirectory } from "./features/folder_creation/problem_folder_creation";
+import { runTestCases } from "./features/run_test_cases/run_test_cases";
+import { addTestCases } from "./features/run_test_cases/add_test_cases";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
@@ -35,6 +37,45 @@ export function activate(context: vscode.ExtensionContext) {
       "codepal.createProblemDirectory",
       (param: ProblemTreeItem) =>
         createProblemDirectory(param.problem, rootPath)
+    )
+  );
+
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.runTestCasesLinux",
+      (param: any) => {
+        // console.log("Run test cases icon parameter : " + String(param));
+        runTestCases(String(param), 0);
+      }
+    )
+  );
+
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.runTestCasesWindows",
+      (param: any) => {
+        // console.log("Run test cases icon parameter : " + String(param));
+        runTestCases(String(param), 1);
+      }
+    )
+  );
+
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.addTestCasesLinux",
+      (param: any) => {
+        console.log("Add test cases icon parameter : " + String(param));
+        addTestCases(String(param), 0);
+      }
+    )
+  );
+  disposable.push(
+    vscode.commands.registerCommand(
+      "codepal.addTestCasesWindows",
+      (param: any) => {
+        console.log("Add test cases icon parameter : " + String(param));
+        addTestCases(String(param), 1);
+      }
     )
   );
 
