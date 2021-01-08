@@ -5,8 +5,8 @@ A Visual Studio Code Extension to help Codeforces Users ***Code with Convenience
 - View Complete ProblemSet List along with their associated tags and ratings. 
 - Filter through the ProblemSet by specified Ratings and Tags.
 - View Currently Running , Upcoming and all Past contests. 
-- Create a Folder with one click for any contest or problem that consists of all its sample tests and solution files orgainzed in a clean directory structure.
-- Add additional tests to any program file. 
+- Create a Folder with one click for any contest or problem that consists of all its sample tests and program file (of your language choice) orgainzed in a clean directory structure.
+- Add additional tests to any program file (of your language choice). 
 - Compile and run any program file against the testcases and get comprehensive results. 
 - Open respective webpages of problem statement and submission page with a single click. (You must be logged in codeforces before hand to open the submission page successfully)
 
