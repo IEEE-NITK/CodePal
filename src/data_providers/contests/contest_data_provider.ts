@@ -10,9 +10,16 @@ export class ContestsProvider
     console.log(workspaceRoot);
     this.rootPath = workspaceRoot;
   }
-  onDidChangeTreeData?:
-    | vscode.Event<ContestTreeItem | null | undefined>
-    | undefined;
+  private _onDidChangeTreeData: vscode.EventEmitter<ContestTreeItem | undefined | void> = new vscode.EventEmitter<ContestTreeItem | undefined | void>();
+	readonly onDidChangeTreeData: vscode.Event<ContestTreeItem | undefined | void> = this._onDidChangeTreeData.event;
+
+  refresh(): void {
+    this._onDidChangeTreeData.fire();
+  }
+  
+  reload():void {
+    this.refresh();
+  }
 
   getTreeItem(
     element: ContestTreeItem

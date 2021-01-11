@@ -31,10 +31,11 @@ export const createProblemDirectory = async (
     console.log("Empty Problem class");
     return;
   }
-
-  const problemFolderPath = folderPath + `${problem.index}. ${problem.name}/`;
+  let problemName : string = problem.name;
+  problemName = problemName.replace(/[^a-zA-Z 0-9.]+/g,'');
+  const problemFolderPath = folderPath + `${problem.index}-${problemName}/`;
   const problemFilePath =
-    problemFolderPath + `${problem.index}. ${problem.name}.cpp`;
+    problemFolderPath + `${problem.index}-${problemName}.cpp`;
 
   templateCode = await getTemplateCode();
 

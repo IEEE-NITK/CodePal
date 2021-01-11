@@ -20,16 +20,19 @@
 				"title": "Hello World"
 			},
 			{
-				"command": "codepal.fetchContests",
-				"title": "Fetch Contests"
+				"command": "codepal.reloadContests",
+				"title": "Refresh contest list",
+				"icon" : "res/svg/refresh.svg"
 			},
 			{
 				"command": "codepal.getProblemFilters",
-				"title": "Filter"
+				"title": "Filter",
+				"icon" : "res/svg/filter.svg"
 			},
 			{
 				"command": "codepal.reloadProblems",
-				"title": "Reload"
+				"title": "Refresh problem list",
+				"icon" : "res/svg/refresh.svg"
 			},
 			{
 				"command": "codepal.createContestDirectory",
@@ -102,7 +105,7 @@
 		"menus": {
 			"view/title": [
 				{
-					"command": "codepal.fetchContests",
+					"command": "codepal.reloadContests",
 					"when": "view == codepalContests",
 					"group": "navigation"
 				},
@@ -151,12 +154,12 @@
 					"group": "navigation"
 				},
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/'",
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/'",
 					"command": "codepal.submitProblem",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\..*/[A-Z][1-9]?\\..*\\.cpp$/'",
+					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/'",
 					"command": "codepal.openProblemStatement",
 					"group": "navigation"
 				}

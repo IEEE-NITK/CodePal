@@ -16,8 +16,10 @@ export const createContestDirectory = async (
     if(contest.problems.length === 0) {
         await contest.init();
     } 
-
-    const folderPath = rootPath +  `${contest.name}/`;
+    
+    let contestName : string = contest.name;
+    contestName = contestName.replace(/[^a-zA-Z 0-9.]+/g,'');
+    const folderPath = rootPath +  `${contestName}/`;
 
     try {
         await fs.mkdir(folderPath);
