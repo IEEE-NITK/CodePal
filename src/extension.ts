@@ -21,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
     ? vscode.workspace.workspaceFolders[0].uri.fsPath + "/"
     : "/";
   const problemProvider = new ProblemsProvider(rootPath);
+  const contestsProvider = new ContestsProvider(rootPath);
   disposable = [
     vscode.commands.registerCommand("codepal.helloWorld", () => {
       vscode.window.showInformationMessage("Namaste World from IEEE/CodePal!");
@@ -70,6 +71,11 @@ export function activate(context: vscode.ExtensionContext) {
   disposable.push(
     vscode.commands.registerCommand("codepal.reloadProblems", () => {
       problemProvider.reload();
+    })
+  );
+  disposable.push(
+    vscode.commands.registerCommand("codepal.reloadContests", () => {
+      contestsProvider.reload();
     })
   );
   disposable.push(
@@ -146,7 +152,7 @@ export function activate(context: vscode.ExtensionContext) {
   disposable.push(
     vscode.window.registerTreeDataProvider(
       "codepalContests",
-      new ContestsProvider(rootPath)
+      contestsProvider
     )
   );
   disposable.push(
