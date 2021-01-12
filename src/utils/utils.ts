@@ -11,15 +11,20 @@ export class Utils{
         path = path.replace(/\%3A/g, ':');
         path = path.replace(/\%2B/g, '+');
         path = path.replace(/\%3D/g, '=');
-        if(os === 1) {
+        if(os === OS.windows) {
             // For Windows
             path = path.slice(8);
         }
-        else {
+        else if(os === OS.linux) {
             // For Linux
             path = path.slice(7);
         }
     
         return path;
     };
+}
+
+export enum OS {
+    linux,
+    windows
 }

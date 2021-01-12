@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 const fs = require("fs");
 import {platform} from "os";
+import {OS, Utils} from "../../utils/utils";
 
 export const addTestCases = async function (
     filePath: string
@@ -9,8 +10,8 @@ export const addTestCases = async function (
     // Code for adding test cases
 
     console.log(filePath);
-    const os = platform() === "linux" ? 0 : 1;
-    let path = pathRefine(filePath, os);
+    const os = platform() === "linux" ? OS.linux : OS.windows;
+    let path = Utils.pathRefine(filePath, os);
     console.log(path);
 
     const lastIndexOfSlash: number = path.lastIndexOf('/');
@@ -73,30 +74,5 @@ export const addTestCases = async function (
     //vscode.window.showTextDocument(vscode.Uri.file(addedInputFilePath), {preview: false, viewColumn: vscode.ViewColumn.Beside, preserveFocus: true});
     //vscode.window.showTextDocument(vscode.Uri.file(addedOutputFilePath), {preview: false, viewColumn: vscode.ViewColumn.Beside, preserveFocus: true});
 
-
     return;
-};
-
-const pathRefine = (filePath: string, os: number): string => {
-    let path = String(filePath);
-    path = path.replace(/\%20/g, ' ');
-    path = path.replace(/\%21/g, '!');
-    path = path.replace(/\%28/g, '(');
-    path = path.replace(/\%29/g, ')');
-    path = path.replace(/\%23/g, '#');
-    path = path.replace(/\%27/g, '\'');
-    path = path.replace(/\%2C/g, ',');
-    path = path.replace(/\%3A/g, ':');
-    path = path.replace(/\%2B/g, '+');
-    path = path.replace(/\%3D/g, '=');
-    if(os === 1) {
-        // For Windows
-        path = path.slice(8);
-    }
-    else {
-        // For Linux
-        path = path.slice(7);
-    }
-
-    return path;
 };
