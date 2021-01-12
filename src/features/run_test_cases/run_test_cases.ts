@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 const fs = require("fs");
-import {Utils} from "../../utils/utils";
+import {Utils, OS} from "../../utils/utils";
 import {compileFile} from "./compile_solution";
 import {runTestsWithTimeout} from "./run_solution";
 import {platform} from "os";
@@ -10,7 +10,7 @@ export const runTestCases = async function (
 ): Promise<void> {
     // Code for running test cases and returning verdict
     console.log(filePath);
-    const os = platform() === "linux" ? 0 : 1;
+    const os = platform() === "linux" ? OS.linux : OS.windows;
     let path = Utils.pathRefine(filePath, os);
     console.log(path);
 

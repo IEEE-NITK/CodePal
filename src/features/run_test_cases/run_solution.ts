@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 const fs= require("fs");
 import { exec } from "child_process";
 import {reportError} from "./report_error";
+import {OS} from "../../utils/utils";
 
 export const runTestsWithTimeout = async (
     solutionFilePath: string,
@@ -28,11 +29,11 @@ export const runTestsWithTimeout = async (
     switch(compilationLanguage) {
         case "gcc":
         case "g++":
-            if(os === 0) {
+            if(os === OS.linux) {
                 // Command for linux
                 executable = `./a.out`;
             }
-            else if(os === 1) {
+            else if(os === OS.windows) {
                 // Command for windows
                 executable = `a.exe`;
             }
@@ -83,7 +84,7 @@ export const runTestsWithTimeout = async (
         // console.log("Inside catch block of runTestsWithTimeout : " + error);
         if (error === "Time limit exceeded") {
             vscode.window.showErrorMessage("Time limit exceeded!!");
-            if (os === 1) {
+            if (os === OS.windows) {
                 // Kill the executing process on windows
                 exec(
                     `taskkill /F /IM ${executable}`,
