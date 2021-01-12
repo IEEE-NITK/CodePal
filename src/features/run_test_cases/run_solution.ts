@@ -57,7 +57,8 @@ export const runTestsWithTimeout = async (
                 solutionFilePath.lastIndexOf('/') + 1, 
                 solutionFilePath.lastIndexOf('.')
             );
-            runCommand = `java ${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            const javaClassPath: string = solutionFilePath.slice(0, solutionFilePath.lastIndexOf('/'));
+            runCommand = `java -cp "${javaClassPath}" ${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
         default:
