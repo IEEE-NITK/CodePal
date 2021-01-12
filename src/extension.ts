@@ -96,23 +96,14 @@ export function activate(context: vscode.ExtensionContext) {
 
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.runTestCasesLinux",
+      "codepal.runTestCases",
       (param: any) => {
         // console.log("Run test cases icon parameter : " + String(param));
-        runTestCases(String(param), 0);
+        runTestCases(String(param));
       }
     )
   );
 
-  disposable.push(
-    vscode.commands.registerCommand(
-      "codepal.runTestCasesWindows",
-      (param: any) => {
-        // console.log("Run test cases icon parameter : " + String(param));
-        runTestCases(String(param), 1);
-      }
-    )
-  );
   disposable.push(
     vscode.commands.registerCommand(
       "codepal.openProblemStatement",
@@ -132,19 +123,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.addTestCasesLinux",
+      "codepal.addTestCases",
       (param: any) => {
         console.log("Add test cases icon parameter : " + String(param));
-        addTestCases(String(param), 0);
-      }
-    )
-  );
-  disposable.push(
-    vscode.commands.registerCommand(
-      "codepal.addTestCasesWindows",
-      (param: any) => {
-        console.log("Add test cases icon parameter : " + String(param));
-        addTestCases(String(param), 1);
+        addTestCases(String(param));
       }
     )
   );

@@ -34,8 +34,38 @@ export const createProblemDirectory = async (
   let problemName : string = problem.name;
   problemName = problemName.replace(/[^a-zA-Z 0-9.]+/g,'');
   const problemFolderPath = folderPath + `${problem.index}-${problemName}/`;
+
+  const compilationLanguage = vscode.workspace
+    .getConfiguration("codepal")
+    .get<String>("compilationLanguage");
+  
+  let fileExtension: string;
+
+  switch(compilationLanguage) {
+      case "gcc":
+        fileExtension = 'c';
+        break;
+
+      case "g++":
+        fileExtension = 'cpp';
+        break;
+
+      case "python":
+      case "python3":
+        fileExtension = 'py';
+        break;
+
+      case "java":
+        fileExtension = 'java';
+        break;
+
+      default:
+        vscode.window.showErrorMessage("Language used is not supported");
+        throw Error();
+  }
+
   const problemFilePath =
-    problemFolderPath + `${problem.index}-${problemName}.cpp`;
+    problemFolderPath + `${problem.index}-${problemName}.${fileExtension}`;
 
   templateCode = await getTemplateCode();
 
@@ -50,11 +80,11 @@ export const createProblemDirectory = async (
         })
       );
     
-    fs.writeFile(problemFilePath, templateCode); // cpp file
+    fs.writeFile(problemFilePath, templateCode); // solution file
 
     await fetchTestCases(problem, problemFolderPath); // Fetch tests cases into the problem folder
 
-    await fetchProblemPdf(problem, problemFolderPath); // Fetch pdf of problem statement
+    // await fetchProblemPdf(problem, problemFolderPath); // Fetch pdf of problem statement
 
     vscode.window.showTextDocument(vscode.Uri.file(problemFilePath), {
       preview: false,
