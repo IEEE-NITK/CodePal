@@ -45,22 +45,12 @@
 				"icon": "res/svg/CreateFolder.png"
 			},
 			{
-				"command": "codepal.runTestCasesLinux",
+				"command": "codepal.runTestCases",
 				"title": "Run Test Cases",
 				"icon": "res/svg/play_button.png"
 			},
 			{
-				"command": "codepal.runTestCasesWindows",
-				"title": "Run Test Cases",
-				"icon": "res/svg/play_button.png"
-			},
-			{
-				"command": "codepal.addTestCasesLinux",
-				"title": "Add Test Cases",
-				"icon": "res/svg/add_TestCase.png"
-			},
-			{
-				"command": "codepal.addTestCasesWindows",
+				"command": "codepal.addTestCases",
 				"title": "Add Test Cases",
 				"icon": "res/svg/add_TestCase.png"
 			},
@@ -134,32 +124,22 @@
 			],
 			"editor/title": [
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && isLinux",
-					"command": "codepal.runTestCasesLinux",
+					"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+					"command": "codepal.runTestCases",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
-					"command": "codepal.runTestCasesWindows",
+					"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+					"command": "codepal.addTestCases",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && isLinux",
-					"command": "codepal.addTestCasesLinux",
-					"group": "navigation"
-				},
-				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && isWindows",
-					"command": "codepal.addTestCasesWindows",
-					"group": "navigation"
-				},
-				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/'",
+					"when": "resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.java$/'",
 					"command": "codepal.submitProblem",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceScheme == file && resourceExtname == .cpp && resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/'",
+					"when": "resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.java$/'",
 					"command": "codepal.openProblemStatement",
 					"group": "navigation"
 				}
@@ -170,9 +150,13 @@
 			"properties": {
 				"codepal.compilationLanguage": {
 					"type": "string",
-					"default": "c++",
+					"default": "g++",
 					"enum": [
-						"c++"
+						"g++",
+						"gcc",
+						"java",
+						"python",
+						"python3"
 					]
 				},
 				"codepal.codeTemplatePath": {
@@ -180,10 +164,25 @@
 					"default": "",
 					"markdownDescription": "The path of the `template` that has to be used when a folder is created"
 				},
-				"codepal.g++ CompilerType": {
+				"codepal.g++ CompilationFlags": {
 					"type": "string",
 					"default": "-std=c++14",
-					"markdownDescription": "The type of g++ used"
+					"markdownDescription": "Space separated additional compilation flags passed to g++"
+				},
+				"codepal.gccCompilationFlags": {
+					"type": "string",
+					"default": "",
+					"markdownDescription": "Space separated additional compilation flags passed to gcc"
+				},
+				"codepal.pythonCompilationFlags": {
+					"type": "string",
+					"default": "",
+					"markdownDescription": "Space separated additional compilation flags passed to python and python3"
+				},
+				"codepal.javaCompilationFlags": {
+					"type": "string",
+					"default": "",
+					"markdownDescription": "Space separated additional compilation flags passed to java"
 				}
 			}
 		}

@@ -1,16 +1,15 @@
 import * as vscode from "vscode";
 const fs = require("fs");
-const { exec } = require("child_process");
-
+import {platform} from "os";
 
 export const addTestCases = async function (
-    filePath: string,
-    os: number
+    filePath: string
 ): Promise<void> {
     
     // Code for adding test cases
 
     console.log(filePath);
+    const os = platform() === "linux" ? 0 : 1;
     let path = pathRefine(filePath, os);
     console.log(path);
 
