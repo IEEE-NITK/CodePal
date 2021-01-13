@@ -23,6 +23,9 @@ A Visual Studio Code Extension to help Codeforces Users ***Code with Convenience
 # Usage Guide 
 To be added
 
+# Contributing 
+We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. 
+
 
 
 
