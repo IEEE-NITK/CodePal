@@ -11,6 +11,22 @@ A Visual Studio Code Extension to help Codeforces Users ***Code with Convenience
 - Add additional tests to any problem.
 - Compile and run any program file against the testcases and get comprehensive results.
 - Open problem statement or submission page with a single click on your default browser.(You must be logged into codeforces before hand to open the submission page successfully)
+- Compiler may be selected and compilation flags can be set through the codepal settings. 
+
+# Languages Supported
+- C++ (compiler : g++)
+- C (compiler : gcc)
+- Java (compiler : javac)
+- Python 
+Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python and python3 depending upon the version you prefer.
+
+# Usage Guide 
+To be added
+
+
+
+
+
 
 
 
