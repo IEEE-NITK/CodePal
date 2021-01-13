@@ -18,7 +18,7 @@ A Visual Studio Code Extension to help Codeforces Users ***Code with Convenience
 - C (compiler : gcc)
 - Java (compiler : javac)
 - Python 
-Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python and python3 depending upon the version you prefer.
+- Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python and python3 depending upon the version you prefer.
 
 # Usage Guide 
 To be added
