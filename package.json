@@ -22,17 +22,17 @@
 			{
 				"command": "codepal.reloadContests",
 				"title": "Refresh contest list",
-				"icon" : "res/svg/refresh.svg"
+				"icon": "res/svg/refresh.svg"
 			},
 			{
 				"command": "codepal.getProblemFilters",
 				"title": "Filter",
-				"icon" : "res/svg/filter.svg"
+				"icon": "res/svg/filter.svg"
 			},
 			{
 				"command": "codepal.reloadProblems",
 				"title": "Refresh problem list",
-				"icon" : "res/svg/refresh.svg"
+				"icon": "res/svg/refresh.svg"
 			},
 			{
 				"command": "codepal.createContestDirectory",
@@ -223,7 +223,6 @@
 		"child_process": "^1.0.2",
 		"fs": "^0.0.1-security",
 		"node-fetch": "^2.6.1",
-		"open": "^7.3.0",
 		"selenium-webdriver": "^4.0.0-alpha.8"
 	}
 }
