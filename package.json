@@ -222,7 +222,6 @@
 		"cheerio": "^1.0.0-rc.5",
 		"child_process": "^1.0.2",
 		"fs": "^0.0.1-security",
-		"node-fetch": "^2.6.1",
-		"selenium-webdriver": "^4.0.0-alpha.8"
+		"node-fetch": "^2.6.1"
 	}
 }
