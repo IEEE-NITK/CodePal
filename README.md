@@ -33,18 +33,18 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 The following is the usage guide to use the following features : 
 
 ### 1. Filtering problems
-- Click on the ‘Filter’ icon to filter the problem set.
+- Click on the <img src="res/svg/filter.svg" width="16"/>  icon to filter the problem set.
 - Add the lower bound for problem’s rating (default lower bound is 0)
 - Add the upper bound for problem’s rating (default upper bound is 4000)
 - Tick the tags you want for the problems. (if no tags are selected, all tags will be 
 displayed)
 
 ### 2. Creating problem folder
-- Click on the ‘Create Problem Folder’ button beside the problem name to open a problem folder containing the solution file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
+- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the problem name to open a problem folder containing the solution file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
 
 ### 3. Creating contest folder
 - Click on the type of contest you want to participate. (Past, Running or Future)
-- Click on the ‘Create Contest Folder’ button beside the contest name to open a contest folder containing the problems folders of each problem of the contest. (make sure you have opened a folder on vscode where you want the problem folder)
+- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the contest name to open a contest folder containing the problems folders of each problem of the contest. (make sure you have opened a folder on vscode where you want the problem folder)
 
 ### 4. Adding your own template
 - Press ‘Ctrl comma(,)’ or go to settings of VS code(icon on bottom left).
@@ -55,16 +55,16 @@ displayed)
 - Go to extensions and select codepal, there choose the compiler you want from the drag down list.
 
 ### 6. Add test cases
-- Click on the ‘Add Test cases’ button on the top right side of the solution file to add manual test cases for the problem.
+- Click on the <img src="res/svg/add_TestCase.png" width="17"/> button on the top right side of the solution file to add manual test cases for the problem.
 
 ### 7. Run test cases
-- Click on the ‘Run Test cases’ button on the top right side of the solution file to run the code for all sample and manual test cases.
+- Click on the <img src="res/svg/play_button.png" width="17"/> button on the top right side of the solution file to run the code for all sample and manual test cases.
 
 ### 8. Viewing problems
-- Click on the ‘View problem statement’ button on the top right side of the solution file to open the problem statement in your default browser.
+- Click on the <img src="res/svg/question_mark.png" width="20"/> button on the top right side of the solution file to open the problem statement in your default browser.
 
 ### 9. Submitting problems
-- Click on the ‘Submit problem statement’ button on the top right side of the solution file to submit the problem in your default browser.
+- Click on the <img src="res/svg/upload.png" width="18"/> button on the top right side of the solution file to submit the problem in your default browser.
 
 
 # Contributing 
