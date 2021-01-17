@@ -37,11 +37,13 @@ displayed)
 - Click on the type of contest you want to participate. (Past, Running or Future)
 - Click on the ‘Create Contest Folder’ button beside the contest name to open a contest folder containing the problems folders of each problem of the contest. (make sure you have opened a folder on vscode where you want the problem folder)
 
-4) Viewing problems
-- Click on the ‘View problem statement’ button on the top right side of the cpp file to open the problem statement in your default browser
+4) Adding your own template
+- Press ‘Ctrl comma(,)’ or go to settings of VS code(icon on bottom left).
+- Go to extensions and select codepal, there add your template file path to the given space
 
-5) Submitting problems
-- Click on the ‘Submit problem statement’ button on the top right side of the cpp file to submit the problem in your default browser
+5) Change language from settings
+- Press ‘Ctrl comma(,)’ or go to settings of VS code(icon on bottom left).
+- Go to extensions and select codepal, there choose the compiler you want from the drag down list.
 
 6) Add test cases
 - Click on the ‘Add Test cases’ button on the top right side of the cpp file to add manual test cases for the problem.
@@ -49,11 +51,14 @@ displayed)
 7) Run test cases
 - Click on the ‘Run Test cases’ button on the top right side of the cpp file to run the code for all sample and manual test cases.
 
-8) Adding your own template
-- 
+8) Viewing problems
+- Click on the ‘View problem statement’ button on the top right side of the cpp file to open the problem statement in your default browser
 
-9) Change language from settings
-- 
+9) Submitting problems
+- Click on the ‘Submit problem statement’ button on the top right side of the cpp file to submit the problem in your default browser
+
+
+
 
 
 # Contributing 
