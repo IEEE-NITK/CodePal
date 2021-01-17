@@ -1,6 +1,10 @@
 # CodePal 
 A Visual Studio Code Extension to help Codeforces Users ***Code with Convenience.*** This extension is specially for people who want to save time in a live codeforces contest and upsolve problems comfortably. This extension responds quickly to users. It can swiftly filter through the problem list by specifying tags and ratings, create folders for contests and problems containing sample tests of each problem in them and compile and run tests automatically. For added convenience we've created buttons to directly open problem statements and submission pages on the default browser. 
 
+![Promo1](GIFS/FoldersSubmission.gif)
+
+![Promo2](GIFS/Settings_filters.gif)
+
 # Features of this Extension
 - View Complete ProblemSet List along with their associated tags and ratings. 
 - Swiftly Filter through the ProblemSet by specifying Ratings and Tags.
