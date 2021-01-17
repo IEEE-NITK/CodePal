@@ -21,7 +21,40 @@ A Visual Studio Code Extension to help Codeforces Users ***Code with Convenience
 - Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python and python3 depending upon the version you prefer.
 
 # Usage Guide 
-To be added
+The following is the usage guide to use the following features : 
+
+1) Filtering problems
+- Click on the ‘Filter’ icon to filter the problem set.
+- Add the lower bound for problem’s rating (default lower bound is 0)
+- Add the upper bound for problem’s rating (default upper bound is 4000)
+- Tick the tags you want for the problems. (if no tags are selected, all tags will be 
+displayed)
+
+2) Creating problem folder
+- Click on the ‘Create Problem Folder’ button beside the problem name to open a problem folder containing the cpp file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
+
+3) Creating contest folder
+- Click on the type of contest you want to participate. (Past, Running or Future)
+- Click on the ‘Create Contest Folder’ button beside the contest name to open a contest folder containing the problems folders of each problem of the contest. (make sure you have opened a folder on vscode where you want the problem folder)
+
+4) Viewing problems
+- Click on the ‘View problem statement’ button on the top right side of the cpp file to open the problem statement in your default browser
+
+5) Submitting problems
+- Click on the ‘Submit problem statement’ button on the top right side of the cpp file to submit the problem in your default browser
+
+6) Add test cases
+- Click on the ‘Add Test cases’ button on the top right side of the cpp file to add manual test cases for the problem.
+
+7) Run test cases
+- Click on the ‘Run Test cases’ button on the top right side of the cpp file to run the code for all sample and manual test cases.
+
+8) Adding your own template
+- 
+
+9) Change language from settings
+- 
+
 
 # Contributing 
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](CONTRIBUTING.md) for more help.
