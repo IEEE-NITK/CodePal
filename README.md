@@ -3,13 +3,13 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 
 # Demo
 ### Folder creation, Run tests, and add tests
-![Promo1](GIFS/Demo1.gif)
+![Promo1](res/GIFS/Demo1.gif)
 
 ### Open problem statement and submission page
-![Promo2](GIFS/Demo2.gif)
+![Promo2](res/GIFS/Demo2.gif)
 
 ### Filter through problems
-![Promo2](GIFS/Demo3.gif)
+![Promo2](res/GIFS/Demo3.gif)
 
 # Features of this Extension
 
