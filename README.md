@@ -40,11 +40,11 @@ The following is the usage guide to use the following features :
 displayed)
 
 ### 2. Creating problem folder
-- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the problem name to open a problem folder containing the solution file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
+- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the problem name to create and open a problem folder containing the solution file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
 
 ### 3. Creating contest folder
 - Click on the type of contest you want to participate. (Past, Running or Future)
-- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the contest name to open a contest folder containing the problems folders of each problem of the contest. (make sure you have opened a folder on vscode where you want the problem folder)
+- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (make sure you have opened a folder on vscode where you want the problem folder)
 
 ### 4. Adding your own template
 - Press ‘Ctrl comma(,)’ or go to settings of VS code(icon on bottom left).
