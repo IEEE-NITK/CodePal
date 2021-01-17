@@ -2,10 +2,10 @@
 A Visual Studio Code Extension to help **Codeforces** Users ***Code with Convenience.*** This extension is specially for people who want to save time in a live codeforces contest and upsolve problems comfortably. This extension responds quickly to users. It can swiftly filter through the problem list by specifying tags and ratings, create folders for contests and problems containing sample tests of each problem in them and compile and run tests automatically. For added convenience we've created buttons to directly open problem statements and submission pages on the default browser. 
 
 # Demo
-### Folder creation , Run tests and Open problem statment
+### Folder creation, Run tests, Open problem statment and Submit Problem.
 ![Promo1](GIFS/FoldersSubmission.gif)
 
-### Filter problems , Change langauge settings and Add template paths
+### Filter problems, Change langauge settings and Add template paths.
 ![Promo2](GIFS/Settings_filters.gif)
 
 # Features of this Extension
@@ -40,7 +40,7 @@ The following is the usage guide to use the following features :
 displayed)
 
 ### 2. Creating problem folder
-- Click on the ‘Create Problem Folder’ button beside the problem name to open a problem folder containing the cpp file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
+- Click on the ‘Create Problem Folder’ button beside the problem name to open a problem folder containing the solution file and test cases. (make sure you have opened a folder on vscode where you want the problem folder)
 
 ### 3. Creating contest folder
 - Click on the type of contest you want to participate. (Past, Running or Future)
@@ -55,16 +55,16 @@ displayed)
 - Go to extensions and select codepal, there choose the compiler you want from the drag down list.
 
 ### 6. Add test cases
-- Click on the ‘Add Test cases’ button on the top right side of the cpp file to add manual test cases for the problem.
+- Click on the ‘Add Test cases’ button on the top right side of the solution file to add manual test cases for the problem.
 
 ### 7. Run test cases
-- Click on the ‘Run Test cases’ button on the top right side of the cpp file to run the code for all sample and manual test cases.
+- Click on the ‘Run Test cases’ button on the top right side of the solution file to run the code for all sample and manual test cases.
 
 ### 8. Viewing problems
-- Click on the ‘View problem statement’ button on the top right side of the cpp file to open the problem statement in your default browser
+- Click on the ‘View problem statement’ button on the top right side of the solution file to open the problem statement in your default browser.
 
 ### 9. Submitting problems
-- Click on the ‘Submit problem statement’ button on the top right side of the cpp file to submit the problem in your default browser
+- Click on the ‘Submit problem statement’ button on the top right side of the solution file to submit the problem in your default browser.
 
 
 # Contributing 
