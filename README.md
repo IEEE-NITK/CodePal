@@ -32,6 +32,10 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Python 
 - Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python and python3 depending upon the version you prefer.
 
+# Operating Systems Supported
+- Windows 
+- Linux
+
 # Usage Guide 
 The following is the usage guide to use the following features : 
 
