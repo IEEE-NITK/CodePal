@@ -2,6 +2,7 @@
 	"name": "codepal",
 	"displayName": "CodePal",
 	"description": "A VS Code extension to access information of codeforces directly from VSC.",
+	"license": "GPL-3.0-or-later",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.52.0"
