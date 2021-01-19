@@ -1,6 +1,6 @@
 # Developer Documentation
 - Please use [yarn](https://classic.yarnpkg.com/en/docs/install/) package manager to install all dependencies of this extension. 
-- Also make sure npm has been already installed on your system before you run the extension development host becuase many build tasks consist of npm commands.
+- Also make sure [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) has been already installed on your system before you run the extension development host becuase many build tasks consist of npm commands.
 
 ## Setting up instructions 
 1. Clone the repository 
