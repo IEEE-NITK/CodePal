@@ -1,9 +1,10 @@
 import * as vscode from "vscode";
 const fs = require("fs");
-import { Utils, OS } from "../../utils/utils";
+import { Utils} from "../../utils/utils";
 import { compileFile } from "./compile_solution";
 import { runTestsWithTimeout } from "./run_solution";
 import { platform } from "os";
+import { OS } from "../../utils/consts";
 
 export const runTestCases = async function (filePath: string): Promise<void> {
   // Code for running test cases and returning verdict

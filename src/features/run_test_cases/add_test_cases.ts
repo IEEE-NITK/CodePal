@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 const fs = require("fs");
 import { platform } from "os";
-import { OS, Utils } from "../../utils/utils";
-import { Command } from "../../utils/consts";
+import { Utils } from "../../utils/utils";
+import { Command, OS } from "../../utils/consts";
 
 export const addTestCases = async function (filePath: string): Promise<void> {
   // Code for adding test cases

@@ -41,3 +41,8 @@ export enum RatingsEnum {
 export enum Urls {
   fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
 }
+
+export enum OS {
+    linux,
+    windows
+}

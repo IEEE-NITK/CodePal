@@ -1,3 +1,5 @@
+import { OS } from "./consts";
+
 export class Utils{
     static pathRefine = (filePath: string, os: number): string => {
         let path = String(filePath);
@@ -22,9 +24,4 @@ export class Utils{
     
         return path;
     };
-}
-
-export enum OS {
-    linux,
-    windows
 }

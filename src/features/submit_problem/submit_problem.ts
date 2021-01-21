@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 import { platform } from "os";
 import * as fs from "fs";
-import {OS, Utils} from "../../utils/utils";
+import { Utils } from "../../utils/utils";
+import { OS } from "../../utils/consts";
 
 export const submitProblem = async (path: string) => {
   try {
