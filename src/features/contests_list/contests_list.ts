@@ -44,7 +44,7 @@ const contestsList = async (
 
 export const fetchContests = async (type: string): Promise<ContestTreeItem[]> => {
     let contests: ContestClass[] = await contestsList(type); //TODO: CALL FUNCTION THAT FETCHES CONTESTS IN PLACE OF []
-    return contests.map<ContestTreeItem> (
+    const contestsMap= contests.map<ContestTreeItem> (
         (contest): ContestTreeItem => {
             return new ContestTreeItem(
             `${contest.name}`,
@@ -57,4 +57,6 @@ export const fetchContests = async (type: string): Promise<ContestTreeItem[]> =>
             );
         }
     );
+    const noContestFoundTreeItem=new ContestTreeItem('No Contests Found','empty',vscode.TreeItemCollapsibleState.None);
+    return contestsMap.length===0?[noContestFoundTreeItem]:contestsMap;
 };
