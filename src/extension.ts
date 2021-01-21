@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
     }),
   ];
   disposable.push(
-    vscode.commands.registerCommand("codepal.getProblemFilters", filterProblems.bind(problemProvider))
+    vscode.commands.registerCommand("codepal.getProblemFilters", () => filterProblems(problemProvider))
   );
   disposable.push(
     vscode.commands.registerCommand("codepal.reloadProblems", () => {
