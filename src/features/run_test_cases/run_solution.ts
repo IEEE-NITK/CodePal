@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 const fs= require("fs");
 import { exec } from "child_process";
 import {reportError} from "./report_error";
-import {OS} from "../../utils/utils";
+import {OS} from "../../utils/consts";
 import { CodepalConfig, codepalConfigName, CompilationFlags, CompilationLanguages } from "../../utils/consts";
 
 export const runTestsWithTimeout = async (
