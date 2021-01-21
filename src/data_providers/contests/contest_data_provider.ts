@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { ContestTreeItem } from "./contest_tree_item";
 import { fetchContests } from "../../features/contests_list/contests_list";
 import { ContestClass } from "../../classes/contest";
-import { ContestTreeItemEnum } from "../../utils/consts";
+import { ContestEnum } from "../../utils/consts";
 
 export class ContestsProvider
   implements vscode.TreeDataProvider<ContestTreeItem> {
@@ -33,11 +33,11 @@ export class ContestsProvider
   ): vscode.ProviderResult<ContestTreeItem[]> {
     if (!element) {
       return this.getContestTypes();
-    } else if (element.label === ContestTreeItemEnum.runningContestLabel ) {
+    } else if (element.label === ContestEnum.runningContestType) {
       return fetchContests(element.label);
-    } else if (element.label === ContestTreeItemEnum.futureContestLabel) {
+    } else if (element.label === ContestEnum.futureContestType) {
       return fetchContests(element.label);
-    } else if (element.label === ContestTreeItemEnum.pastContestLabel) {
+    } else if (element.label === ContestEnum.pastContestType) {
       return fetchContests(element.label);
     } else {
       if (element.contest) {
@@ -64,18 +64,18 @@ export class ContestsProvider
   getContestTypes(): Thenable<ContestTreeItem[]> {
     return Promise.resolve([
       new ContestTreeItem(
-        ContestTreeItemEnum.runningContestLabel,
-        ContestTreeItemEnum.contestTypeContextValue,
+        ContestEnum.runningContestType,
+        ContestEnum.contestTypeContextValue,
         vscode.TreeItemCollapsibleState.Collapsed
       ),
       new ContestTreeItem(
-        ContestTreeItemEnum.futureContestLabel,
-        ContestTreeItemEnum.contestTypeContextValue,
+        ContestEnum.futureContestType,
+        ContestEnum.contestTypeContextValue,
         vscode.TreeItemCollapsibleState.Collapsed
       ),
       new ContestTreeItem(
-        ContestTreeItemEnum.pastContestLabel,
-        ContestTreeItemEnum.contestTypeContextValue,
+        ContestEnum.pastContestType,
+        ContestEnum.contestTypeContextValue,
         vscode.TreeItemCollapsibleState.Collapsed
       ),
     ]);
