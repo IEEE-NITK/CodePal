@@ -3,6 +3,7 @@ const fs= require("fs");
 import { exec } from "child_process";
 import {reportError} from "./report_error";
 import {OS} from "../../utils/utils";
+import { CodepalConfig, codepalConfigName, CompilationFlags, CompilationLanguages } from "../../utils/consts";
 
 export const runTestsWithTimeout = async (
     solutionFilePath: string,
@@ -23,12 +24,12 @@ export const runTestsWithTimeout = async (
     let executable: string;
 
     const compilationLanguage = vscode.workspace
-        .getConfiguration("codepal")
-        .get<String>("compilationLanguage");
+        .getConfiguration(codepalConfigName)
+        .get<String>(CodepalConfig.compilationLanguage);
 
     switch(compilationLanguage) {
-        case "gcc":
-        case "g++":
+        case CompilationLanguages.gcc:
+        case CompilationLanguages.cpp:
             if(os === OS.linux) {
                 // Command for linux
                 executable = `./a.out`;
@@ -44,16 +45,16 @@ export const runTestsWithTimeout = async (
             runCommand = `${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
-        case "python":
-        case "python3":
+        case CompilationLanguages.python:
+        case CompilationLanguages.python3:
             const compilationFlags = vscode.workspace
-                .getConfiguration("codepal")
-                .get<String>("pythonCompilationFlags");
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.python);
             executable = 'python.exe';
             runCommand = `${compilationLanguage} "${solutionFilePath}" ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
-        case "java":
+        case CompilationLanguages.java:
             executable = solutionFilePath.slice(
                 solutionFilePath.lastIndexOf('/') + 1, 
                 solutionFilePath.lastIndexOf('.')
@@ -81,7 +82,7 @@ export const runTestsWithTimeout = async (
         return result;
     })
     .catch(async (error) => {
-        // console.log("Inside catch block of runTestsWithTimeout : " + error);
+        
         if (error === "Time limit exceeded") {
             vscode.window.showErrorMessage("Time limit exceeded!!");
             if (os === OS.windows) {

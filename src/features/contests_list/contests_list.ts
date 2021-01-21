@@ -2,12 +2,13 @@ import fetch from "node-fetch";
 import * as vscode from "vscode";
 import { ContestClass } from "../../classes/contest";
 import { ContestTreeItem } from "../../data_providers/contests/contest_tree_item";
+import { ContestEnum, ContestsPhase, Urls } from "../../utils/consts";
 
 const contestsList = async (
     contestsType: string
 ): Promise<ContestClass[]> => {
     let arr: ContestClass[] = [];
-    return fetch("https://codeforces.com/api/contest.list?gym=false")
+    return fetch(Urls.fetchContestsList)
         .then((response: any) => {
             if (!response.ok) {
                 throw new Error(response.error);
@@ -16,7 +17,6 @@ const contestsList = async (
             }
         })
         .catch((err: any) => {
-            console.log("fetch error " + err);
             return arr;
         })
         .then(async (users: { result: string | any[] }) => {
@@ -24,14 +24,14 @@ const contestsList = async (
                 let contestID = users.result[i].id;
                 let type = "";
                 let x = users.result[i].phase;
-                if (x === "FINISHED") {
-                    type = "Past";
+                if (x === ContestsPhase.finished) {
+                    type = ContestEnum.pastContestType;
                 }
-                if (x === "CODING") {
-                    type = "Running";
+                if (x === ContestsPhase.coding) {
+                    type = ContestEnum.runningContestType;
                 }
-                if (x === "BEFORE") {
-                    type = "Future";
+                if (x === ContestsPhase.before) {
+                    type = ContestEnum.futureContestType;
                 }
                 if (type === contestsType) {
                     let c = new ContestClass(contestID, type,users.result[i].name);
@@ -48,8 +48,8 @@ export const fetchContests = async (type: string): Promise<ContestTreeItem[]> =>
         (contest): ContestTreeItem => {
             return new ContestTreeItem(
             `${contest.name}`,
-            type === "Future"?"FutureContest":"contest",
-            type === "Future"
+            type === ContestEnum.futureContestType?ContestEnum.futureContestLabel:ContestEnum.contestLabel,
+            type === ContestEnum.futureContestType
                 ? vscode.TreeItemCollapsibleState.None
                 : vscode.TreeItemCollapsibleState.Collapsed,
             type,

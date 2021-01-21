@@ -1,15 +1,43 @@
-export enum Command{
-    helloWorld="codepal.helloWorld"
+export const enum Command {
+  helloWorld = "codepal.helloWorld",
+  setEditorLayout = "vscode.setEditorLayout",
+  vscodeOpen = "vscode.open",
 }
-export enum ContestTreeItemEnum{
-    runningContestLabel="Running",
-    futureContestLabel="Future",
-    pastContestLabel="Past",
-    contestProblemType= "ContestProblem",
-    contestTypeContextValue="ContestType",
+export const codepalConfigName = "codepal";
+export const enum CodepalConfig {
+  compilationLanguage = "compilationLanguage",
 }
-export enum RatingsEnum{
-    initialFromRating=0,
-    initialToRating=4000
+export const enum CompilationLanguages {
+  cpp = "g++",
+  gcc = "gcc",
+  java="java",
+  python = "python",
+  python3 = "python3",
 }
-export enum Urls{}
+export const enum CompilationFlags {
+  cpp = "g++ CompilationFlags",
+  gcc = "gccCompilationFlags",
+  java="javaCompilationFlags",
+  python="pythonCompilationFlags",
+}
+export const enum ContestsPhase {
+  finished = "FINISHED",
+  coding = "CODING",
+  before = "BEFORE",
+}
+export const enum ContestEnum {
+  runningContestType = "Running",
+  futureContestType = "Future",
+  pastContestType = "Past",
+  contestLabel = "contest",
+  futureContestLabel = "FutureContest",
+  contestProblemType = "ContestProblem",
+  contestTypeContextValue = "ContestType",
+}
+export enum RatingsEnum {
+  initialFromRating = 0,
+  initialToRating = 4000,
+}
+export enum Urls {
+  fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
+}
