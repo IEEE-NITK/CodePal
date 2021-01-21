@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { ContestTreeItem } from "./contest_tree_item";
 import { fetchContests } from "../../features/contests_list/contests_list";
 import { ContestClass } from "../../classes/contest";
+import { ContestTreeItemEnum } from "../../utils/consts";
 
 export class ContestsProvider
   implements vscode.TreeDataProvider<ContestTreeItem> {
@@ -32,24 +33,22 @@ export class ContestsProvider
   ): vscode.ProviderResult<ContestTreeItem[]> {
     if (!element) {
       return this.getContestTypes();
-    } else if (element.label === "Running") {
+    } else if (element.label === ContestTreeItemEnum.runningContestLabel ) {
       return fetchContests(element.label);
-    } else if (element.label === "Future") {
+    } else if (element.label === ContestTreeItemEnum.futureContestLabel) {
       return fetchContests(element.label);
-    } else if (element.label === "Past") {
+    } else if (element.label === ContestTreeItemEnum.pastContestLabel) {
       return fetchContests(element.label);
     } else {
       if (element.contest) {
         return this.fetchProblemsOfContest(element.contest);
       }
-      console.log("get children []");
       return Promise.resolve([]);
     }
   }
   async fetchProblemsOfContest(
     contest: ContestClass
   ): Promise<ContestTreeItem[]> {
-    console.log(contest.contestID);
     if(!contest.problems.length) {
       await contest.init();
     }
@@ -58,25 +57,25 @@ export class ContestsProvider
         problem.name,
         problem.problemID,
         vscode.TreeItemCollapsibleState.None,
-        "ContestProblem"
+       
       );
     });
   }
   getContestTypes(): Thenable<ContestTreeItem[]> {
     return Promise.resolve([
       new ContestTreeItem(
-        "Running",
-        "ContestType",
+        ContestTreeItemEnum.runningContestLabel,
+        ContestTreeItemEnum.contestTypeContextValue,
         vscode.TreeItemCollapsibleState.Collapsed
       ),
       new ContestTreeItem(
-        "Future",
-        "ContestType",
+        ContestTreeItemEnum.futureContestLabel,
+        ContestTreeItemEnum.contestTypeContextValue,
         vscode.TreeItemCollapsibleState.Collapsed
       ),
       new ContestTreeItem(
-        "Past",
-        "ContestType",
+        ContestTreeItemEnum.pastContestLabel,
+        ContestTreeItemEnum.contestTypeContextValue,
         vscode.TreeItemCollapsibleState.Collapsed
       ),
     ]);
