@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ProblemTreeItem } from "./problem_tree_item";
-import { fetchProblems , filterProblems } from "../../features/problems_list/problems_list";
+import { fetchProblems , filterProblems } from "../../features/problems_list/problems_filter";
 import { ProblemClass } from "../../classes/problem";
 import { RatingsEnum } from "../../utils/consts";
 
