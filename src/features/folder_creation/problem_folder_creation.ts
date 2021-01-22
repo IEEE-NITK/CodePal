@@ -3,10 +3,9 @@ import { ProblemClass } from "../../classes/problem";
 import { promises as fs } from "fs";
 import { readFileSync as fs_readFileSync } from "fs";
 import { fetchTestCases } from "./test_cases_fetch";
-import { fetchProblemPdf } from "./problem_pdf_creation";
 import { CodepalConfig, codepalConfigName, CompilationLanguages } from "../../utils/consts";
 
-let templateCode = "";
+let templateCode = ""; // will hold the code that is stored in the path given in settings
 
 const getTemplateCode = async () => {
   const templatePath = vscode.workspace
@@ -18,7 +17,7 @@ const getTemplateCode = async () => {
       data = fs_readFileSync(templatePath, "ascii").toString();
     }
   } catch (e) {
-      console.log("error fetching templatecode");
+      vscode.window.showErrorMessage("error fetching templatecode");
   }
 
   return data;
@@ -40,7 +39,6 @@ export const createProblemDirectory = async (
     .get<String>(CodepalConfig.compilationLanguage);
   
   let fileExtension: string;
-  console.log(compilationLanguage);
   switch(compilationLanguage) {
       case CompilationLanguages.gcc:
         fileExtension = 'c';
@@ -70,9 +68,7 @@ export const createProblemDirectory = async (
   templateCode = await getTemplateCode();
 
   try {
-    console.log('start');
     await fs.mkdir(problemFolderPath);
-    console.log('folder created');
       // creating .json
       fs.writeFile(
         problemFolderPath + ".problem.json",
@@ -81,20 +77,19 @@ export const createProblemDirectory = async (
           index: problem.index,
         })
       );
-      console.log('json created');
     fs.writeFile(problemFilePath, templateCode); // solution file
-    console.log('temp created');
+
     await fetchTestCases(problem, problemFolderPath); // Fetch tests cases into the problem folder
-    console.log('test created');
+
     vscode.window.showTextDocument(vscode.Uri.file(problemFilePath), {
       preview: false,
       preserveFocus: true,
     });
     vscode.window.showInformationMessage("Problem folder created successfully");
   } catch (err) {
-    console.log(err); 
+
     if (err.code === "EEXIST") {
-      vscode.window.showInformationMessage("Problem folder already exists");
+      vscode.window.showErrorMessage("Problem folder already exists");
     } else if(err.code ==="EACCES") {
       vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
     }else{
