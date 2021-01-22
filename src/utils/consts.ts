@@ -2,10 +2,24 @@ export const enum Command {
   helloWorld = "codepal.helloWorld",
   setEditorLayout = "vscode.setEditorLayout",
   vscodeOpen = "vscode.open",
+  reloadProblems="codepal.reloadProblems",
+  reloadContests="codepal.reloadContests",
+  createContestDirectory="codepal.createContestDirectory",
+  createProblemDirectory="codepal.createProblemDirectory",
+  runTestCases="codepal.runTestCases",
+  openProblemStatement="codepal.openProblemStatement",
+  submitProblem="codepal.submitProblem",
+  addTestCases="codepal.addTestCases",
+  getProblemFilters="codepal.getProblemFilters",
 }
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
   compilationLanguage = "compilationLanguage",
+  codeTemplatePath="codeTemplatePath",
+}
+export const enum TreeViewIDs{
+  contests="codepalContests",
+  problems = "codepalProblems",
 }
 export const enum CompilationLanguages {
   cpp = "g++",
@@ -51,3 +65,43 @@ export enum OS {
     linux,
     windows
 }
+export const tagOR: string = "*combine tags by OR";
+export const  allTags: string[] = [
+  tagOR,
+  "2-sat",
+  "binary search",
+  "bitmasks",
+  "brute force",
+  "chinese remainder theorem",
+  "combinatorics",
+  "constructive algorithms",
+  "data structures",
+  "dfs and similar",
+  "divide and conquer",
+  "dp",
+  "dsu",
+  "expression parsing",
+  "fft",
+  "flows",
+  "games",
+  "geometry",
+  "graph matchings",
+  "graphs",
+  "greedy",
+  "hashing",
+  "implementation",
+  "interactive",
+  "math",
+  "matrices",
+  "meet-in-the-middle",
+  "number theory",
+  "probabilities",
+  "schedules",
+  "shortest paths",
+  "sortings",
+  "string suffix structures",
+  "strings",
+  "ternary search",
+  "trees",
+  "two pointers",
+];

@@ -8,10 +8,8 @@ import { OS } from "../../utils/consts";
 
 export const runTestCases = async function (filePath: string): Promise<void> {
   // Code for running test cases and returning verdict
-  console.log(filePath);
   const os = platform() === "linux" ? OS.linux : OS.windows;
   let path = Utils.pathRefine(filePath, os);
-  console.log(path);
 
   if (!fs.existsSync(path)) {
     vscode.window.showErrorMessage("Problem solution file not found.");
@@ -140,7 +138,7 @@ const compareOutputs = async (
     return false;
   }
 };
-// TODO: Can be moved?
+
 const refine = (content: string): string => {
   content = content.trim();
   content = content.replace(/\r/g, "");

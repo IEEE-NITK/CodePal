@@ -8,7 +8,6 @@ export class ContestsProvider
   implements vscode.TreeDataProvider<ContestTreeItem> {
   private rootPath: string;
   constructor(private workspaceRoot: string) {
-    console.log(workspaceRoot);
     this.rootPath = workspaceRoot;
   }
   private _onDidChangeTreeData: vscode.EventEmitter<ContestTreeItem | undefined | void> = new vscode.EventEmitter<ContestTreeItem | undefined | void>();

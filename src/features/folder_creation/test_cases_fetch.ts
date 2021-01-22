@@ -65,7 +65,6 @@ export const fetchTestCases = async (
   
     }
     catch(err){
-        console.log('Error');
         vscode.window.showInformationMessage('Could not fetch test cases');
     }
 };

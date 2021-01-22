@@ -29,7 +29,6 @@ export const filterProblems = async (problemProvider: ProblemsProvider):Promise<
 
             quickPick.selectedItems.forEach(item => {
             tags.push(item.label);
-            console.log(item.label);
             });
         
             quickPick.hide();
