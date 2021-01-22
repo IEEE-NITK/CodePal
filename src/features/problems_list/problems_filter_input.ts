@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ProblemsProvider } from "../../data_providers/problems/problem_data_provider";
-import { allTags } from "../../utils/consts";
+import { allTags, RatingsEnum } from "../../utils/consts";
 
 const isNum = (val:string) => /^\d+$/.test(val); // check if a string has only digits
 
@@ -13,10 +13,10 @@ export const problemsFilterInput = async (problemProvider: ProblemsProvider):Pro
     if(typeof(fromRating)==="string" && typeof(toRating)==="string"){
 
         if(toRating==="" || !isNum(toRating)){
-            toRating = "4000"; // invalid input so defaulting to max rating
+            toRating = RatingsEnum.initialToRating.toString(); // invalid input so defaulting to max rating
         }
         if(fromRating==="" || !isNum(fromRating)){
-            fromRating = "0"; // invalid input so defaulting to min rating
+            fromRating = RatingsEnum.initialFromRating.toString(); // invalid input so defaulting to min rating
         }
 
         const quickPick = vscode.window.createQuickPick(); // using quickPick to take multiple input

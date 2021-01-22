@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 const fs = require("fs");
 import { exec } from "child_process";
 import { reportError } from "./report_error";
-import { OS } from "../../utils/consts";
+import { Errors, OS } from "../../utils/consts";
 import {
   CodepalConfig,
   codepalConfigName,
@@ -83,7 +83,7 @@ export const runTestsWithTimeout = async (
       return result;
     })
     .catch(async (error) => {
-      if (error === "Time limit exceeded") {
+      if (error ===Errors.timeLimitExceeded) {
         vscode.window.showErrorMessage("Time limit exceeded!!");
         if (os === OS.windows) {
           // Kill the executing process on windows

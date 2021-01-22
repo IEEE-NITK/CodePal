@@ -3,7 +3,7 @@ import { ProblemClass } from "../../classes/problem";
 import { promises as fs } from "fs";
 import { readFileSync as fs_readFileSync } from "fs";
 import { fetchTestCases } from "./test_cases_fetch";
-import { CodepalConfig, codepalConfigName, CompilationLanguages } from "../../utils/consts";
+import { CodepalConfig, codepalConfigName, CompilationLanguages, ErrorCodes } from "../../utils/consts";
 
 let templateCode = ""; // will hold the code that is stored in the path given in settings
 
@@ -88,9 +88,9 @@ export const createProblemDirectory = async (
     vscode.window.showInformationMessage("Problem folder created successfully");
   } catch (err) {
 
-    if (err.code === "EEXIST") {
+    if (err.code === ErrorCodes.folderExists) {
       vscode.window.showErrorMessage("Problem folder already exists");
-    } else if(err.code ==="EACCES") {
+    } else if(err.code ===ErrorCodes.noWritePermission) {
       vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
     }else{
       vscode.window.showErrorMessage("Could not create folder.\nUnknown error occurred");

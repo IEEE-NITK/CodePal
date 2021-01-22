@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
-import { Urls, tagsByOR} from "../../utils/consts";
+import { Urls, tagsByOR, ProblemTreeEnum} from "../../utils/consts";
 
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
@@ -22,9 +22,7 @@ const problemsList = async (
             return problems;
         }
     }
-    catch(error) {
-        throw new Error(error);
-    }
+    catch(error) {}
 
     return [];
 };
@@ -35,7 +33,7 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
         (problem: ProblemClass): ProblemTreeItem => {
             return new ProblemTreeItem (
                 `${problem.name} ( ${(problem.rating === 0 ? "Not yet defined" : problem.rating)} )`,
-                "problem",
+                ProblemTreeEnum.problemContextValue,
                 vscode.TreeItemCollapsibleState.Collapsed,
                 problem
             );
@@ -106,7 +104,7 @@ export const filterProblems = (
            
             filteredProblems.push(new ProblemTreeItem (
                 `${currentProblem.name} ( ${(currentProblem.rating === 0 ? "Not yet defined" : currentProblem.rating)} )`,
-                "problem",
+                ProblemTreeEnum.problemContextValue,
                 vscode.TreeItemCollapsibleState.Collapsed,
                 currentProblem
             ));

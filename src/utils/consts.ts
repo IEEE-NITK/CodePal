@@ -39,7 +39,7 @@ export const enum ContestsPhase {
   coding = "CODING",
   before = "BEFORE",
 }
-export const enum ContestEnum {
+export const enum ContestTreeEnum {
   runningContestType = "Running",
   futureContestType = "Future",
   pastContestType = "Past",
@@ -47,6 +47,9 @@ export const enum ContestEnum {
   futureContestLabel = "FutureContest",
   contestProblemType = "ContestProblem",
   contestTypeContextValue = "ContestType",
+}
+export const enum ProblemTreeEnum{
+  problemContextValue="problem",
 }
 export enum RatingsEnum {
   initialFromRating = 0,
@@ -61,7 +64,14 @@ export enum OS {
     linux,
     windows
 }
-
+export const enum ErrorCodes{
+  fileExists="EEXIST",
+  folderExists="EEXIST",
+  noWritePermission="EACCES",
+}
+export const enum Errors{
+  timeLimitExceeded= "Time limit exceeded",
+}
 export const tagsByOR: string = "*combine tags by OR";
 export const  allTags: string[] = [
   tagsByOR,
