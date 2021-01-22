@@ -40,6 +40,11 @@ export enum RatingsEnum {
 }
 export enum Urls {
   fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
+  fetchProblemSet = "https://codeforces.com/api/problemset.problems"
+}
+
+export enum ProblemTags{
+  tagsByOR = "*combine tags by OR"
 }
 
 export enum OS {
