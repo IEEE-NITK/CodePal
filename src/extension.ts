@@ -10,8 +10,7 @@ import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
 import { Command, TreeViewIDs } from "./utils/consts";
-
-const isNum = (val: string) => /^\d+$/.test(val); // check if a string has only digits
+import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
@@ -29,8 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
   ];
   disposable.push(
     vscode.commands.registerCommand(Command.getProblemFilters, () =>
-      filterProblems(problemProvider)
-    )
+      problemsFilterInput(problemProvider)
+    ) // takes input for toRating, FromRatings and selected tags and then refreshes problem list with given filter
   );
   disposable.push(
     vscode.commands.registerCommand(Command.reloadProblems, () => {

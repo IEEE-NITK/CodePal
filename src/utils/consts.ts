@@ -57,17 +57,14 @@ export enum Urls {
   fetchProblemSet = "https://codeforces.com/api/problemset.problems"
 }
 
-export enum ProblemTags{
-  tagsByOR = "*combine tags by OR"
-}
-
 export enum OS {
     linux,
     windows
 }
-export const tagOR: string = "*combine tags by OR";
+
+export const tagsByOR: string = "*combine tags by OR";
 export const  allTags: string[] = [
-  tagOR,
+  tagsByOR,
   "2-sat",
   "binary search",
   "bitmasks",

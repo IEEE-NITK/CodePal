@@ -1,12 +1,10 @@
 import * as vscode from "vscode";
 import { ProblemsProvider } from "../../data_providers/problems/problem_data_provider";
-import { ProblemTags } from "../../utils/consts";
+import { allTags } from "../../utils/consts";
 
-const allTags:string[] = [ProblemTags.tagsByOR,"2-sat","binary search","bitmasks","brute force","chinese remainder theorem","combinatorics","constructive algorithms","data structures","dfs and similar","divide and conquer","dp","dsu","expression parsing","fft","flows","games","geometry","graph matchings","graphs","greedy","hashing","implementation","interactive","math","matrices","meet-in-the-middle","number theory","probabilities","schedules","shortest paths","sortings","string suffix structures","strings","ternary search","trees","two pointers"];
 const isNum = (val:string) => /^\d+$/.test(val); // check if a string has only digits
 
-
-export const filterProblems = async (problemProvider: ProblemsProvider):Promise<void> =>{
+export const problemsFilterInput = async (problemProvider: ProblemsProvider):Promise<void> =>{
     
     let fromRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's lower limit. Leave blank for defaulting to 0."}); 
     let toRating = await vscode.window.showInputBox({placeHolder:"Enter the rating's upper limit. Leave blank for defaulting to 4000."}); 
@@ -15,20 +13,20 @@ export const filterProblems = async (problemProvider: ProblemsProvider):Promise<
     if(typeof(fromRating)==="string" && typeof(toRating)==="string"){
 
         if(toRating==="" || !isNum(toRating)){
-            toRating = "4000";
+            toRating = "4000"; // invalid input so defaulting to max rating
         }
         if(fromRating==="" || !isNum(fromRating)){
-            fromRating = "0";
+            fromRating = "0"; // invalid input so defaulting to min rating
         }
 
-        const quickPick = vscode.window.createQuickPick();
+        const quickPick = vscode.window.createQuickPick(); // using quickPick to take multiple input
         quickPick.items = allTags.map(label => ({ label }));
-        quickPick.canSelectMany = true;
+        quickPick.canSelectMany = true; // enables choosing multiple tags
         
-        quickPick.onDidAccept(() => {
+        quickPick.onDidAccept(() => { 
 
             quickPick.selectedItems.forEach(item => {
-            tags.push(item.label);
+                tags.push(item.label); // pushing selected tags into array
             });
         
             quickPick.hide();
