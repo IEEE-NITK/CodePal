@@ -28,7 +28,6 @@ const getInputOutput = async (problem: ProblemClass) => {
 
     }
     catch (error) {
-        console.log("ERROR");
         throw error;
     }
 };
@@ -48,7 +47,7 @@ export const fetchTestCases = async (
             for(let i=0; i<data.input.length; i++) {
                 const problemFilePath = problemFolderPath + `input_${i+1}.txt`;
                 fs.writeFile(problemFilePath, data.input[i],function(err: any, result: any) {
-                    if (err) { console.log('error', err);}
+                    if(err){ vscode.window.showErrorMessage(err); }
                 });
             }
         });
@@ -58,14 +57,12 @@ export const fetchTestCases = async (
             for(let i=0; i<data.output.length; i++) {
                 const problemFilePath = problemFolderPath + `output_${i+1}.txt`;
                 fs.writeFile(problemFilePath, data.output[i],function(err: any, result: any) {
-                    if (err) {console.log('error', err);}
                 });
             }
         });
   
     }
     catch(err){
-        console.log('Error');
-        vscode.window.showInformationMessage('Could not fetch test cases');
+        vscode.window.showErrorMessage('Could not fetch test cases');
     }
 };

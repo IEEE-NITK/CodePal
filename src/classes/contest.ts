@@ -41,12 +41,9 @@ export class ContestClass{
                 let p = new ProblemClass(this.contestID, index, name);
                 this.problems.push(p);
             }
-
-            // console.log(this.problems);
         }
         catch{
             console.log('Could not find contest. Either the codeforces servers are down or internet connection is not stable');
-            console.log('Please try again later');
         }
     }
 };

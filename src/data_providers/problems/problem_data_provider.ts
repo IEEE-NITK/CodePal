@@ -1,7 +1,9 @@
 import * as vscode from "vscode";
 import { ProblemTreeItem } from "./problem_tree_item";
-import { fetchProblems , filterProblems } from "../../features/problems_list/problems_list";
+
 import { ProblemClass } from "../../classes/problem";
+import { RatingsEnum } from "../../utils/consts";
+import { fetchProblems, filterProblems } from "../../features/problems_list/problems_filter";
 
 export class ProblemsProvider
   implements vscode.TreeDataProvider<ProblemTreeItem> {
@@ -13,10 +15,9 @@ export class ProblemsProvider
   private allProblems : ProblemTreeItem[];
 
   constructor(private workspaceRoot: string) {
-    console.log(workspaceRoot);
     this.alreadyfetched = false;
-    this.fromRating = 0;
-    this.toRating = 4000;
+    this.fromRating = RatingsEnum.initialFromRating;
+    this.toRating = RatingsEnum.initialToRating;
     this.tags = [];
     this.allProblems = [];
     this.rootPath = workspaceRoot;
@@ -34,7 +35,7 @@ export class ProblemsProvider
   
   reload():void {
     this.alreadyfetched = false;
-    this.refresh(0,4000,[]);
+    this.refresh(RatingsEnum.initialFromRating,RatingsEnum.initialToRating,[]);
   }
 
   getTreeItem(

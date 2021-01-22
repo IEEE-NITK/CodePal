@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { ContestClass } from "../../classes/contest";
 import {promises as fs} from "fs";
 import { createProblemDirectory } from "./problem_folder_creation";
+import { ErrorCodes } from "../../utils/consts";
 
 export const createContestDirectory = async (
     contest: ContestClass| undefined,
@@ -9,7 +10,6 @@ export const createContestDirectory = async (
 ): Promise<void> => {
 
     if(contest === undefined) {
-        console.log('Empty ContestClass object');
         return;
     }
 
@@ -18,7 +18,7 @@ export const createContestDirectory = async (
     } 
     
     let contestName : string = contest.name;
-    contestName = contestName.replace(/[^a-zA-Z 0-9.]+/g,'');
+    contestName = contestName.replace(/[^a-zA-Z 0-9.]+/g,''); // replacing special characters to fit naming convention
     const folderPath = rootPath +  `${contestName}/`;
 
     try {
@@ -27,17 +27,15 @@ export const createContestDirectory = async (
         contest.problems.forEach(async (problem) =>{
             await createProblemDirectory(problem, folderPath);
         });
-        console.log('Contest folder created successfully');
         vscode.window.showInformationMessage('Contest folder created Successfully');
     }
     catch(err) {
-        if(err.code === "EEXIST") {
-            console.log('Contest already exists');
-            vscode.window.showInformationMessage('Contest folder already exists');
-        }
-        else {
-            console.log('Unkown error');
-            vscode.window.showInformationMessage('Could not create folder');
-        }
+        if(err.code === ErrorCodes.folderExists) {
+            vscode.window.showErrorMessage('Contest folder already exists');
+        }else if(err.code ===ErrorCodes.noWritePermission) {
+            vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
+          }else{
+            vscode.window.showErrorMessage("Could not create folder.\nUnknown error occurred");
+          }
     }
 };
