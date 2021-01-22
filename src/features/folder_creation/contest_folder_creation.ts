@@ -17,7 +17,7 @@ export const createContestDirectory = async (
     } 
     
     let contestName : string = contest.name;
-    contestName = contestName.replace(/[^a-zA-Z 0-9.]+/g,'');
+    contestName = contestName.replace(/[^a-zA-Z 0-9.]+/g,''); // replacing special characters to fit naming convention
     const folderPath = rootPath +  `${contestName}/`;
 
     try {
@@ -30,10 +30,10 @@ export const createContestDirectory = async (
     }
     catch(err) {
         if(err.code === "EEXIST") {
-            vscode.window.showInformationMessage('Contest folder already exists');
+            vscode.window.showErrorMessage('Contest folder already exists');
         }
         else {
-            vscode.window.showInformationMessage('Could not create folder');
+            vscode.window.showErrorMessage('Open a workspace to create problem folder');
         }
     }
 };
