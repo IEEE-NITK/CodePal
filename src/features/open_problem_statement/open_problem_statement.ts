@@ -11,7 +11,6 @@ export const openProblemStatement = (path: string) => {
     vscode.env.openExternal(vscode.Uri.parse(`https://codeforces.com/contest/${jsonData["contestID"]}/problem/${jsonData["index"]}`, true));
     vscode.window.showInformationMessage("Opened problem statement");
   } catch (err) {
-    console.log(err);
     vscode.window.showErrorMessage(err);
   }
 };

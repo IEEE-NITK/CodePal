@@ -4,13 +4,14 @@ import { promises as fs } from "fs";
 import { readFileSync as fs_readFileSync } from "fs";
 import { fetchTestCases } from "./test_cases_fetch";
 import { fetchProblemPdf } from "./problem_pdf_creation";
+import { CodepalConfig, codepalConfigName, CompilationLanguages } from "../../utils/consts";
 
 let templateCode = "";
 
 const getTemplateCode = async () => {
   const templatePath = vscode.workspace
-  .getConfiguration("codepal")
-  .get<string>("codeTemplatePath");
+  .getConfiguration(codepalConfigName)
+  .get<string>(CodepalConfig.codeTemplatePath);
   let data = "";
   try {
     if (templatePath) {
@@ -28,7 +29,6 @@ export const createProblemDirectory = async (
   folderPath: string
 ): Promise<void> => {
   if (problem === undefined) {
-    console.log("Empty Problem class");
     return;
   }
   let problemName : string = problem.name;
@@ -36,26 +36,26 @@ export const createProblemDirectory = async (
   const problemFolderPath = folderPath + `${problem.index}-${problemName}/`;
 
   const compilationLanguage = vscode.workspace
-    .getConfiguration("codepal")
-    .get<String>("compilationLanguage");
+    .getConfiguration(codepalConfigName)
+    .get<String>(CodepalConfig.compilationLanguage);
   
   let fileExtension: string;
-
+  console.log(compilationLanguage);
   switch(compilationLanguage) {
-      case "gcc":
+      case CompilationLanguages.gcc:
         fileExtension = 'c';
         break;
 
-      case "g++":
+      case CompilationLanguages.cpp:
         fileExtension = 'cpp';
         break;
 
-      case "python":
-      case "python3":
+      case CompilationLanguages.python:
+      case CompilationLanguages.python3:
         fileExtension = 'py';
         break;
 
-      case "java":
+      case CompilationLanguages.java:
         fileExtension = 'java';
         break;
 
@@ -70,7 +70,9 @@ export const createProblemDirectory = async (
   templateCode = await getTemplateCode();
 
   try {
+    console.log('start');
     await fs.mkdir(problemFolderPath);
+    console.log('folder created');
       // creating .json
       fs.writeFile(
         problemFolderPath + ".problem.json",
@@ -79,27 +81,24 @@ export const createProblemDirectory = async (
           index: problem.index,
         })
       );
-    
+      console.log('json created');
     fs.writeFile(problemFilePath, templateCode); // solution file
-
+    console.log('temp created');
     await fetchTestCases(problem, problemFolderPath); // Fetch tests cases into the problem folder
-
-    // await fetchProblemPdf(problem, problemFolderPath); // Fetch pdf of problem statement
-
+    console.log('test created');
     vscode.window.showTextDocument(vscode.Uri.file(problemFilePath), {
       preview: false,
       preserveFocus: true,
     });
-
-    console.log("Problem folder created");
     vscode.window.showInformationMessage("Problem folder created successfully");
   } catch (err) {
+    console.log(err); 
     if (err.code === "EEXIST") {
-      console.log("Problem already exists");
       vscode.window.showInformationMessage("Problem folder already exists");
-    } else {
-      console.log("Unkown error");
-      vscode.window.showInformationMessage("Could not create folder");
+    } else if(err.code ==="EACCES") {
+      vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
+    }else{
+      vscode.window.showErrorMessage("Could not create folder.\nUnknown error occurred");
     }
   }
 };

@@ -70,18 +70,17 @@ export const compileFile = async (
     return new Promise(async (resolve, reject) => {
       exec(compileCommand, async (error: any, stdout: any, stderr: any) => {
         if (error) {
-          // console.log(`Compilation Error: \n${error.message}`);
           await reportError(error.message, "Compilation", testsFolderPath);
           reject(error.message);
           return;
         }
         if (stderr) {
-          // console.log(`stderr: ${stderr}`);
+         
           await reportError(stderr, "Compilation", testsFolderPath);
           reject(stderr);
           return;
         }
-        // console.log("Compilation Done.");
+        
         vscode.window.showInformationMessage("Compilation Done.");
         resolve(stdout);
       });

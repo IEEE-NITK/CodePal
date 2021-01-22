@@ -9,12 +9,9 @@ import { runTestCases } from "./features/run_test_cases/run_test_cases";
 import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
-import { Command} from "./utils/consts";
-import { filterProblems } from "./features/problems_list/problems_filter_input";
+import { Command, TreeViewIDs } from "./utils/consts";
 
-const tagOR:string = "*combine tags by OR";
-const allTags:string[] = [tagOR,"2-sat","binary search","bitmasks","brute force","chinese remainder theorem","combinatorics","constructive algorithms","data structures","dfs and similar","divide and conquer","dp","dsu","expression parsing","fft","flows","games","geometry","graph matchings","graphs","greedy","hashing","implementation","interactive","math","matrices","meet-in-the-middle","number theory","probabilities","schedules","shortest paths","sortings","string suffix structures","strings","ternary search","trees","two pointers"];
-const isNum = (val:string) => /^\d+$/.test(val); // check if a string has only digits
+const isNum = (val: string) => /^\d+$/.test(val); // check if a string has only digits
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codepal" is now active!');
@@ -23,7 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
     ? vscode.workspace.workspaceFolders[0].uri.fsPath + "/"
     : "/";
 
-    
   const problemProvider = new ProblemsProvider(rootPath);
   const contestsProvider = new ContestsProvider(rootPath);
   disposable = [
@@ -32,21 +28,23 @@ export function activate(context: vscode.ExtensionContext) {
     }),
   ];
   disposable.push(
-    vscode.commands.registerCommand("codepal.getProblemFilters", () => filterProblems(problemProvider))
+    vscode.commands.registerCommand(Command.getProblemFilters, () =>
+      filterProblems(problemProvider)
+    )
   );
   disposable.push(
-    vscode.commands.registerCommand("codepal.reloadProblems", () => {
+    vscode.commands.registerCommand(Command.reloadProblems, () => {
       problemProvider.reload();
     })
   );
   disposable.push(
-    vscode.commands.registerCommand("codepal.reloadContests", () => {
+    vscode.commands.registerCommand(Command.reloadContests, () => {
       contestsProvider.reload();
     })
   );
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.createContestDirectory",
+      Command.createContestDirectory,
       (param: ContestTreeItem) =>
         createContestDirectory(param.contest, rootPath)
     )
@@ -54,33 +52,27 @@ export function activate(context: vscode.ExtensionContext) {
 
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.createProblemDirectory",
+      Command.createProblemDirectory,
       (param: ProblemTreeItem) =>
         createProblemDirectory(param.problem, rootPath)
     )
   );
 
   disposable.push(
-    vscode.commands.registerCommand(
-      "codepal.runTestCases",
-      (param: any) => {
-        // console.log("Run test cases icon parameter : " + String(param));
-        runTestCases(String(param));
-      }
+    vscode.commands.registerCommand(Command.runTestCases, (param: any) =>
+      runTestCases(String(param))
     )
   );
 
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.openProblemStatement",
-      (param: any) => {
-        openProblemStatement(String(param));
-      }
+      Command.openProblemStatement,
+      (param: any) => openProblemStatement(String(param))
     )
   );
   disposable.push(
     vscode.commands.registerCommand(
-      "codepal.submitProblem",
+      Command.submitProblem,
       async (param: any) => {
         await submitProblem(String(param));
       }
@@ -88,28 +80,23 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   disposable.push(
-    vscode.commands.registerCommand(
-      "codepal.addTestCases",
-      (param: any) => {
-        console.log("Add test cases icon parameter : " + String(param));
-        addTestCases(String(param));
-      }
+    vscode.commands.registerCommand(Command.addTestCases, (param: any) =>
+      addTestCases(String(param))
     )
   );
 
   disposable.push(
     vscode.window.registerTreeDataProvider(
-      "codepalContests",
+      TreeViewIDs.contests,
       contestsProvider
     )
   );
   disposable.push(
     vscode.window.registerTreeDataProvider(
-      "codepalProblems",
+      TreeViewIDs.problems,
       problemProvider
     )
   );
   context.subscriptions.push(...disposable);
 }
-
 export function deactivate() {}

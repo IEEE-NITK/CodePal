@@ -9,7 +9,6 @@ export const createContestDirectory = async (
 ): Promise<void> => {
 
     if(contest === undefined) {
-        console.log('Empty ContestClass object');
         return;
     }
 
@@ -27,16 +26,13 @@ export const createContestDirectory = async (
         contest.problems.forEach(async (problem) =>{
             await createProblemDirectory(problem, folderPath);
         });
-        console.log('Contest folder created successfully');
         vscode.window.showInformationMessage('Contest folder created Successfully');
     }
     catch(err) {
         if(err.code === "EEXIST") {
-            console.log('Contest already exists');
             vscode.window.showInformationMessage('Contest folder already exists');
         }
         else {
-            console.log('Unkown error');
             vscode.window.showInformationMessage('Could not create folder');
         }
     }

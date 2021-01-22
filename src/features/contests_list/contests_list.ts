@@ -43,7 +43,7 @@ const contestsList = async (
 };
 
 export const fetchContests = async (type: string): Promise<ContestTreeItem[]> => {
-    let contests: ContestClass[] = await contestsList(type); //TODO: CALL FUNCTION THAT FETCHES CONTESTS IN PLACE OF []
+    let contests: ContestClass[] = await contestsList(type);
     const contestsMap= contests.map<ContestTreeItem> (
         (contest): ContestTreeItem => {
             return new ContestTreeItem(
