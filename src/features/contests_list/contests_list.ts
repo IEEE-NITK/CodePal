@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import * as vscode from "vscode";
 import { ContestClass } from "../../classes/contest";
 import { ContestTreeItem } from "../../data_providers/contests/contest_tree_item";
-import { ContestEnum, ContestsPhase, Urls } from "../../utils/consts";
+import { ContestTreeEnum, ContestsPhase, Urls } from "../../utils/consts";
 
 const contestsList = async (
     contestsType: string
@@ -25,13 +25,13 @@ const contestsList = async (
                 let type = "";
                 let x = users.result[i].phase;
                 if (x === ContestsPhase.finished) {
-                    type = ContestEnum.pastContestType;
+                    type = ContestTreeEnum.pastContestType;
                 }
                 if (x === ContestsPhase.coding) {
-                    type = ContestEnum.runningContestType;
+                    type = ContestTreeEnum.runningContestType;
                 }
                 if (x === ContestsPhase.before) {
-                    type = ContestEnum.futureContestType;
+                    type = ContestTreeEnum.futureContestType;
                 }
                 if (type === contestsType) {
                     let c = new ContestClass(contestID, type,users.result[i].name);
@@ -48,8 +48,8 @@ export const fetchContests = async (type: string): Promise<ContestTreeItem[]> =>
         (contest): ContestTreeItem => {
             return new ContestTreeItem(
             `${contest.name}`,
-            type === ContestEnum.futureContestType?ContestEnum.futureContestLabel:ContestEnum.contestLabel,
-            type === ContestEnum.futureContestType
+            type === ContestTreeEnum.futureContestType?ContestTreeEnum.futureContestLabel:ContestTreeEnum.contestLabel,
+            type === ContestTreeEnum.futureContestType
                 ? vscode.TreeItemCollapsibleState.None
                 : vscode.TreeItemCollapsibleState.Collapsed,
             type,

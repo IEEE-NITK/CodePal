@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { ContestClass } from "../../classes/contest";
 import {promises as fs} from "fs";
 import { createProblemDirectory } from "./problem_folder_creation";
+import { ErrorCodes } from "../../utils/consts";
 
 export const createContestDirectory = async (
     contest: ContestClass| undefined,
@@ -29,11 +30,12 @@ export const createContestDirectory = async (
         vscode.window.showInformationMessage('Contest folder created Successfully');
     }
     catch(err) {
-        if(err.code === "EEXIST") {
+        if(err.code === ErrorCodes.folderExists) {
             vscode.window.showErrorMessage('Contest folder already exists');
-        }
-        else {
-            vscode.window.showErrorMessage('Open a workspace to create problem folder');
-        }
+        }else if(err.code ===ErrorCodes.noWritePermission) {
+            vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
+          }else{
+            vscode.window.showErrorMessage("Could not create folder.\nUnknown error occurred");
+          }
     }
 };
