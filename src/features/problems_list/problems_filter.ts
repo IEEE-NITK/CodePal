@@ -2,19 +2,14 @@ import fetch from "node-fetch";
 import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
-
-const tagOR:string = "*combine tags by OR";
+import { Urls, tagsByOR, ProblemTreeEnum} from "../../utils/consts";
 
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
 
-    let url = 'https://codeforces.com/api/problemset.problems';
-
-    console.log(url);
-
     try {
         // Fetching the problems using the codeforces problemset API call
-        const response = await fetch(url);
+        const response = await fetch(Urls.fetchProblemSet);
         if(response.ok) {
             const jsonResponse = await response.json();
             let problems: ProblemClass[] = [];
@@ -27,9 +22,7 @@ const problemsList = async (
             return problems;
         }
     }
-    catch(error) {
-        throw new Error(error);
-    }
+    catch(error) {}
 
     return [];
 };
@@ -40,7 +33,7 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
         (problem: ProblemClass): ProblemTreeItem => {
             return new ProblemTreeItem (
                 `${problem.name} ( ${(problem.rating === 0 ? "Not yet defined" : problem.rating)} )`,
-                "problem",
+                ProblemTreeEnum.problemContextValue,
                 vscode.TreeItemCollapsibleState.Collapsed,
                 problem
             );
@@ -48,7 +41,8 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     ); 
 };
 
-const validRating = (
+ // returns true if the problem is within the given rating range
+const validRating = ( 
     problem: ProblemClass | undefined, 
     fromRating: number, 
     toRating: number): boolean =>{
@@ -64,14 +58,15 @@ const validRating = (
     }
 };
 
+ // returns the true if the problem has all the tags needed or atleast one depending on tagsByOR
 const validTags = (
     problem: ProblemClass | undefined, 
-    tags:string[]): boolean =>{
+    tags:string[]): boolean =>{ // 
     if(problem === undefined || problem.tags === undefined){
         return false;
     }
 
-    if(tags.includes(tagOR)){ // union of all tags
+    if(tags.includes(tagsByOR)){ // union of all tags
         if(tags.length === 1 || tags.some(tag => problem.tags.includes(tag))){
             return true;
         }
@@ -109,14 +104,15 @@ export const filterProblems = (
            
             filteredProblems.push(new ProblemTreeItem (
                 `${currentProblem.name} ( ${(currentProblem.rating === 0 ? "Not yet defined" : currentProblem.rating)} )`,
-                "problem",
+                ProblemTreeEnum.problemContextValue,
                 vscode.TreeItemCollapsibleState.Collapsed,
                 currentProblem
             ));
         }
     }); 
 
-    if(filteredProblems.length === 0){
+    // if the combination of filter results in no problem then display "No problem found"
+    if(filteredProblems.length === 0){ 
         filteredProblems.push(new ProblemTreeItem (
             `No problem found`,
             "empty",

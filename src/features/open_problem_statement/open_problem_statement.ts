@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 import {platform} from "os";
 import * as fs from "fs";
-import {OS, Utils} from "../../utils/utils";
+import {Utils} from "../../utils/utils";
+import { OS } from "../../utils/consts";
 export const openProblemStatement = (path: string) => {
   try {
     path = Utils.pathRefine(path, platform() === "linux" ? OS.linux : OS.windows);
@@ -10,7 +11,6 @@ export const openProblemStatement = (path: string) => {
     vscode.env.openExternal(vscode.Uri.parse(`https://codeforces.com/contest/${jsonData["contestID"]}/problem/${jsonData["index"]}`, true));
     vscode.window.showInformationMessage("Opened problem statement");
   } catch (err) {
-    console.log(err);
     vscode.window.showErrorMessage(err);
   }
 };
