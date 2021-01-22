@@ -1,5 +1,5 @@
 # CodePal 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.png)](https://www.gnu.org/licenses/gpl-3.0)
 
 A Visual Studio Code Extension to help **Codeforces** Users ***Code with Convenience.*** This extension is specially for people who want to save time in a live codeforces contest and upsolve problems comfortably. This extension responds quickly to users. It can swiftly filter through the problem list by specifying tags and ratings, create folders for contests and problems containing sample tests of each problem in them and compile and run tests automatically. For added convenience we've created buttons to directly open problem statements and submission pages on the default browser. 
 
@@ -42,7 +42,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 The following is the usage guide to use the following features : 
 
 ### 1. Filtering Problems
-- Click on the <img src="res/svg/filter.svg" width="16"/> icon to filter the problem set.
+- Click on the <img src="res/svg/filter.png" width="16"/> icon to filter the problem set.
 - Add the lower bound for problem’s rating. (Default lower bound is 0)
 - Add the upper bound for problem’s rating. (Default upper bound is 4000)
 - Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done.)
