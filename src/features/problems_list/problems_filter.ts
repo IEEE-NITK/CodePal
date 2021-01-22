@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
-import { Urls, ProblemTags } from "../../utils/consts";
+import { Urls, tagsByOR} from "../../utils/consts";
 
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
@@ -43,7 +43,8 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     ); 
 };
 
-const validRating = (
+ // returns true if the problem is within the given rating range
+const validRating = ( 
     problem: ProblemClass | undefined, 
     fromRating: number, 
     toRating: number): boolean =>{
@@ -59,14 +60,15 @@ const validRating = (
     }
 };
 
+ // returns the true if the problem has all the tags needed or atleast one depending on tagsByOR
 const validTags = (
     problem: ProblemClass | undefined, 
-    tags:string[]): boolean =>{
+    tags:string[]): boolean =>{ // 
     if(problem === undefined || problem.tags === undefined){
         return false;
     }
 
-    if(tags.includes(ProblemTags.tagsByOR)){ // union of all tags
+    if(tags.includes(tagsByOR)){ // union of all tags
         if(tags.length === 1 || tags.some(tag => problem.tags.includes(tag))){
             return true;
         }
@@ -111,7 +113,8 @@ export const filterProblems = (
         }
     }); 
 
-    if(filteredProblems.length === 0){
+    // if the combination of filter results in no problem then display "No problem found"
+    if(filteredProblems.length === 0){ 
         filteredProblems.push(new ProblemTreeItem (
             `No problem found`,
             "empty",
