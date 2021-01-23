@@ -30,15 +30,21 @@ export class ContestsProvider
   getChildren(
     element?: ContestTreeItem
   ): vscode.ProviderResult<ContestTreeItem[]> {
+    //console.log(element);
     if (!element) {
       return this.getContestTypes();
     } else if (element.label === ContestTreeEnum.runningContestType) {
       return fetchContests(element.label);
-    } else if (element.label === ContestTreeEnum.futureContestType) {
+    } else if (element.label === ContestTreeEnum.futureContestType && !element.contest) {
+      //console.log("lala");
       return fetchContests(element.label);
     } else if (element.label === ContestTreeEnum.pastContestType) {
       return fetchContests(element.label);
     } else {
+      if(element.contest && element.type === ContestTreeEnum.futureContestType){
+        console.log("lala");
+        return this.constestStats(element.contest);
+      }
       if (element.contest) {
         return this.fetchProblemsOfContest(element.contest);
       }
@@ -81,4 +87,36 @@ export class ContestsProvider
       ),
     ]);
   }
+
+  constestStats(
+    contest: ContestClass
+    ): Thenable<ContestTreeItem[]> {
+    let timing : string = "";
+    let duration : string = "";
+    
+    timing = contest.startDate + ' '  + contest.startTime;
+    duration = contest.duration;
+    
+    return Promise.resolve([
+      new ContestTreeItem(
+        `Timing : ${timing}`,
+        "Timing",
+        vscode.TreeItemCollapsibleState.None,
+        "",
+        contest,
+        undefined,
+        undefined
+      ),
+      new ContestTreeItem(
+        `Duration : ${duration}`,
+        "Duration",
+        vscode.TreeItemCollapsibleState.None,
+        "",
+        contest,
+        undefined,
+        undefined
+      ),
+    ]);
+  }
+
 }
