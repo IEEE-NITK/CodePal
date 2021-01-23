@@ -52,7 +52,7 @@ The following is the usage guide to use the following features :
 
 ### 3. Creating Contest Folder
 - Click on the type of contest you want to participate in. (Past, Running or Future)
-- Precise timings and duratios of upcoming contests are also shown.
+- Precise timings and durations of upcoming contests are also shown.
 - Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on vscode where you want the contest folder)
 
 ### 4. Adding Your Own Code Template
