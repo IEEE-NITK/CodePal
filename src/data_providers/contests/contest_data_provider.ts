@@ -54,9 +54,11 @@ export class ContestsProvider
     return contest.problems.map<ContestTreeItem>((problem) => {
       return new ContestTreeItem(
         problem.name,
-        problem.problemID,
+        "contestproblem",
         vscode.TreeItemCollapsibleState.None,
-       
+        "none",
+        undefined,
+        problem       
       );
     });
   }
