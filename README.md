@@ -17,7 +17,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 
 - View Complete ProblemSet List along with their associated tags and ratings. 
 - Swiftly Filter through the ProblemSet by specifying Ratings and Tags.
-- View Currently Running , Upcoming and all Past contests. 
+- View Currently Running , Upcoming and all Past contests and also view precise start date , time and duration of upcoming contests. 
 - Fast Folder Creation on a single click for Contests from the Codeforces contest list and Problems from the Codeforces problem list.
   - Folder for a contest contains a folder for each problem and also contain all sample test cases and program files for each problem.
   - Folder for a problem consists of all its sample test cases and a program file loaded with a template whose path may be specified in the settings.
