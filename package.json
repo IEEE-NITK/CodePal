@@ -47,6 +47,11 @@
 				"icon": "res/svg/CreateFolder.png"
 			},
 			{
+				"command": "codepal.createContestProblemDirectory",
+				"title": "Create only this problem Folder",
+				"icon": "res/svg/CreateFolder.png"
+			},
+			{
 				"command": "codepal.runTestCases",
 				"title": "Run Test Cases",
 				"icon": "res/svg/play_button.png"
@@ -121,6 +126,11 @@
 				{
 					"command": "codepal.createProblemDirectory",
 					"when": "view == codepalProblems && viewItem==problem",
+					"group": "inline"
+				},
+				{
+					"command": "codepal.createContestProblemDirectory",
+					"when": "view == codepalContests && viewItem==contestproblem",
 					"group": "inline"
 				}
 			],

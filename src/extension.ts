@@ -58,6 +58,14 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   disposable.push(
+    vscode.commands.registerCommand(
+      Command.createContestProblemDirectory,
+      (param: ContestTreeItem) =>
+        createProblemDirectory(param.problem, rootPath)
+    )
+  );
+
+  disposable.push(
     vscode.commands.registerCommand(Command.runTestCases, (param: any) =>
       runTestCases(String(param))
     )
