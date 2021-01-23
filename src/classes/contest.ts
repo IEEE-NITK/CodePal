@@ -11,13 +11,19 @@ export class ContestClass{
     contestID: number;
     contestLink: string;
     type: string;
+    startTime: string;
+    startDate: string;
+    duration: string;
 
-    constructor(contestID: number, type: string,name:string){
+    constructor(contestID: number, type: string, name:string, startTime: string, startDate: string, duration: string){
         this.problems = [];
         this.name = name;
         this.type = type; // PAST, RUNNING OR FUTURE
         this.contestID = contestID;
         this.contestLink = `https://codeforces.com/contest/${this.contestID}`;
+        this.startTime = startTime;
+        this.startDate = startDate;
+        this.duration = duration;
     }
 
     async init(){
