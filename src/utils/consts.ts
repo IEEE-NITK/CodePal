@@ -27,6 +27,7 @@ export const enum CompilationLanguages {
   gcc = "gcc",
   java="java",
   python = "python",
+  python2 = "python2",
   python3 = "python3",
 }
 export const enum CompilationFlags {

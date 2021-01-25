@@ -30,6 +30,7 @@ export const compileFile = async (
 
   if (
     compilationLanguage === CompilationLanguages.python ||
+    compilationLanguage === CompilationLanguages.python2 ||
     compilationLanguage === CompilationLanguages.python3
   ) {
     return new Promise((resolve, reject) => {

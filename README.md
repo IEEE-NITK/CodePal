@@ -32,7 +32,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - C (compiler : gcc)
 - Java (compiler : javac)
 - Python 
-- Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python and python3 depending upon the version you prefer.
+- Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python,python2,python3 depending the python prefix you use on your system to run.
 
 # Operating Systems Supported
 - Windows 

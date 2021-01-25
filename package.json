@@ -168,8 +168,10 @@
 						"gcc",
 						"java",
 						"python",
+						"python2",
 						"python3"
-					]
+					],
+					"markdownDescription": "Note : Incase of python please choose the python prefix you would generally use on your system to run"
 				},
 				"codepal.codeTemplatePath": {
 					"type": "string",

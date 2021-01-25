@@ -49,6 +49,7 @@ export const createProblemDirectory = async (
         break;
 
       case CompilationLanguages.python:
+      case CompilationLanguages.python2:
       case CompilationLanguages.python3:
         fileExtension = 'py';
         break;
