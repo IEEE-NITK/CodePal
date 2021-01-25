@@ -8,7 +8,7 @@ import { OS } from "../../utils/consts";
 
 export const runTestCases = async function (filePath: string): Promise<void> {
   // Code for running test cases and returning verdict
-  const os = platform() === "linux" ? OS.linux : OS.windows;
+  const os = platform() === "win32"?OS.windows : OS.linux;
   let path = Utils.pathRefine(filePath, os);
 
   if (!fs.existsSync(path)) {
