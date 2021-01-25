@@ -17,13 +17,13 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 
 - View Complete ProblemSet List along with their associated tags and ratings. 
 - Swiftly Filter through the ProblemSet by specifying Ratings and Tags.
-- View Currently Running , Upcoming and all Past contests and also view precise start date , time and duration of upcoming contests. 
+- View Currently running, Upcoming and all Past contests and also view the precise start date, time and duration of upcoming contests. 
 - Fast Folder Creation on a single click for Contests from the Codeforces contest list and Problems from the Codeforces problem list.
   - Folder for a contest contains a folder for each problem and also contain all sample test cases and program files for each problem.
   - Folder for a problem consists of all its sample test cases and a program file loaded with a template whose path may be specified in the settings.
 - Add additional tests to any problem.
 - Compile and run any program file against the testcases and get comprehensive results.
-- Open problem statement or submission page with a single click on your default browser.(You must be logged into codeforces before hand to open the submission page successfully)
+- Open problem statement or submission page with a single click, on your default browser. (You must be logged into codeforces before hand to open the submission page successfully)
 - Compiler may be selected and compilation flags can be set through the codepal settings. 
 
 
@@ -32,7 +32,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - C (compiler : gcc)
 - Java (compiler : javac)
 - Python 
-- Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python,python2,python3 depending upon the python prefix you use on your system to run.
+- Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python, python2 or python3 depending upon the python command you use on your system to run.
 
 # Operating Systems Supported
 - Windows 
@@ -45,7 +45,7 @@ The following is the usage guide to use the following features :
 - Click on the <img src="res/svg/filter.png" width="16"/> icon to filter the problem set.
 - Add the lower bound for problem’s rating. (Default lower bound is 0)
 - Add the upper bound for problem’s rating. (Default upper bound is 4000)
-- Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done.)
+- Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done)
 
 ### 2. Creating Problem Folder
 - Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on vscode where you want the problem folder)
