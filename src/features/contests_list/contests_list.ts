@@ -61,17 +61,21 @@ const contestsList = async (
 
 export const fetchContests = async (type: string): Promise<ContestTreeItem[]> => {
     let contests: ContestClass[] = await contestsList(type);
-    const contestsMap= contests.map<ContestTreeItem> (
+    const contestsMap = contests.map<ContestTreeItem> (
         (contest): ContestTreeItem => {
-            return new ContestTreeItem(
-            `${contest.name}`,
-            type === ContestTreeEnum.futureContestType?ContestTreeEnum.futureContestLabel:ContestTreeEnum.contestLabel,
-            (type === ContestTreeEnum.futureContestType) ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed,
-            type,
-            contest
+            return new ContestTreeItem (
+                `${contest.name}`,
+                type === ContestTreeEnum.futureContestType?ContestTreeEnum.futureContestLabel:ContestTreeEnum.contestLabel,
+                (type === ContestTreeEnum.futureContestType) ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed,
+                type,
+                contest
             );
         }
     );
-    const noContestFoundTreeItem=new ContestTreeItem('No Contests Found','empty',vscode.TreeItemCollapsibleState.None);
-    return contestsMap.length===0?[noContestFoundTreeItem]:contestsMap;
+    const noContestFoundTreeItem = new ContestTreeItem(
+        'No Contests Found', 
+        'empty',
+        vscode.TreeItemCollapsibleState.None
+    );
+    return contestsMap.length === 0 ? [noContestFoundTreeItem] : contestsMap;
 };

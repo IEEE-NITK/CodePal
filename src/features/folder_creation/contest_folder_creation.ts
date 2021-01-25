@@ -24,7 +24,7 @@ export const createContestDirectory = async (
     try {
         await fs.mkdir(folderPath);
 
-        contest.problems.forEach(async (problem) =>{
+        contest.problems.forEach(async (problem) => {
             await createProblemDirectory(problem, folderPath);
         });
         vscode.window.showInformationMessage('Contest folder created Successfully');
@@ -34,8 +34,8 @@ export const createContestDirectory = async (
             vscode.window.showErrorMessage('Contest folder already exists');
         }else if(err.code ===ErrorCodes.noWritePermission) {
             vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
-          }else{
+        }else {
             vscode.window.showErrorMessage("Could not create folder.\nUnknown error occurred");
-          }
+        }
     }
 };
