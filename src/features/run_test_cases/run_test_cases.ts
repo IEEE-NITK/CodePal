@@ -82,17 +82,14 @@ export const runTestCases = async function (filePath: string): Promise<void> {
             });
 
             if (!testResult) {
-                const click: string | undefined = await vscode.window.showErrorMessage(
-                    `Test ${i} failed`,
-                    "Show Result"
+                vscode.window.showTextDocument(vscode.Uri.file(resultFilePath), {
+                    preview: false,
+                    viewColumn: vscode.ViewColumn.Beside,
+                    preserveFocus: true,
+                });
+                vscode.window.showErrorMessage(
+                    `Test ${i} failed`
                 );
-                if (click === "Show Result") {
-                    vscode.window.showTextDocument(vscode.Uri.file(resultFilePath), {
-                        preview: false,
-                        viewColumn: vscode.ViewColumn.Beside,
-                        preserveFocus: true,
-                    });
-                }
                 passed = false;
             }
         } catch (err) {
