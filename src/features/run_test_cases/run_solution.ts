@@ -48,6 +48,7 @@ export const runTestsWithTimeout = async (
       break;
 
     case CompilationLanguages.python:
+    case CompilationLanguages.python2:
     case CompilationLanguages.python3:
       const compilationFlags = vscode.workspace
         .getConfiguration(codepalConfigName)
