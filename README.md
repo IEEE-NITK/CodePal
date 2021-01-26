@@ -79,6 +79,17 @@ The following is the usage guide to use the following features :
 # Contributing Guidelines
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](DEVELOPERDOCS.md) for more help.
 
+# Lead Maintainers
+[@adityachirania](https://github.com/adityachirania)
+
+[@niranjansy](https://github.com/niranjansy)
+
+[@lomadapraveenreddy](https://github.com/lomadapraveenreddy)
+
+[@Dragonado](https://github.com/Dragonado)
+
+[@Janmansh](https://github.com/Janmansh)
+
 
 
 
