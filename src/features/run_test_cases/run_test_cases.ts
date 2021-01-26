@@ -81,8 +81,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                 result = `${result}Standard Error : \n${stderr}\n\n`;
             }
             
-            result =
-                result + "________________________________________________________\n\n";
+            result = result + "________________________________________________________\n\n";
             fs.appendFileSync(resultFilePath, result, (err: any) => {
                 if (err) {
                     vscode.window.showErrorMessage("Could not write result.");

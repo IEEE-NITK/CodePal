@@ -80,7 +80,7 @@ export const compileFile = async (
                     reject(stderr);
                     return;
                 }
-                vscode.window.setStatusBarMessage("Compilation Done",600);
+                vscode.window.setStatusBarMessage("Compilation Done",2000);
                 resolve(stdout);
             });
         });
