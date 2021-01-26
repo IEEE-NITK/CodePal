@@ -29,11 +29,11 @@ const contestsList = async (
                 var second : string = "";
 
                 (h >= 1) ? sec = sec - (h*3600) : hour = "";
-                (h.toString().length<10) ? hour = '0' + h.toString() : hour = h.toString();
+                (h<10) ? hour = '0' + h.toString() : hour = h.toString();
                 let min : number = Math.floor(sec/60);
                 (min >= 1) ? sec = sec - (min*60) : minute = "";
-                (min.toString().length<10) ? minute = '0' + min.toString() : minute = min.toString();
-                (sec.toString().length < 10) ? second = '0'+ sec.toString() : second = sec.toString();    
+                (min<10) ? minute = '0' + min.toString() : minute = min.toString();
+                (sec< 10) ? second = '0'+ sec.toString() : second = sec.toString();    
 
                 var duration : string = hour + ':' + minute + ':' + second;
                 var startDate = new Date(users.result[i].startTimeSeconds*1000).toLocaleDateString();
