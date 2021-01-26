@@ -68,11 +68,19 @@ export const runTestCases = async function (filePath: string): Promise<void> {
             let input: string = await readFile(inputFilePath);
             let expectedOutput: string = await readFile(outputFilePath);
             let codeOutput: string = await readFile(codeOutputFilePath);
-            let result: string = `Input ${i}: \n${input}\n\nExpected Output : \n${expectedOutput}\n\nObtained Output : \n${codeOutput}\n\n`;
+            let result : string = "";
+            if (testResult===true) {
+                result = result + `Test ${i} Passed\n\n`;
+            }
+            else {
+                result = result + `Test ${i} Failed\n\n`;
+            }
+            result = result + `Input ${i}: \n${input}\n\nExpected Output : \n${expectedOutput}\n\nObtained Output : \n${codeOutput}\n\n`;
             if (fs.existsSync(stderrFilePath)) {
                 let stderr: string = await readFile(stderrFilePath);
                 result = `${result}Standard Error : \n${stderr}\n\n`;
             }
+            
             result =
                 result + "________________________________________________________\n\n";
             fs.appendFileSync(resultFilePath, result, (err: any) => {
@@ -87,9 +95,11 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                     viewColumn: vscode.ViewColumn.Beside,
                     preserveFocus: true,
                 });
-                vscode.window.showErrorMessage(
-                    `Test ${i} failed`
-                );
+                if (passed === true) {
+                    vscode.window.showErrorMessage(
+                        `Test ${i} failed`
+                    );
+                }
                 passed = false;
             }
         } catch (err) {
