@@ -3,6 +3,7 @@ const fs = require("fs");
 import { exec } from "child_process";
 import { reportError } from "./report_error";
 import { Errors, OS } from "../../utils/consts";
+
 import {
     CodepalConfig,
     codepalConfigName,
@@ -34,12 +35,12 @@ export const runTestsWithTimeout = async (
     switch (compilationLanguage) {
         case CompilationLanguages.gcc:
         case CompilationLanguages.cpp:
-        if (os === OS.linux) {
+        if (os === OS.linux_mac) {
             // Command for linux
-            executable = `./a.out`;
+            executable = `"${testsFolderPath}a.out"`;
         } else if (os === OS.windows) {
             // Command for windows
-            executable = `a.exe`;
+            executable = `${testsFolderPath}a.exe`;
         } else {
             vscode.window.showErrorMessage("Operating System not supported.");
             return;

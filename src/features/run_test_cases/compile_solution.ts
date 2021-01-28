@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 const fs = require("fs");
 import { exec } from "child_process";
 import { reportError } from "./report_error";
+import { platform } from "os";
 import {
     codepalConfigName,
     CodepalConfig,
@@ -45,14 +46,24 @@ export const compileFile = async (
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.cpp);
-            compileCommand = `g++ "${solutionFilePath}" ${compilationFlags}`;
+            if(platform() === "win32"){
+                compileCommand = `g++ "${solutionFilePath}" ${compilationFlags}`;
+            }
+            else{
+                compileCommand = `g++ -o "${testsFolderPath}"a.out "${solutionFilePath}" ${compilationFlags}`;
+            }
             break;
 
         case CompilationLanguages.gcc:
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.gcc);
-            compileCommand = `gcc "${solutionFilePath}" ${compilationFlags}`;
+            if(platform() === "win32"){
+                compileCommand = `gcc "${solutionFilePath}" ${compilationFlags}`;
+            }
+            else{
+                compileCommand = `gcc -o "${testsFolderPath}"a.out "${solutionFilePath}" ${compilationFlags}`;
+            }
             break;
 
         case CompilationLanguages.java:
