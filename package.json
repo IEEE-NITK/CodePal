@@ -3,10 +3,13 @@
 	"displayName": "CodePal",
 	"description": "A VS Code extension to help codeforces users upsolve and give contests conveniently and swiftly",
 	"license": "GPL-3.0-or-later",
-	"repository": {"type": "git", "url": "https://github.com/IEEE-NITK/CodePal"},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/IEEE-NITK/CodePal"
+	},
 	"publisher": "IEEE-NITK",
 	"icon": "res/svg/logo.png",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
