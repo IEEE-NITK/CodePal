@@ -148,12 +148,12 @@
 					"group": "navigation"
 				},
 				{
-					"when": "resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.java$/'",
+					"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
 					"command": "codepal.submitProblem",
 					"group": "navigation"
 				},
 				{
-					"when": "resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?\\-.*/[A-Z][1-9]?\\-.*\\.java$/'",
+					"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
 					"command": "codepal.openProblemStatement",
 					"group": "navigation"
 				}

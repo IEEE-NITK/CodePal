@@ -3,6 +3,7 @@ const fs = require("fs");
 import { exec } from "child_process";
 import { reportError } from "./report_error";
 import { Errors, OS } from "../../utils/consts";
+
 import {
     CodepalConfig,
     codepalConfigName,
@@ -34,45 +35,45 @@ export const runTestsWithTimeout = async (
     switch (compilationLanguage) {
         case CompilationLanguages.gcc:
         case CompilationLanguages.cpp:
-        if (os === OS.linux) {
-            // Command for linux
-            executable = `./a.out`;
-        } else if (os === OS.windows) {
-            // Command for windows
-            executable = `a.exe`;
-        } else {
-            vscode.window.showErrorMessage("Operating System not supported.");
-            return;
-        }
-        runCommand = `${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
-        break;
+            if (os === OS.linux_mac) {
+                // Command for linux
+                executable = `${testsFolderPath}a.out`;
+            } else if (os === OS.windows) {
+                // Command for windows
+                executable = `${testsFolderPath}a.exe`;
+            } else {
+                vscode.window.showErrorMessage("Operating System not supported.");
+                return;
+            }
+            runCommand = `"${executable}" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            break;
 
         case CompilationLanguages.python:
         case CompilationLanguages.python2:
         case CompilationLanguages.python3:
-        const compilationFlags = vscode.workspace
-            .getConfiguration(codepalConfigName)
-            .get<String>(CompilationFlags.python);
-        executable = "python.exe";
-        runCommand = `${compilationLanguage} "${solutionFilePath}" ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
-        break;
+            const compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.python);
+            executable = "python.exe";
+            runCommand = `${compilationLanguage} "${solutionFilePath}" ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            break;
 
         case CompilationLanguages.java:
-        executable = solutionFilePath.slice(
-            solutionFilePath.lastIndexOf("/") + 1,
-            solutionFilePath.lastIndexOf(".")
-        );
-        const javaClassPath: string = solutionFilePath.slice(
-            0,
-            solutionFilePath.lastIndexOf("/")
-        );
-        runCommand = `java -cp "${javaClassPath}" ${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
-        executable = "java.exe";
-        break;
+            executable = solutionFilePath.slice(
+                solutionFilePath.lastIndexOf("/") + 1,
+                solutionFilePath.lastIndexOf(".")
+            );
+            const javaClassPath: string = solutionFilePath.slice(
+                0,
+                solutionFilePath.lastIndexOf("/")
+            );
+            runCommand = `java -cp "${javaClassPath}" ${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            executable = "java.exe";
+            break;
 
         default:
-        vscode.window.showErrorMessage("Language used is not supported");
-        throw Error();
+            vscode.window.showErrorMessage("Language used is not supported");
+            throw Error();
     }
 
     return Promise.race([

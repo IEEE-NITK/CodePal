@@ -63,7 +63,7 @@ export enum Urls {
 }
 
 export enum OS {
-    linux,
+    linux_mac,
     windows
 }
 export const enum ErrorCodes{

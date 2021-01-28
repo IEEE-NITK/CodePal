@@ -6,7 +6,7 @@ import { OS } from "../../utils/consts";
 
 export const submitProblem = async (path: string) => {
     try {
-        path = Utils.pathRefine(path, platform() === "win32"?OS.windows : OS.linux);
+        path = Utils.pathRefine(path, platform() === "win32"?OS.windows : OS.linux_mac);
         const jsonPath = path.substr(0, path.lastIndexOf("/")) + `/.problem.json`;
         const jsonData = JSON.parse(fs.readFileSync(jsonPath).toString());
         vscode.env.openExternal(vscode.Uri.parse(`https://codeforces.com/contest/${jsonData["contestID"]}/submit/${jsonData["index"]}`, true));

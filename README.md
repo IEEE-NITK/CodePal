@@ -38,6 +38,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 # Operating Systems Supported
 - Windows 
 - Linux
+- MAC
 
 # Quickstart
 1. Install the extension from the VS Code Market Place.
@@ -86,21 +87,8 @@ The following is the usage guide to use the following features :
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](DEVELOPERDOCS.md) for more help.
 
 # Lead Maintainers
-[@adityachirania](https://github.com/adityachirania)
-
-[@niranjansy](https://github.com/niranjansy)
-
-[@lomadapraveenreddy](https://github.com/lomadapraveenreddy)
-
-[@Dragonado](https://github.com/Dragonado)
-
-[@Janmansh](https://github.com/Janmansh)
-
-
-
-
-
-
-
-
-
+- [Aditya Chirania](https://github.com/adityachirania)
+- [Niranjan S Yadiyala](https://github.com/niranjansy)
+- [Praveen Reddy](https://github.com/lomadapraveenreddy)
+- [Chaithanya Shyam](https://github.com/Dragonado)
+- [Janmansh Agarwal](https://github.com/Janmansh)
