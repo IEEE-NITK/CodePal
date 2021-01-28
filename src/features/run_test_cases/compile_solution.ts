@@ -47,10 +47,10 @@ export const compileFile = async (
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.cpp);
             if(platform() === "win32"){
-                compileCommand = `g++ "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `g++ -o "${testsFolderPath}a.exe" "${solutionFilePath}" ${compilationFlags}`;
             }
             else{
-                compileCommand = `g++ -o "${testsFolderPath}"a.out "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `g++ -o "${testsFolderPath}a.out" "${solutionFilePath}" ${compilationFlags}`;
             }
             break;
 
@@ -59,10 +59,10 @@ export const compileFile = async (
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.gcc);
             if(platform() === "win32"){
-                compileCommand = `gcc "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `gcc -o "${testsFolderPath}a.exe" "${solutionFilePath}" ${compilationFlags}`;
             }
             else{
-                compileCommand = `gcc -o "${testsFolderPath}"a.out "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `gcc -o "${testsFolderPath}a.out" "${solutionFilePath}" ${compilationFlags}`;
             }
             break;
 
