@@ -38,6 +38,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 # Operating Systems Supported
 - Windows 
 - Linux
+- MAC
 
 # Quickstart
 1. Install the extension from the VS Code Market Place.
