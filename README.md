@@ -45,6 +45,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 1. Install the extension from the VS Code Market Place.
 2. Make sure that the VS code version you are using 1.52 or greater. 
 3. Open the codepal settings as mentioned in our usage guide and set your language preferences.
+4. Please Keep a folder open in your workspace in VS code while using the extension.
 
 # Usage Guide 
 The following is the usage guide to use the following features : 
