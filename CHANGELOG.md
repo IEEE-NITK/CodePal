@@ -3,7 +3,7 @@
 All notable changes to the "codepal" extension will be documented in this file.
 
 ## [0.0.2]
-- Fixed c++,c run testcases features that were creating a.out on compiling in a folder without write access on MAC.
+- Fixed g++,gcc run testcases features that were creating a.out on compiling in a folder without write access on MAC.
 - Changed the file naming conventions for contests/problems folder creation because java needs file name same as class name and spaces and hyphens aren't allowed in a class name.
 
 ## [0.0.1] (First Release) 
