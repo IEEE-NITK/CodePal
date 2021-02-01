@@ -12,6 +12,7 @@
         "@typescript-eslint/naming-convention": "warn",
         "@typescript-eslint/semi": "warn",
         "curly": "warn",
+        "indent": ["warn",4,{"SwitchCase": 1}],
         "eqeqeq": "warn",
         "no-throw-literal": "warn",
         "semi": "off"

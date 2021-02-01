@@ -43,23 +43,23 @@ export const fetchTestCases = async (
     try{
         await fs.mkdir(problemFolderPath);
         getInputOutput(problem)
-        .then((data) => {
-            for(let i=0; i<data.input.length; i++) {
-                const problemFilePath = problemFolderPath + `input_${i+1}.txt`;
-                fs.writeFile(problemFilePath, data.input[i],function(err: any, result: any) {
-                    if(err){ vscode.window.showErrorMessage(err); }
-                });
-            }
-        });
+            .then((data) => {
+                for(let i=0; i<data.input.length; i++) {
+                    const problemFilePath = problemFolderPath + `input_${i+1}.txt`;
+                    fs.writeFile(problemFilePath, data.input[i],function(err: any, result: any) {
+                        if(err){ vscode.window.showErrorMessage(err); }
+                    });
+                }
+            });
   
         getInputOutput(problem)
-        .then((data) => {
-            for(let i=0; i<data.output.length; i++) {
-                const problemFilePath = problemFolderPath + `output_${i+1}.txt`;
-                fs.writeFile(problemFilePath, data.output[i],function(err: any, result: any) {
-                });
-            }
-        });
+            .then((data) => {
+                for(let i=0; i<data.output.length; i++) {
+                    const problemFilePath = problemFolderPath + `output_${i+1}.txt`;
+                    fs.writeFile(problemFilePath, data.output[i],function(err: any, result: any) {
+                    });
+                }
+            });
   
     }
     catch(err){

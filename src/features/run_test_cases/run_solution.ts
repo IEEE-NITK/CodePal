@@ -35,7 +35,7 @@ export const runTestsWithTimeout = async (
     switch (compilationLanguage) {
         case CompilationLanguages.gcc:
         case CompilationLanguages.cpp:
-            if (os === OS.linux_mac) {
+            if (os === OS.linuxMac) {
                 // Command for linux
                 executable = `${testsFolderPath}a.out`;
             } else if (os === OS.windows) {
@@ -80,34 +80,34 @@ export const runTestsWithTimeout = async (
         runTests(runCommand, testsFolderPath, stderrFilePath),
         timeoutPromise,
     ])
-    .then((result) => {
-        clearTimeout(timeoutHandle);
-        return result;
-    })
-    .catch(async (error) => {
-        if (error ===Errors.timeLimitExceeded) {
-            vscode.window.showErrorMessage("Time limit exceeded!!");
-            if (os === OS.windows) {
-            // Kill the executing process on windows
-            exec(
-                `taskkill /F /IM ${executable}`,
-                (error: any, stdout: any, stderr: any) => {
-                if (error) {
-                    console.log(
-                    `Could not kill timed out process.\nError: ${error.message}`
+        .then((result) => {
+            clearTimeout(timeoutHandle);
+            return result;
+        })
+        .catch(async (error) => {
+            if (error ===Errors.timeLimitExceeded) {
+                vscode.window.showErrorMessage("Time limit exceeded!!");
+                if (os === OS.windows) {
+                    // Kill the executing process on windows
+                    exec(
+                        `taskkill /F /IM ${executable}`,
+                        (error: any, stdout: any, stderr: any) => {
+                            if (error) {
+                                console.log(
+                                    `Could not kill timed out process.\nError: ${error.message}`
+                                );
+                            }
+                            if (stderr) {
+                                console.log(
+                                    `Could not kill timed out process.\nstderr: ${stderr}`
+                                );
+                            }
+                        }
                     );
                 }
-                if (stderr) {
-                    console.log(
-                    `Could not kill timed out process.\nstderr: ${stderr}`
-                    );
-                }
-                }
-            );
             }
-        }
-        return "Run time error";
-    });
+            return "Run time error";
+        });
 };
 
 const runTests = async (

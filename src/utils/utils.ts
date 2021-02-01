@@ -17,7 +17,7 @@ export class Utils{
             // For Windows
             path = path.slice(8);
         }
-        else if(os === OS.linux_mac) {
+        else if(os === OS.linuxMac) {
             // For Linux
             path = path.slice(7);
         }

@@ -75,8 +75,8 @@ export const createProblemDirectory = async (
         fs.writeFile(
             problemFolderPath + ".problem.json",
             JSON.stringify({
-            contestID: problem.contestID,
-            index: problem.index,
+                contestID: problem.contestID,
+                index: problem.index,
             })
         );
         fs.writeFile(problemFilePath, templateCode); // solution file

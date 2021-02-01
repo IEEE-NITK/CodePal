@@ -41,7 +41,7 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     ); 
 };
 
- // returns true if the problem is within the given rating range
+// returns true if the problem is within the given rating range
 const validRating = ( 
     problem: ProblemClass | undefined, 
     fromRating: number, 
@@ -58,7 +58,7 @@ const validRating = (
     }
 };
 
- // returns the true if the problem has all the tags needed or atleast one depending on tagsByOR
+// returns the true if the problem has all the tags needed or atleast one depending on tagsByOR
 const validTags = (
     problem: ProblemClass | undefined, 
     tags:string[]): boolean =>{ // 
@@ -91,7 +91,7 @@ export const filterProblems = (
     fromRating : number,
     toRating : number,
     tags : string[]
-    ) : ProblemTreeItem[] => {
+) : ProblemTreeItem[] => {
 
     let filteredProblems : ProblemTreeItem[] = [];
     problems.forEach(function(problem : ProblemTreeItem) : void{
