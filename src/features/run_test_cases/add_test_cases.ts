@@ -7,7 +7,7 @@ import { Command, OS } from "../../utils/consts";
 export const addTestCases = async function (filePath: string): Promise<void> {
     // Code for adding test cases
 
-    const os = platform() === "win32"?OS.windows : OS.linux_mac;
+    const os = platform() === "win32"?OS.windows : OS.linuxMac;
     let path = Utils.pathRefine(filePath, os);
 
     const lastIndexOfSlash: number = path.lastIndexOf("/");
