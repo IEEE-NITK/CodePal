@@ -16,7 +16,8 @@ export const enum Command {
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
-    codeTemplatePath="codeTemplatePath",
+    codeTemplatePath = "codeTemplatePath",
+    codeforcesHandle = "codeforcesHandle"
 }
 export const enum TreeViewIDs{
     contests="codepalContests",
