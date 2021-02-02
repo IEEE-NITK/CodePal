@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
 import { updateSubmissionStatus } from "./submission_status";
-import { Urls, tagsByOR, ProblemTreeEnum} from "../../utils/consts";
+import { Urls, tagsByOR, ProblemTreeEnum, SubmissionStatus} from "../../utils/consts";
 
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
@@ -34,8 +34,8 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     return problems.map<ProblemTreeItem> (
         (problem: ProblemClass): ProblemTreeItem => {
             let problemLabel: string = `${problem.name} (${(problem.rating === 0 ? "Not yet defined" : problem.rating)})`;
-            if(problem.submissionStatus !== "unattempted") {
-                problemLabel = `${problemLabel} (${problem.submissionStatus === "OK" ? "Passed" : "Failed"})`;
+            if(problem.submissionStatus !== SubmissionStatus.unattempted) {
+                problemLabel = `${problemLabel} (${problem.submissionStatus === SubmissionStatus.accepted ? "Passed" : "Failed"})`;
             }
 
             return new ProblemTreeItem (
@@ -107,14 +107,7 @@ export const filterProblems = (
 
         if( currentProblem !== undefined && 
             validRating(currentProblem,fromRating,toRating) === true && 
-            validTags(currentProblem,tags) === true){
-           
-            // filteredProblems.push(new ProblemTreeItem (
-            //     `${currentProblem.name} ( ${(currentProblem.rating === 0 ? "Not yet defined" : currentProblem.rating)} )`,
-            //     ProblemTreeEnum.problemContextValue,
-            //     vscode.TreeItemCollapsibleState.Collapsed,
-            //     currentProblem
-            // ));
+            validTags(currentProblem,tags) === true) {
 
             filteredProblems.push(problem);
         }

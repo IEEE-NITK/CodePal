@@ -4,7 +4,8 @@ import { ProblemClass } from "../../classes/problem";
 
 import {
     CodepalConfig,
-    codepalConfigName
+    codepalConfigName,
+    SubmissionStatus
 } from "../../utils/consts";
 
 export const updateSubmissionStatus = async (
@@ -27,7 +28,7 @@ export const updateSubmissionStatus = async (
         const response = await fetch(url);
         if(response.ok) {
             const jsonResponse = await response.json();
-            if(jsonResponse.status === "FAILED") {
+            if(jsonResponse.status === SubmissionStatus.failed) {
                 vscode.window.showErrorMessage("Invalid Codeforces handle");
                 return problems;
             }
@@ -71,10 +72,10 @@ export const updateSubmissionStatus = async (
                     }
                 }
                 // console.log(problemIdx);
-                if(submission.verdict === "OK") {
-                    problems[resolvedProblemIdx].submissionStatus = "OK";
-                } else if(submission.verdict !== "OK" && problems[resolvedProblemIdx].submissionStatus === "unattempted") {
-                    problems[resolvedProblemIdx].submissionStatus = "FAILED";
+                if(submission.verdict === SubmissionStatus.accepted) {
+                    problems[resolvedProblemIdx].submissionStatus = SubmissionStatus.accepted;
+                } else if(submission.verdict !== SubmissionStatus.accepted && problems[resolvedProblemIdx].submissionStatus === SubmissionStatus.unattempted) {
+                    problems[resolvedProblemIdx].submissionStatus = SubmissionStatus.failed;
                 }
 
                 submissionIdx++;

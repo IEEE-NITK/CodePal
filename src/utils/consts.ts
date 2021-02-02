@@ -23,6 +23,11 @@ export const enum TreeViewIDs{
     contests="codepalContests",
     problems = "codepalProblems",
 }
+export const enum SubmissionStatus {
+    unattempted = "unattempted",
+    accepted = "OK",
+    failed = "FAILED"
+}
 export const enum CompilationLanguages {
     cpp = "g++",
     gcc = "gcc",
