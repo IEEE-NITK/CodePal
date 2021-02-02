@@ -48,7 +48,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 4. Please Keep a folder open in your workspace in VS code while using the extension.
 
 # Usage Guide 
-The following is the usage guide to use the following features : 
+The following is the usage guide to use the following features: 
 
 ### 1. Filtering Problems
 - Click on the <img src="res/svg/filter.png" width="16"/> icon to filter the problem set.
