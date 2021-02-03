@@ -4,6 +4,7 @@ import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
 import { updateSubmissionStatus } from "./submission_status";
 import { Urls, tagsByOR, ProblemTreeEnum, SubmissionStatus} from "../../utils/consts";
+import * as path from 'path';
 
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
@@ -34,15 +35,19 @@ export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     return problems.map<ProblemTreeItem> (
         (problem: ProblemClass): ProblemTreeItem => {
             let problemLabel: string = `${problem.name} (${(problem.rating === 0 ? "Not yet defined" : problem.rating)})`;
+            let iconPath: string = "";
             if(problem.submissionStatus !== SubmissionStatus.unattempted) {
-                problemLabel = `${problemLabel} (${problem.submissionStatus === SubmissionStatus.accepted ? "Passed" : "Failed"})`;
+                iconPath = problem.submissionStatus === SubmissionStatus.accepted 
+                    ? path.join(__filename, '..', '..', 'res', 'svg', 'green-tick.png') 
+                    : path.join(__filename, '..', '..', 'res', 'svg', 'cross-mark.png');
             }
 
             return new ProblemTreeItem (
                 problemLabel,
                 ProblemTreeEnum.problemContextValue,
                 vscode.TreeItemCollapsibleState.Collapsed,
-                problem
+                problem,
+                iconPath
             );
         }
     ); 
