@@ -46,6 +46,9 @@ export const runTestsWithTimeout = async (
                 return;
             }
             runCommand = `"${executable}" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            if(os === OS.windows) {
+                executable = "a.exe";
+            }
             break;
 
         case CompilationLanguages.python:
