@@ -5,7 +5,7 @@ import { platform } from "os";
 import { OS, generatorTemplate, CompilationLanguages, CodepalConfig, codepalConfigName } from "../../utils/consts";
 import { getTemplateCode } from "../folder_creation/problem_folder_creation";
 
-export const createGeneratorFiles = async (filePath: string):Promise<void> => {
+export const createStressTestingFiles = async (filePath: string):Promise<void> => {
     const os = platform() === "win32"?OS.windows : OS.linuxMac;
     let path = Utils.pathRefine(filePath, os);
 

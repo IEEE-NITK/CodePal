@@ -1,10 +1,6 @@
 import * as vscode from "vscode";
 const fs = require("fs");
-import { Utils} from "../../utils/utils";
-import { platform } from "os";
-import { OS } from "../../utils/consts";
 import { compileFile } from "../run_test_cases/compile_solution";
-import { get } from "selenium-webdriver/http";
 
 export const compileAllFiles = async (
     testsFolderPath: string,

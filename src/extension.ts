@@ -11,7 +11,7 @@ import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
 import { Command, stressTestingFlag, TreeViewIDs } from "./utils/consts";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
-import { createGeneratorFiles } from "./features/stress_test/createGeneratorFiles";
+import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
 import { stressTest } from "./features/stress_test/stress_test";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -108,8 +108,8 @@ export function activate(context: vscode.ExtensionContext) {
         )
     );
     disposable.push(
-        vscode.commands.registerCommand(Command.createGeneratorFiles, (param: any) =>
-            createGeneratorFiles(param)
+        vscode.commands.registerCommand(Command.createStressTestingFiles, (param: any) =>
+            createStressTestingFiles(param)
         )
     );
 

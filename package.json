@@ -77,8 +77,8 @@
 				"icon": "res/svg/upload.png"
 			},
 			{
-				"command": "codepal.createGeneratorFiles",
-				"title": "Create Generator Files",
+				"command": "codepal.createStressTestingFiles",
+				"title": "Create Stress Testing Files",
 				"icon": "res/svg/createFile.png"
 			},
 			{
@@ -181,7 +181,7 @@
 				},
 				{
 					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
-					"command": "codepal.createGeneratorFiles",
+					"command": "codepal.createStressTestingFiles",
 					"group": "navigation"
 				}
 			]
