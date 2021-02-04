@@ -2,6 +2,9 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [0.0.3]
+- Fixed a bug regarding running of test cases on Windows Operating System, where a process that times out will have to be killed explicitly. 
+
 ## [0.0.2]
 - Fixed g++,gcc run testcases features that were creating a.out on compiling in a folder without write access on MAC.
 - Changed the file naming conventions for contests/problems folder creation because java needs file name same as class name and spaces and hyphens aren't allowed in a class name.
