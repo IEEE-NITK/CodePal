@@ -166,7 +166,7 @@ random.seed(int(sys.argv[1]))
     python3:
 `import sys, random
 
-random.seed((int(sys.argv[1]))
+random.seed(int(sys.argv[1]))
 
 # generate test cases with same format as given in problem
 
