@@ -21,9 +21,9 @@ let generatedInputFilePath: string;
 let genStderrFilePath     : string;
 
 const assignValuesToPath = async (solnPath: string):Promise<void> => {
-     numOfTestCases = vscode.workspace
-    .getConfiguration(codepalConfigName)
-    .get<number>(CodepalConfig.numLimitOfTestCases);
+    numOfTestCases = vscode.workspace
+        .getConfiguration(codepalConfigName)
+        .get<number>(CodepalConfig.numLimitOfTestCases);
 
     let fileExtension: string;
 
@@ -74,7 +74,7 @@ const assignValuesToPath = async (solnPath: string):Promise<void> => {
 };
 
 export const stressTest = async (filePath: string):Promise<void> => {
-    const os = platform() === "win32"?OS.windows : OS.linux_mac;
+    const os = platform() === "win32"?OS.windows : OS.linuxMac;
 
     let solnPath = Utils.pathRefine(filePath, os);
 
@@ -201,8 +201,8 @@ export const stressTest = async (filePath: string):Promise<void> => {
     }
     else if (passed === true) {
         vscode.window.showInformationMessage(
-                `Solution matches with brute force for ${numOfTestCases} test cases.`,
-            );
+            `Solution matches with brute force for ${numOfTestCases} test cases.`,
+        );
     }
     else{
         vscode.window.showInformationMessage(

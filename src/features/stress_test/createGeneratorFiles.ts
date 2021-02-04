@@ -6,7 +6,7 @@ import { OS, generatorTemplate, CompilationLanguages, CodepalConfig, codepalConf
 import { getTemplateCode } from "../folder_creation/problem_folder_creation";
 
 export const createGeneratorFiles = async (filePath: string):Promise<void> => {
-    const os = platform() === "win32"?OS.windows : OS.linux_mac;
+    const os = platform() === "win32"?OS.windows : OS.linuxMac;
     let path = Utils.pathRefine(filePath, os);
 
     const lastIndexOfSlash: number = path.lastIndexOf("/");
