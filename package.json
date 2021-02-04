@@ -202,12 +202,12 @@
 					"type": "string",
 					"default": "",
 					"markdownDescription": "Space separated additional compilation flags passed to java"
-                },
-                "codepal.codeforcesHandle" : {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
-                }
+				},
+				"codepal.codeforcesHandle": {
+					"type": "string",
+					"default": "",
+					"markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
+				}
 			}
 		}
 	},
