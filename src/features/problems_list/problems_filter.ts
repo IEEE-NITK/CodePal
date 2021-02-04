@@ -2,7 +2,9 @@ import fetch from "node-fetch";
 import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
-import { Urls, tagsByOR, ProblemTreeEnum} from "../../utils/consts";
+import { updateSubmissionStatus } from "./submission_status";
+import { Urls, tagsByOR, ProblemTreeEnum, SubmissionStatus} from "../../utils/consts";
+import * as path from 'path';
 
 const problemsList = async (
 ): Promise<ProblemClass[]> => {
@@ -29,13 +31,23 @@ const problemsList = async (
 
 export const fetchProblems = async (): Promise<ProblemTreeItem[]> => {
     let problems: ProblemClass[] = await problemsList();
+    problems = await updateSubmissionStatus(problems);
     return problems.map<ProblemTreeItem> (
         (problem: ProblemClass): ProblemTreeItem => {
+            let problemLabel: string = `${problem.name} (${(problem.rating === 0 ? "Not yet defined" : problem.rating)})`;
+            let iconPath: string = "";
+            if(problem.submissionStatus !== SubmissionStatus.unattempted) {
+                iconPath = problem.submissionStatus === SubmissionStatus.accepted 
+                    ? path.join(__filename, '..', '..', 'res', 'svg', 'green-tick.png') 
+                    : path.join(__filename, '..', '..', 'res', 'svg', 'cross-mark.png');
+            }
+
             return new ProblemTreeItem (
-                `${problem.name} ( ${(problem.rating === 0 ? "Not yet defined" : problem.rating)} )`,
+                problemLabel,
                 ProblemTreeEnum.problemContextValue,
                 vscode.TreeItemCollapsibleState.Collapsed,
-                problem
+                problem,
+                iconPath
             );
         }
     ); 
@@ -100,14 +112,9 @@ export const filterProblems = (
 
         if( currentProblem !== undefined && 
             validRating(currentProblem,fromRating,toRating) === true && 
-            validTags(currentProblem,tags) === true){
-           
-            filteredProblems.push(new ProblemTreeItem (
-                `${currentProblem.name} ( ${(currentProblem.rating === 0 ? "Not yet defined" : currentProblem.rating)} )`,
-                ProblemTreeEnum.problemContextValue,
-                vscode.TreeItemCollapsibleState.Collapsed,
-                currentProblem
-            ));
+            validTags(currentProblem,tags) === true) {
+
+            filteredProblems.push(problem);
         }
     }); 
 

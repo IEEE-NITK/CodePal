@@ -16,11 +16,17 @@ export const enum Command {
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
-    codeTemplatePath="codeTemplatePath",
+    codeTemplatePath = "codeTemplatePath",
+    codeforcesHandle = "codeforcesHandle"
 }
 export const enum TreeViewIDs{
     contests="codepalContests",
     problems = "codepalProblems",
+}
+export const enum SubmissionStatus {
+    unattempted = "unattempted",
+    accepted = "OK",
+    failed = "FAILED"
 }
 export const enum CompilationLanguages {
     cpp = "g++",
