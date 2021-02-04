@@ -17,7 +17,9 @@ export const runTestsWithTimeout = async (
     codeOutputFilePath: string,
     testsFolderPath: string,
     stderrFilePath: string,
-    os: number
+    os: number,
+    executableFileName: string = 'a',
+    commandLineArguments: string = '',
 ): Promise<any> => {
     let timeoutHandle: NodeJS.Timeout;
     // Declaring a promise that rejects after 6s
@@ -37,17 +39,17 @@ export const runTestsWithTimeout = async (
         case CompilationLanguages.cpp:
             if (os === OS.linuxMac) {
                 // Command for linux
-                executable = `${testsFolderPath}a.out`;
+                executable = `${testsFolderPath}${executableFileName}.out`;
             } else if (os === OS.windows) {
                 // Command for windows
-                executable = `${testsFolderPath}a.exe`;
+                executable = `${testsFolderPath}${executableFileName}.exe`;
             } else {
                 vscode.window.showErrorMessage("Operating System not supported.");
                 return;
             }
-            runCommand = `"${executable}" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            runCommand = `"${executable}" ${commandLineArguments} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             if(os === OS.windows) {
-                executable = "a.exe";
+                executable = `${executableFileName}.exe`;
             }
             break;
 
@@ -58,7 +60,8 @@ export const runTestsWithTimeout = async (
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.python);
             executable = "python.exe";
-            runCommand = `${compilationLanguage} "${solutionFilePath}" ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+
+            runCommand = `${compilationLanguage} "${solutionFilePath}" ${commandLineArguments} ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
         case CompilationLanguages.java:
@@ -70,7 +73,7 @@ export const runTestsWithTimeout = async (
                 0,
                 solutionFilePath.lastIndexOf("/")
             );
-            runCommand = `java -cp "${javaClassPath}" ${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            runCommand = `java -cp "${javaClassPath}" ${executable} ${commandLineArguments} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             executable = "java.exe";
             break;
 
