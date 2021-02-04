@@ -11,6 +11,7 @@ import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
 import { Command, TreeViewIDs } from "./utils/consts";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
+import { ProfileProvider } from "./data_providers/user_profile/profile_data_provider";
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
@@ -21,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const problemProvider = new ProblemsProvider(rootPath);
     const contestsProvider = new ContestsProvider(rootPath);
+    const profileProvider = new ProfileProvider(rootPath);
     disposable = [
         vscode.commands.registerCommand(Command.helloWorld, () => {
             vscode.window.showInformationMessage("Namaste World from IEEE/CodePal!");
@@ -103,6 +105,12 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerTreeDataProvider(
             TreeViewIDs.problems,
             problemProvider
+        )
+    );
+    disposable.push(
+        vscode.window.registerTreeDataProvider(
+            TreeViewIDs.profile,
+            profileProvider
         )
     );
     context.subscriptions.push(...disposable);

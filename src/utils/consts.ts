@@ -22,6 +22,7 @@ export const enum CodepalConfig {
 export const enum TreeViewIDs{
     contests="codepalContests",
     problems = "codepalProblems",
+    profile='codepalProfile'
 }
 export const enum SubmissionStatus {
     unattempted = "unattempted",
