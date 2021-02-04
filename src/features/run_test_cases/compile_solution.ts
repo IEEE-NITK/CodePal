@@ -12,7 +12,8 @@ import {
 
 export const compileFile = async (
     solutionFilePath: string,
-    testsFolderPath: string
+    testsFolderPath: string,
+    outputFileName: string = 'a'
 ): Promise<any> => {
     if (fs.existsSync(`${testsFolderPath}result.txt`)) {
         fs.unlink(`${testsFolderPath}result.txt`, (err: any) => {
@@ -47,22 +48,22 @@ export const compileFile = async (
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.cpp);
             if(platform() === "win32"){
-                compileCommand = `g++ -o "${testsFolderPath}a.exe" "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `g++ -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
             }
             else{
-                compileCommand = `g++ -o "${testsFolderPath}a.out" "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `g++ -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
             }
             break;
-
+        
         case CompilationLanguages.gcc:
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.gcc);
             if(platform() === "win32"){
-                compileCommand = `gcc -o "${testsFolderPath}a.exe" "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `gcc -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
             }
             else{
-                compileCommand = `gcc -o "${testsFolderPath}a.out" "${solutionFilePath}" ${compilationFlags}`;
+                compileCommand = `gcc -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
             }
             break;
 
