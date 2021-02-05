@@ -47,6 +47,11 @@
 				"icon": "res/svg/CreateFolder.png"
 			},
 			{
+				"command": "codepal.registerContest",
+				"title": "Register for this contest",
+				"icon": "res/svg/registerContest.jpeg"
+			},
+			{
 				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
 				"icon": "res/svg/CreateFolder.png"
@@ -140,6 +145,11 @@
 				{
 					"command": "codepal.createContestDirectory",
 					"when": "view == codepalContests && viewItem==contest",
+					"group": "inline"
+				},
+				{
+					"command": "codepal.registerContest",
+					"when": "view == codepalContests && viewItem==FutureContest",
 					"group": "inline"
 				},
 				{
@@ -241,10 +251,10 @@
 		},
 		"keybindings": [
 			{
-			  "command": "codepal.stopStressTesting",
-			  "key": "ctrl+shift+z",
-			  "mac": "cmd+shift+z",
-			  "when": "editorTextFocus"
+				"command": "codepal.stopStressTesting",
+				"key": "ctrl+shift+z",
+				"mac": "cmd+shift+z",
+				"when": "editorTextFocus"
 			}
 		]
 	},

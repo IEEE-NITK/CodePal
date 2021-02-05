@@ -5,6 +5,7 @@ export const enum Command {
     reloadProblems="codepal.reloadProblems",
     reloadContests="codepal.reloadContests",
     createContestDirectory="codepal.createContestDirectory",
+    registerContest = "codepal.registerContest",
     createProblemDirectory="codepal.createProblemDirectory",
     createContestProblemDirectory = "codepal.createContestProblemDirectory",
     runTestCases="codepal.runTestCases",
