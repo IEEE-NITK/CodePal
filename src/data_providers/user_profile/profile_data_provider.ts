@@ -30,27 +30,27 @@ implements vscode.TreeDataProvider<ProfileTreeItem> {
     getChildren(
         element?: ProfileTreeItem
     ): vscode.ProviderResult<ProfileTreeItem[]> {
-        if (!element) {
-            const codeforcesHandle = vscode.workspace
-                .getConfiguration(codepalConfigName)
-                .get<string>(CodepalConfig.codeforcesHandle);
-            if (codeforcesHandle) {
-                return fetchUserInfoApi(codeforcesHandle);
-            }
+        const codeforcesHandle = vscode.workspace
+            .getConfiguration(codepalConfigName)
+            .get<string>(CodepalConfig.codeforcesHandle);
+        if (codeforcesHandle) {
+            return fetchUserInfoApi(codeforcesHandle);
         }
+
         return [
             new ProfileTreeItem(
                 `No Handle: Please click here to enter the handle`,
                 ProfileTreeEnum.codeforcesHandleUndefined,
                 vscode.TreeItemCollapsibleState.None,
                 {
-                    'title': 'UserHandleUndefined',
-                    'command': Command.getUserHandle
+                    title: "UserHandleUndefined",
+                    command: Command.getUserHandle,
                 }
-            ),new ProfileTreeItem(
+            ),
+            new ProfileTreeItem(
                 "Handle can also be entered from settings",
                 ProfileTreeEnum.codeforcesHandleUndefined,
-                vscode.TreeItemCollapsibleState.None,
+                vscode.TreeItemCollapsibleState.None
             ),
         ];
     }

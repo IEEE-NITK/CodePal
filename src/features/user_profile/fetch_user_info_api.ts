@@ -1,28 +1,18 @@
 import * as vscode from "vscode";
 import fetch from "node-fetch";
 import { ProfileTreeItem } from "../../data_providers/user_profile/profile_tree_item";
-import { Command, ProfileTreeEnum } from "../../utils/consts";
+import { ProfileTreeEnum } from "../../utils/consts";
 export const fetchUserInfoApi = async (
     codeforcesHandle: string
 ): Promise<ProfileTreeItem[]> => {
     let arr: ProfileTreeItem[] = [];
-    const command = {
-        title: "Enter Handle",
-        command: Command.getUserHandle,
-    };
     arr.push(
         new ProfileTreeItem(
-            codeforcesHandle ? `Handle: ` + codeforcesHandle : "Enter Handle",
-            codeforcesHandle
-                ? ProfileTreeEnum.codeforcesHandleExists
-                : ProfileTreeEnum.codeforcesHandleUndefined,
-            vscode.TreeItemCollapsibleState.None,
-            codeforcesHandle ? undefined : command
+            `Handle: ` + codeforcesHandle,
+            ProfileTreeEnum.codeforcesHandleExists,
+            vscode.TreeItemCollapsibleState.None
         )
     );
-    if (codeforcesHandle) {
-        arr.push();
-    }
     try {
         arr.push(...(await getInfo(codeforcesHandle)));
     } catch {}
