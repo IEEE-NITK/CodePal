@@ -9,10 +9,18 @@ import { runTestCases } from "./features/run_test_cases/run_test_cases";
 import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
-import { CodepalConfig, codepalConfigName, Command, TreeViewIDs } from "./utils/consts";
-import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
+import {
+    CodepalConfig,
+    codepalConfigName,
+    stressTestingFlag,
+    Command,
+    TreeViewIDs,
+} from "./utils/consts";
 import { ProfileProvider } from "./data_providers/user_profile/profile_data_provider";
 import { getUserHandle } from "./features/user_profile/get_user_handle";
+import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
+import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
+import { stressTest } from "./features/stress_test/stress_test";
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
@@ -24,14 +32,20 @@ export function activate(context: vscode.ExtensionContext) {
     const problemProvider = new ProblemsProvider(rootPath);
     const contestsProvider = new ContestsProvider(rootPath);
     const profileProvider = new ProfileProvider(rootPath);
-    vscode.workspace.onDidChangeConfiguration(event=>{
-        if(event.affectsConfiguration(codepalConfigName+'.'+CodepalConfig.codeforcesHandle)){
+    vscode.workspace.onDidChangeConfiguration((event) => {
+        if (
+            event.affectsConfiguration(
+                codepalConfigName + "." + CodepalConfig.codeforcesHandle
+            )
+        ) {
             profileProvider.refresh();
         }
     });
     disposable = [
         vscode.commands.registerCommand(Command.helloWorld, () => {
-            vscode.window.showInformationMessage("Namaste World from IEEE/CodePal!");
+            vscode.window.showInformationMessage(
+                "Namaste World from IEEE/CodePal!"
+            );
         }),
     ];
     disposable.push(
@@ -41,10 +55,10 @@ export function activate(context: vscode.ExtensionContext) {
     );
     disposable.push(
         vscode.commands.registerCommand(Command.getUserHandle, () =>
-            getUserHandle(profileProvider)  
+            getUserHandle(profileProvider)
         )
     );
-    
+
     disposable.push(
         vscode.commands.registerCommand(Command.reloadProblems, () => {
             problemProvider.reload();
@@ -88,8 +102,7 @@ export function activate(context: vscode.ExtensionContext) {
     disposable.push(
         vscode.commands.registerCommand(
             Command.openProblemStatement,
-            (param: any) => 
-                openProblemStatement(String(param))
+            (param: any) => openProblemStatement(String(param))
         )
     );
     disposable.push(
@@ -125,6 +138,26 @@ export function activate(context: vscode.ExtensionContext) {
             profileProvider
         )
     );
+    vscode.commands.registerCommand(
+        Command.createStressTestingFiles,
+        (param: any) => createStressTestingFiles(param)
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(Command.stressTest, (param: any) =>
+            stressTest(param)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.stopStressTesting,
+            (param: any) => {
+                stressTestingFlag.stop = true;
+            }
+        )
+    );
+
     context.subscriptions.push(...disposable);
 }
 export function deactivate() {}

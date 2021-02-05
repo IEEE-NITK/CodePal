@@ -80,6 +80,20 @@
 				"command": "codepal.getUserHandle",
 				"title": "Get User Handle",
 				"icon": "res/svg/upload.png"
+			},
+			{
+				"command": "codepal.createStressTestingFiles",
+				"title": "Create Stress Testing Files",
+				"icon": "res/svg/createFile.png"
+			},
+			{
+				"command": "codepal.stressTest",
+				"title": "Stress Test",
+				"icon": "res/svg/stress_test.png"
+			},
+			{
+				"command": "codePal.stopStressTesting",
+				"title": "Stop Stress Testing"
 			}
 		],
 		"viewsContainers": {
@@ -171,6 +185,16 @@
 					"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
 					"command": "codepal.openProblemStatement",
 					"group": "navigation"
+				},
+				{
+					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+					"command": "codepal.stressTest",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+					"command": "codepal.createStressTestingFiles",
+					"group": "navigation"
 				}
 			]
 		},
@@ -180,7 +204,7 @@
 				"codepal.compilationLanguage": {
 					"type": "string",
 					"default": "g++",
-					"group":"language",
+					"group": "language",
 					"enum": [
 						"g++",
 						"gcc",
@@ -199,36 +223,49 @@
 				"codepal.g++ CompilationFlags": {
 					"type": "string",
 					"default": "-std=c++14",
-					"group":"language",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to g++"
 				},
 				"codepal.gccCompilationFlags": {
 					"type": "string",
 					"default": "",
-					"group":"language",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to gcc"
 				},
 				"codepal.pythonCompilationFlags": {
 					"type": "string",
 					"default": "",
-					"group":"language",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to python and python3"
 				},
 				"codepal.javaCompilationFlags": {
 					"type": "string",
 					"default": "",
-					"group":"language",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to java"
 				},
 				"codepal.codeforcesHandle": {
 					"type": "string",
 					"default": "",
-					"group":"profile",
+					"group": "profile",
 					"markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
 				}
+			},
+			"codepal.numLimitOfTestCases": {
+				"type": "number",
+				"default": "",
+				"markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
 			}
 		}
 	},
+	"keybindings": [
+		{
+			"command": "codepal.stopStressTesting",
+			"key": "ctrl+shift+z",
+			"mac": "cmd+shift+z",
+			"when": "editorTextFocus"
+		}
+	],
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
 		"compile": "webpack --config ./build/node-extension.webpack.config.js",

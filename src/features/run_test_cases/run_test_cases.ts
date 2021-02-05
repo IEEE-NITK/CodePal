@@ -22,7 +22,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
     const testsFolderPath = problemFolderPath + "Tests/";
 
     if (!fs.existsSync(testsFolderPath)) {
-        vscode.window.showErrorMessage("Tests not found.");
+        vscode.window.showErrorMessage("Tests not found. Please add a test case.");
         return;
     }
 
@@ -55,7 +55,9 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                 codeOutputFilePath,
                 testsFolderPath,
                 stderrFilePath,
-                os
+                os,
+                'a',
+                '1'
             );
             if (runResult === "Run time error") {
                 return;
@@ -128,7 +130,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
     }
 };
 
-const compareOutputs = async (
+export const compareOutputs = async (
     outputFilePath: string,
     codeOutputFilePath: string
 ): Promise<boolean> => {
@@ -155,7 +157,7 @@ const refine = (content: string): string => {
     return content;
 };
 
-const readFile = (filePath: string): Promise<string> => {
+export const readFile = (filePath: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, "utf8", (error: any, fileContent: string) => {
             if (error !== null) {
