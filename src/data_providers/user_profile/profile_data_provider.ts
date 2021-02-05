@@ -3,6 +3,7 @@ import { fetchUserInfoApi } from "../../features/user_profile/fetch_user_info_ap
 import {
     CodepalConfig,
     codepalConfigName,
+    Command,
     ProfileTreeEnum,
 } from "../../utils/consts";
 import { ProfileTreeItem } from "./profile_tree_item";
@@ -39,9 +40,17 @@ implements vscode.TreeDataProvider<ProfileTreeItem> {
         }
         return [
             new ProfileTreeItem(
-                "No Handle Entered: Please enter it in settings",
+                `No Handle Entered: Please click here to enter the handle`,
                 ProfileTreeEnum.codeforcesHandleUndefined,
-                vscode.TreeItemCollapsibleState.None
+                vscode.TreeItemCollapsibleState.None,
+            ),new ProfileTreeItem(
+                "Handle can also be entered from settings",
+                ProfileTreeEnum.codeforcesHandleUndefined,
+                vscode.TreeItemCollapsibleState.None,
+                {
+                    'title': 'UserHandleUndefined',
+                    'command': Command.getUserHandle
+                }
             ),
         ];
     }

@@ -75,6 +75,11 @@
 				"command": "codepal.submitProblem",
 				"title": "Submit Problem",
 				"icon": "res/svg/upload.png"
+			},
+			{
+				"command": "codepal.getUserHandle",
+				"title": "Get User Handle",
+				"icon": "res/svg/upload.png"
 			}
 		],
 		"viewsContainers": {
