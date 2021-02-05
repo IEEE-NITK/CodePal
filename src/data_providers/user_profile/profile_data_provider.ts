@@ -36,19 +36,14 @@ implements vscode.TreeDataProvider<ProfileTreeItem> {
         if (codeforcesHandle) {
             return fetchUserInfoApi(codeforcesHandle);
         }
-
         return [
             new ProfileTreeItem(
-                `No Handle: Please click here to enter the handle`,
+                `Please enter your handle in settings for a personalized experience`,
                 ProfileTreeEnum.codeforcesHandleUndefined,
                 vscode.TreeItemCollapsibleState.None,
-                {
-                    title: "UserHandleUndefined",
-                    command: Command.getUserHandle,
-                }
             ),
             new ProfileTreeItem(
-                "Handle can also be entered from settings",
+                "Entering your handle reflects solved and unsolved problems also.",
                 ProfileTreeEnum.codeforcesHandleUndefined,
                 vscode.TreeItemCollapsibleState.None
             ),
