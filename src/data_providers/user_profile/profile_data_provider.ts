@@ -40,17 +40,17 @@ implements vscode.TreeDataProvider<ProfileTreeItem> {
         }
         return [
             new ProfileTreeItem(
-                `No Handle Entered: Please click here to enter the handle`,
-                ProfileTreeEnum.codeforcesHandleUndefined,
-                vscode.TreeItemCollapsibleState.None,
-            ),new ProfileTreeItem(
-                "Handle can also be entered from settings",
+                `No Handle: Please click here to enter the handle`,
                 ProfileTreeEnum.codeforcesHandleUndefined,
                 vscode.TreeItemCollapsibleState.None,
                 {
                     'title': 'UserHandleUndefined',
                     'command': Command.getUserHandle
                 }
+            ),new ProfileTreeItem(
+                "Handle can also be entered from settings",
+                ProfileTreeEnum.codeforcesHandleUndefined,
+                vscode.TreeItemCollapsibleState.None,
             ),
         ];
     }
