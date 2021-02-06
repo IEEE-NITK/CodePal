@@ -9,6 +9,7 @@ export const openProblemStatement = (path: string) => {
         console.log(path);
         if (vscode.window.activeTextEditor) {
             path = vscode.window.activeTextEditor.document.uri.fsPath;
+            path = path.replace(/\\/g, '/');
         }
 
         const jsonPath = path.substr(0, path.lastIndexOf("/")) + `/.problem.json`;

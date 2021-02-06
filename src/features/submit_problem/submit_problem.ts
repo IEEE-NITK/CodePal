@@ -10,6 +10,7 @@ export const submitProblem = async (path: string) => {
 
         if (vscode.window.activeTextEditor) {
             path = vscode.window.activeTextEditor.document.uri.fsPath;
+            path = path.replace(/\\/g, '/');
         }
 
         const jsonPath = path.substr(0, path.lastIndexOf("/")) + `/.problem.json`;

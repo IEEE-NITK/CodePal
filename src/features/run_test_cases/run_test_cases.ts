@@ -13,6 +13,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
 
     if (vscode.window.activeTextEditor) {
         path = vscode.window.activeTextEditor.document.uri.fsPath;
+        path = path.replace(/\\/g, '/');
     }
 
     if (!fs.existsSync(path)) {

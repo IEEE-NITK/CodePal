@@ -11,6 +11,7 @@ export const addTestCases = async function (filePath: string): Promise<void> {
 
     if (vscode.window.activeTextEditor) {
         path = vscode.window.activeTextEditor.document.uri.fsPath;
+        path = path.replace(/\\/g, '/');
     }
     const lastIndexOfSlash: number = path.lastIndexOf("/");
     const problemFolderPath: string = path.slice(0, lastIndexOfSlash + 1);
