@@ -48,8 +48,8 @@
 			},
 			{
 				"command": "codepal.registerContest",
-				"title": "Register for this contest",
-				"icon": "res/svg/registerContest.jpeg"
+				"title": "Register for Contest",
+				"icon": "res/svg/registration.jpeg"
 			},
 			{
 				"command": "codepal.createProblemDirectory",
