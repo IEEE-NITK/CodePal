@@ -251,11 +251,36 @@
 		},
 		"keybindings": [
 			{
+				"command": "codepal.addTestCases",
+				"key": "ctrl+alt+a",
+				"mac": "cmd+alt+a",
+				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+			},
+			{
+				"command": "codepal.runTestCases",
+				"key": "ctrl+alt+r",
+				"mac": "cmd+alt+r",
+				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+			},
+			{
+				"command": "codepal.submitProblem",
+				"key": "ctrl+alt+s",
+				"mac": "cmd+alt+s",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			},
+			{
+				"command": "codepal.openProblemStatement",
+				"key": "ctrl+alt+o",
+				"mac": "cmd+alt+o",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			},
+			{
 				"command": "codepal.stopStressTesting",
 				"key": "ctrl+shift+z",
 				"mac": "cmd+shift+z",
 				"when": "editorTextFocus"
 			}
+
 		]
 	},
 	"scripts": {

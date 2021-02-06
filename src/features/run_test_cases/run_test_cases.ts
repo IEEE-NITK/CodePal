@@ -11,6 +11,10 @@ export const runTestCases = async function (filePath: string): Promise<void> {
     const os = platform() === "win32"?OS.windows : OS.linuxMac;
     let path = Utils.pathRefine(filePath, os);
 
+    if (vscode.window.activeTextEditor) {
+        path = vscode.window.activeTextEditor.document.uri.fsPath;
+    }
+
     if (!fs.existsSync(path)) {
         vscode.window.showErrorMessage("Problem solution file not found.");
         return;
