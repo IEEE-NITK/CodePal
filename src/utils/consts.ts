@@ -12,6 +12,7 @@ export const enum Command {
     submitProblem="codepal.submitProblem",
     addTestCases="codepal.addTestCases",
     getProblemFilters="codepal.getProblemFilters",
+    getUserHandle="codepal.getUserHandle",
     stressTest = "codepal.stressTest",
     createStressTestingFiles = "codepal.createStressTestingFiles",
     stopStressTesting = "codepal.stopStressTesting"
@@ -26,6 +27,7 @@ export const enum CodepalConfig {
 export const enum TreeViewIDs{
     contests="codepalContests",
     problems = "codepalProblems",
+    profile='codepalProfile'
 }
 export const enum SubmissionStatus {
     unattempted = "unattempted",
@@ -63,13 +65,18 @@ export const enum ContestTreeEnum {
 export const enum ProblemTreeEnum{
     problemContextValue="problem",
 }
+export const enum ProfileTreeEnum{
+    codeforcesHandleUndefined="codeforcesHandleUndefined",
+    codeforcesHandleExists="codeforcesHandleExists"
+}
 export enum RatingsEnum {
     initialFromRating = 0,
     initialToRating = 4000,
 }
 export enum Urls {
     fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
-    fetchProblemSet = "https://codeforces.com/api/problemset.problems"
+    fetchProblemSet = "https://codeforces.com/api/problemset.problems",
+    userInfo= "https://codeforces.com/api/user.info?handles"
 }
 
 export enum OS {
