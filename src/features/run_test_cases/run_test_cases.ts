@@ -65,9 +65,6 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                 'a',
                 '1'
             );
-            if (runResult === Errors.runTimeError) {
-                return;
-            }
 
             let input: string = await readFile(inputFilePath);
             let expectedOutput: string = await readFile(outputFilePath);
@@ -75,8 +72,8 @@ export const runTestCases = async function (filePath: string): Promise<void> {
 
             let result : string = "";
             let testResult: boolean;
-            if(runResult === Errors.timeLimitExceeded) {
-                result = result + `Test ${i} Time Limit Exceeded\n\n`;
+            if(runResult === Errors.timeLimitExceeded || runResult === Errors.runTimeError) {
+                result = result + `Test ${i} ${runResult}\n\n`;
                 testResult = false;
             }
             else {
@@ -112,7 +109,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                     viewColumn: vscode.ViewColumn.Beside,
                     preserveFocus: true,
                 });
-                if(runResult === Errors.timeLimitExceeded) {
+                if(runResult === Errors.timeLimitExceeded || runResult === Errors.runTimeError) {
                     return;
                 }
                 if (passed === true) {
