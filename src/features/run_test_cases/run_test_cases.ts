@@ -4,7 +4,7 @@ import { Utils} from "../../utils/utils";
 import { compileFile } from "./compile_solution";
 import { runTestsWithTimeout } from "./run_solution";
 import { platform } from "os";
-import { OS } from "../../utils/consts";
+import { OS, Errors, tle } from "../../utils/consts";
 
 export const runTestCases = async function (filePath: string): Promise<void> {
     // Code for running test cases and returning verdict
@@ -42,6 +42,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
 
     let i: number = 1;
     let passed: boolean = true;
+    tle.tleFlag = false;
     while (true) {
         const inputFilePath: string = `${testsFolderPath}input_${i}.txt`;
 
@@ -64,24 +65,34 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                 'a',
                 '1'
             );
-            if (runResult === "Run time error") {
+            if (runResult === Errors.runTimeError) {
                 return;
             }
 
-            let testResult: boolean = await compareOutputs(
-                outputFilePath,
-                codeOutputFilePath
-            );
             let input: string = await readFile(inputFilePath);
             let expectedOutput: string = await readFile(outputFilePath);
             let codeOutput: string = await readFile(codeOutputFilePath);
+
             let result : string = "";
-            if (testResult===true) {
-                result = result + `Test ${i} Passed\n\n`;
+            let testResult: boolean;
+            if(runResult === Errors.timeLimitExceeded) {
+                result = result + `Test ${i} Time Limit Exceeded\n\n`;
+                testResult = false;
             }
             else {
-                result = result + `Test ${i} Failed\n\n`;
+                testResult = await compareOutputs(
+                    outputFilePath,
+                    codeOutputFilePath
+                );
+                
+                if (testResult === true) {
+                    result = result + `Test ${i} Passed\n\n`;
+                }
+                else {
+                    result = result + `Test ${i} Failed\n\n`;
+                }
             }
+
             result = result + `Input ${i}: \n${input}\n\nExpected Output : \n${expectedOutput}\n\nObtained Output : \n${codeOutput}\n\n`;
             if (fs.existsSync(stderrFilePath)) {
                 let stderr: string = await readFile(stderrFilePath);
@@ -101,6 +112,9 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                     viewColumn: vscode.ViewColumn.Beside,
                     preserveFocus: true,
                 });
+                if(runResult === Errors.timeLimitExceeded) {
+                    return;
+                }
                 if (passed === true) {
                     vscode.window.showErrorMessage(
                         `Test ${i} failed`

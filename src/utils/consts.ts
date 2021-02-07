@@ -91,6 +91,7 @@ export const enum ErrorCodes{
 }
 export const enum Errors{
     timeLimitExceeded= "Time limit exceeded",
+    runTimeError = "Run time error"
 }
 export const tagsByOR: string = "*combine tags by OR";
 export const  allTags: string[] = [
@@ -196,6 +197,10 @@ public class Temp_Class_Name {
 
 export let stressTestingFlag = {
     stop: false as boolean
+};
+
+export let tle = {
+    tleFlag: false as boolean
 };
 
 export const maxLimitOfTestCases = 10000;
