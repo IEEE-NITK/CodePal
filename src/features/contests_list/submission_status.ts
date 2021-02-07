@@ -14,7 +14,7 @@ export const submissionStatus = async (contestId : number): Promise<any> => {
         .get<String>(CodepalConfig.codeforcesHandle);
 
     if(codeforcesHandle === "") {
-        return undefined;
+        return [];
     }
 
     let url: string = "https://codeforces.com/api/contest.status?";
@@ -46,7 +46,7 @@ export const submissionStatus = async (contestId : number): Promise<any> => {
         console.log(error);
     }
 
-    return undefined;
+    return [];
 };
 
 const compareIds = (
