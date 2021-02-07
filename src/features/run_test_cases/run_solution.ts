@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 const fs = require("fs");
 import { exec } from "child_process";
 import { reportError } from "./report_error";
-import { Errors, OS } from "../../utils/consts";
+import { Errors, OS, tle } from "../../utils/consts";
 
 import {
     CodepalConfig,
@@ -93,6 +93,7 @@ export const runTestsWithTimeout = async (
         })
         .catch(async (error) => {
             if (error === Errors.timeLimitExceeded) {
+                tle.tleFlag = true;
                 vscode.window.showErrorMessage("Time limit exceeded!!");
                 let killCommand: string;
                 killCommand = (os === OS.windows) 
@@ -114,8 +115,9 @@ export const runTestsWithTimeout = async (
                         }
                     }
                 );
+                return Errors.timeLimitExceeded;
             }
-            return "Run time error";
+            return Errors.runTimeError;
         });
 };
 
@@ -128,6 +130,9 @@ const runTests = async (
         return new Promise(async (resolve, reject) => {
             exec(runCommand, async (error: any, stdout: any, stderr: any) => {
                 if (error) {
+                    if(tle.tleFlag) {
+                        return;
+                    }
                     console.log(`Runtime Error: ${error}`);
                     await reportError(error.message, "Run Time", testsFolderPath);
                     reject(error.message);
