@@ -61,23 +61,34 @@ export class ContestsProvider implements vscode.TreeDataProvider<ContestTreeItem
         }
         let submissionList : any = await submissionStatus(contest.contestID);
         
-        return contest.problems.map<ContestTreeItem>((problem) => {
-            if(submissionList !== undefined){
-                let i : number;
-                for(i= 0;i<submissionList.length;i++)
-                {
-                    if(submissionList[i].problem.index === problem.index && submissionList[i].verdict === "OK")
-                    {
-                        problem.submissionStatus = SubmissionStatus.accepted;
+        let i: number = 0;
+        contest.problems.forEach((problem) => {
+            
+            if(i<submissionList.length) {
+                let submission = submissionList[i];
+                
+                while(problem.index > submission.problem.index) {
+                    i = i + 1;
+                    if(i === submissionList.length) {
                         break;
                     }
-                    if(submissionList[i].problem.index === problem.index)
-                    {
-                        problem.submissionStatus = SubmissionStatus.failed;
-                        continue;
+                    submission = submissionList[i];
+                }
+                
+                if(i < submissionList.length) {
+                    if(problem.index === submission.problem.index) {
+                        if(submission.verdict === "OK") {
+                            problem.submissionStatus = SubmissionStatus.accepted;
+                        } else if(problem.submissionStatus !== SubmissionStatus.accepted) {
+                            problem.submissionStatus = SubmissionStatus.failed;
+                        }
+                        i = i + 1;
                     }
                 }
             }
+        });
+
+        return contest.problems.map<ContestTreeItem>((problem) => {
             let iconPath: string = "";
             if(problem.submissionStatus !== SubmissionStatus.unattempted) {
                 iconPath = problem.submissionStatus === SubmissionStatus.accepted 

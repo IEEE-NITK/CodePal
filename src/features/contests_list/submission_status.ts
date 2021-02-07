@@ -19,7 +19,6 @@ export const submissionStatus = async (contestId : number): Promise<any> => {
 
     let url: string = "https://codeforces.com/api/contest.status?";
     url = `${url}contestId=${contestId}&handle=${codeforcesHandle}`;
-    console.log(url);
     // console.log(url);
     try {
         // fetching the list of submissions of the user
@@ -31,7 +30,14 @@ export const submissionStatus = async (contestId : number): Promise<any> => {
                 return undefined;
             }
             const submissions = jsonResponse.result;
-            console.log(submissions);
+            await submissions.sort((a: any, b: any) => {
+                if (compareIds(a.problem.index, b.problem.index)) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            });
+            
             return submissions;
         }
 
@@ -41,4 +47,15 @@ export const submissionStatus = async (contestId : number): Promise<any> => {
     }
 
     return undefined;
+};
+
+const compareIds = (
+    problemIndex1: string, 
+    problemIndex2: string
+): boolean => {
+    if (problemIndex1 < problemIndex2) {
+        return true;
+    } else {
+        return false;
+    }
 };
