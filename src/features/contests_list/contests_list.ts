@@ -4,6 +4,7 @@ import { ContestClass } from "../../classes/contest";
 import { ContestTreeItem } from "../../data_providers/contests/contest_tree_item";
 import { ContestTreeEnum, ContestsPhase, Urls } from "../../utils/consts";
 
+
 const contestsList = async (
     contestsType: string
 ): Promise<ContestClass[]> => {
@@ -61,6 +62,7 @@ const contestsList = async (
 
 export const fetchContests = async (type: string): Promise<ContestTreeItem[]> => {
     let contests: ContestClass[] = await contestsList(type);
+
     const contestsMap = contests.map<ContestTreeItem> (
         (contest): ContestTreeItem => {
             return new ContestTreeItem (
