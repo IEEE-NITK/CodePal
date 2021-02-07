@@ -21,6 +21,7 @@ import { getUserHandle } from "./features/user_profile/get_user_handle";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
 import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
 import { stressTest } from "./features/stress_test/stress_test";
+import { contestRegistration } from "./features/contest_registration/contest_registration";
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
@@ -74,6 +75,15 @@ export function activate(context: vscode.ExtensionContext) {
             Command.createContestDirectory,
             (param: ContestTreeItem) =>
                 createContestDirectory(param.contest, rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.registerContest,
+            async (param: ContestTreeItem) =>{
+                await contestRegistration(param.contest);
+            }
         )
     );
 

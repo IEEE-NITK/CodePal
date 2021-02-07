@@ -47,6 +47,11 @@
 				"icon": "res/svg/CreateFolder.png"
 			},
 			{
+				"command": "codepal.registerContest",
+				"title": "Register for Contest",
+				"icon": "res/svg/registration.jpeg"
+			},
+			{
 				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
 				"icon": "res/svg/CreateFolder.png"
@@ -155,6 +160,11 @@
 					"group": "inline"
 				},
 				{
+					"command": "codepal.registerContest",
+					"when": "view == codepalContests && viewItem==FutureContest",
+					"group": "inline"
+				},
+				{
 					"command": "codepal.createProblemDirectory",
 					"when": "view == codepalProblems && viewItem==problem",
 					"group": "inline"
@@ -250,22 +260,47 @@
 					"group": "profile",
 					"markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
 				},
-                "codepal.numLimitOfTestCases": {
-                    "type": "number",
-                    "default": "",
-                    "markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
-                }
+        "codepal.numLimitOfTestCases": {
+          "type": "number",
+          "default": "",
+          "markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
+        }
 			}
 			
 		},
-        "keybindings": [
-            {
-                "command": "codepal.stopStressTesting",
-                "key": "ctrl+shift+z",
-                "mac": "cmd+shift+z",
-                "when": "editorTextFocus"
-            }
-        ]
+		"keybindings": [
+			{
+				"command": "codepal.addTestCases",
+				"key": "ctrl+alt+a",
+				"mac": "cmd+alt+a",
+				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+			},
+			{
+				"command": "codepal.runTestCases",
+				"key": "ctrl+alt+r",
+				"mac": "cmd+alt+r",
+				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+			},
+			{
+				"command": "codepal.submitProblem",
+				"key": "ctrl+alt+s",
+				"mac": "cmd+alt+s",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			},
+			{
+				"command": "codepal.openProblemStatement",
+				"key": "ctrl+alt+o",
+				"mac": "cmd+alt+o",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			},
+			{
+				"command": "codepal.stopStressTesting",
+				"key": "ctrl+shift+z",
+				"mac": "cmd+shift+z",
+				"when": "editorTextFocus"
+			}
+
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
