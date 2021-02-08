@@ -29,72 +29,114 @@
 			{
 				"command": "codepal.reloadContests",
 				"title": "Refresh contest list",
-				"icon": "res/svg/refresh.svg"
+				"icon": {
+                    "dark" : "res/svg/refresh.svg",
+                    "light" : "res/svg/refresh.svg"
+                }
 			},
 			{
 				"command": "codepal.getProblemFilters",
 				"title": "Filter",
-				"icon": "res/svg/filter.svg"
+                "icon": {
+                    "dark" : "res/svg/filter.svg",
+                    "light" : "res/svg/filter.svg"
+                }
 			},
 			{
 				"command": "codepal.reloadProblems",
 				"title": "Refresh problem list",
-				"icon": "res/svg/refresh.svg"
+                "icon": {
+                    "dark" : "res/svg/refresh.svg",
+                    "light" : "res/svg/refresh.svg"
+                }
 			},
 			{
 				"command": "codepal.createContestDirectory",
 				"title": "Create Contest Folder",
-				"icon": "res/svg/CreateFolder.png"
+                "icon": {
+                    "dark" : "res/svg/CreateFolder.png",
+                    "light" : "res/svg/CreateFolder.png"
+                }
 			},
 			{
 				"command": "codepal.registerContest",
 				"title": "Register for Contest",
-				"icon": "res/svg/registration.jpeg"
+                "icon": {
+                    "dark" : "res/svg/registration.jpeg",
+                    "light" : "res/svg/registration.jpeg"
+                }
 			},
 			{
 				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
-				"icon": "res/svg/CreateFolder.png"
+                "icon": {
+                    "dark" : "res/svg/CreateFolder.png",
+                    "light" : "res/svg/CreateFolder.png"
+                }
 			},
 			{
 				"command": "codepal.createContestProblemDirectory",
 				"title": "Create only this problem Folder",
-				"icon": "res/svg/CreateFolder.png"
+                "icon": {
+                    "dark" : "res/svg/CreateFolder.png",
+                    "light" : "res/svg/CreateFolder.png"
+                }
 			},
 			{
 				"command": "codepal.runTestCases",
 				"title": "Run Test Cases",
-				"icon": "res/svg/play_button.png"
+                "icon": {
+                    "dark" : "res/svg/play_button.png",
+                    "light" : "res/svg/play_button.png"
+                }
 			},
 			{
 				"command": "codepal.addTestCases",
 				"title": "Add Test Cases",
-				"icon": "res/svg/add_TestCase.png"
+                "icon": {
+                    "dark" : "res/svg/add_TestCase.png",
+                    "light" : "res/svg/add_TestCase.png"
+                }
 			},
 			{
 				"command": "codepal.openProblemStatement",
 				"title": "Open Problem Statement",
-				"icon": "res/svg/question_mark.png"
+                "icon": {
+                    "dark" : "res/svg/question_mark.png",
+                    "light" : "res/svg/question_mark.png"
+                }
 			},
 			{
 				"command": "codepal.submitProblem",
 				"title": "Submit Problem",
-				"icon": "res/svg/upload.png"
+                "icon": {
+                    "dark" : "res/svg/upload.png",
+                    "light" : "res/svg/upload.png"
+                }
 			},
 			{
 				"command": "codepal.getUserHandle",
 				"title": "Get User Handle",
-				"icon": "res/svg/upload.png"
+                "icon": {
+                    "dark" : "res/svg/upload.png",
+                    "light" : "res/svg/upload.png"
+                }
 			},
 			{
 				"command": "codepal.createStressTestingFiles",
 				"title": "Create Stress Testing Files",
-				"icon": "res/svg/createFile.png"
+                "icon": {
+                    "dark" : "res/svg/createFile.png",
+                    "light" : "res/svg/createFile.png"
+                }
 			},
 			{
 				"command": "codepal.stressTest",
 				"title": "Stress Test",
-				"icon": "res/svg/stress_test.png"
+                "icon": {
+                    "dark" : "res/svg/stress_test.png",
+                    "light" : "res/svg/stress_test.png"
+                }
 			},
 			{
 				"command": "codePal.stopStressTesting",
