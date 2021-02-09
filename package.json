@@ -110,32 +110,24 @@
 				"command": "codepal.submitProblem",
 				"title": "Submit Problem",
                 "icon": {
-                    "dark" : "res/svg/upload.png",
-                    "light" : "res/svg/upload.png"
-                }
-			},
-			{
-				"command": "codepal.getUserHandle",
-				"title": "Get User Handle",
-                "icon": {
-                    "dark" : "res/svg/upload.png",
-                    "light" : "res/svg/upload.png"
+                    "dark" : "res/svg/submit.svg",
+                    "light" : "res/svg/submit.svg"
                 }
 			},
 			{
 				"command": "codepal.createStressTestingFiles",
 				"title": "Create Stress Testing Files",
                 "icon": {
-                    "dark" : "res/svg/createFile.png",
-                    "light" : "res/svg/createFile.png"
+                    "dark" : "res/svg/createStressTestingFiles.svg",
+                    "light" : "res/svg/createStressTestingFiles.svg"
                 }
 			},
 			{
 				"command": "codepal.stressTest",
 				"title": "Stress Test",
                 "icon": {
-                    "dark" : "res/svg/stress_test.png",
-                    "light" : "res/svg/stress_test.png"
+                    "dark" : "res/svg/stressTest.png",
+                    "light" : "res/svg/stressTest.png"
                 }
 			},
 			{

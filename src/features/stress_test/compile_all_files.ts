@@ -8,22 +8,23 @@ export const compileAllFiles = async (
     brutePath: string,
     genPath: string
 ):Promise<boolean> => {
+    
+    if (!fs.existsSync(solnPath)) {
+        vscode.window.showErrorMessage("Problem solution file not found. Please try again.");
+        return false;
+    }
 
     if (!fs.existsSync(testsFolderPath)) {
-        vscode.window.showErrorMessage("Stress Tests folder not found.");
+        vscode.window.showErrorMessage("Stress Tests folder not found. Create Stress Testing files.");
         return false;
     }
 
-    if (!fs.existsSync(solnPath)) {
-        vscode.window.showErrorMessage("Problem solution file not found.");
-        return false;
-    }
     if (!fs.existsSync(brutePath)) {
-        vscode.window.showErrorMessage("Brute force solution file not found.");
+        vscode.window.showErrorMessage("Brute force solution file not found. Create Stress Testing files.");
         return false;
     }
     if (!fs.existsSync(genPath)) {
-        vscode.window.showErrorMessage("Generator file not found.");
+        vscode.window.showErrorMessage("Generator file not found. Create Stress Testing files.");
         return false;
     }
 
