@@ -8,7 +8,7 @@ import { compareOutputs, readFile } from "../run_test_cases/run_test_cases";
 import { runTestsWithTimeout } from "../run_test_cases/run_solution";
 import { CodepalConfig, codepalConfigName, stressTestingFlag } from "../../utils/consts";
 
-let numOfTestCases: number|undefined;
+let numOfTestCases        : number;
 let testsFolderPath       : string;
 let solnOutputFilePath    : string;
 let solnStderrFilePath    : string;
@@ -23,7 +23,7 @@ let genStderrFilePath     : string;
 const assignValuesToPath = async (solnPath: string):Promise<void> => {
     numOfTestCases = vscode.workspace
         .getConfiguration(codepalConfigName)
-        .get<number>(CodepalConfig.numLimitOfTestCases);
+        .get<number>(CodepalConfig.numberOfStressTestingTestCases, 100);
 
     let fileExtension: string;
 
@@ -87,9 +87,6 @@ export const stressTest = async (filePath: string):Promise<void> => {
         return;
     }
 
-    if(numOfTestCases === undefined || numOfTestCases ===    0){
-        numOfTestCases = 100; // default value
-    }
     if(numOfTestCases >= maxLimitOfTestCases){
         numOfTestCases = maxLimitOfTestCases;
     }

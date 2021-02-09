@@ -28,6 +28,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Compile and run any program file against the testcases and get comprehensive results.
 - Open problem statement or submission page with a single click, on your default browser. (You must be logged into codeforces before hand to open the submission page successfully)
 - Compiler may be selected and compilation flags can be set through the codepal settings. 
+- Stress testing to find a counter test case for your code.
 
 
 # Languages Supported
@@ -83,11 +84,14 @@ The following is the usage guide to use the following features :
 - Click on the <img src="res/svg/question_mark.png" width="20"/> button on the top right side of the editor window to open the problem statement on Codeforces in your default browser.
 
 ### 9. Submitting Problem
-- Click on the <img src="res/svg/upload.png" width="18"/> button on the top right side of the editor window to open the submission page of the problem on Codeforces in your default browser.
+- Click on the <img src="res/svg/submit.png" width="18"/> button on the top right side of the editor window to open the submission page of the problem on Codeforces in your default browser.
 
 ### 10. Stress Testing
-- Click on the <img src="res/svg/createStressTestingFiles.png" width="18"/> button on the top right side of the editor window to open the submission page of the problem on Codeforces in your default browser.
+- Click on the <img src="res/svg/createStressTestingFiles.png" width="18"/> button on the top right side of the editor window to create the stress testing files called "brute" and "gen". Here "brute" is the code that is a bruteforce solution or any code that gives the correct output and "gen" is the generator file that makes testcases. You need to code both of them. 
+  
+  Command line arguments of integers (1,2,3...) are passed to the generator file so as to keep a fixed random seed each time you stress test. A template is initially provided that takes care of this.
 
+  Once all 3 files compile properly ("soln", "brute" and "gen" files) click on the  <img src="res/svg/stressTest.png" width="18"/>  button to stress test. It will run the "gen" file to create input and compare it against "soln" and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
 
 # Contributing Guidelines
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](DEVELOPERDOCS.md) for more help.

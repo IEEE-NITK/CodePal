@@ -22,7 +22,7 @@ export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
     codeTemplatePath = "codeTemplatePath",
     codeforcesHandle = "codeforcesHandle",
-    numLimitOfTestCases="numLimitOfTestCases"
+   numberOfStressTestingTestCases="numberOfStressTestingTestCases"
 }
 export const enum TreeViewIDs{
     contests="codepalContests",
