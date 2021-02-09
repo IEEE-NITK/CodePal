@@ -13,7 +13,6 @@ export const enum Command {
     submitProblem="codepal.submitProblem",
     addTestCases="codepal.addTestCases",
     getProblemFilters="codepal.getProblemFilters",
-    getUserHandle="codepal.getUserHandle",
     stressTest = "codepal.stressTest",
     createStressTestingFiles = "codepal.createStressTestingFiles",
     stopStressTesting = "codepal.stopStressTesting"

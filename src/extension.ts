@@ -17,7 +17,6 @@ import {
     TreeViewIDs,
 } from "./utils/consts";
 import { ProfileProvider } from "./data_providers/user_profile/profile_data_provider";
-import { getUserHandle } from "./features/user_profile/get_user_handle";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
 import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
 import { stressTest } from "./features/stress_test/stress_test";
@@ -54,12 +53,6 @@ export function activate(context: vscode.ExtensionContext) {
             problemsFilterInput(problemProvider)
         ) // takes input for toRating, FromRatings and selected tags and then refreshes problem list with given filter
     );
-    disposable.push(
-        vscode.commands.registerCommand(Command.getUserHandle, () =>
-            getUserHandle(profileProvider)
-        )
-    );
-
     disposable.push(
         vscode.commands.registerCommand(Command.reloadProblems, () => {
             problemProvider.reload();
