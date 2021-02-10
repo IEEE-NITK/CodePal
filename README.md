@@ -52,22 +52,42 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 3. Open the codepal settings as mentioned in our usage guide and set your language preferences.
 4. Please Keep a folder open in your workspace in VS code while using the extension.
 
-# Usage Guide 
-The following is the usage guide to use the following features : 
+# Usage Guide
+
+<a id="labels"></a>
+Below are the various clickable icons used in our extension. 
+
+<img src="res/svg/IconLabels.png"/>
+
+## Key to Icons:
+1. Reload Contest List
+2. Future Contest Registration on Codeforces
+3. Contest Folder Creation
+4. Reload Problem List  
+5. Problem Filter Based on Rating and Tags
+6. Problem Folder Creation
+7. Add Manual Test Cases
+8. Create Stress Testing Files
+9. Open Problem Statement on Codeforces
+10. Run Test Cases on Solution File
+11. Perform Stress Testing 
+12. Open Problem Submission Page on Codeforces
+
+## Usage Guide to Various Features
 
 ### 1. Filtering Problems
-- Click on the <img src="res/svg/filter.png" width="16"/> icon to filter the problem set.
+- Click on icon **5** (shown [here](#labels)) to filter the problem set.
 - Add the lower bound for problem’s rating. (Default lower bound is 0)
 - Add the upper bound for problem’s rating. (Default upper bound is 4000)
 - Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done)
 
 ### 2. Creating Problem Folder
-- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on vscode where you want the problem folder)
+- Click on icon **6** (shown [here](#labels)) beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on vscode where you want the problem folder)
 
 ### 3. Creating Contest Folder
 - Click on the type of contest you want to participate in. (Past, Running or Future)
 - Precise timings and durations of upcoming contests are also shown.
-- Click on the <img src="res/svg/CreateFolder.png" width="17"/> button beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on vscode where you want the contest folder)
+- Click on icon **3** (shown [here](#labels)) beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on vscode where you want the contest folder)
 
 ### 4. Adding Your Own Code Template
 - Press ‘Ctrl + comma(,)’ or go to settings of VS code(icon on bottom left).
@@ -78,23 +98,23 @@ The following is the usage guide to use the following features :
 - Go to extensions and select codepal, and choose the compiler you want from the drop down list.
 
 ### 6. Adding Test Cases
-- Click on the <img src="res/svg/add_TestCase.png" width="17"/> button on the top right side of the editor window to add manual test cases for the problem.
+- Click on icon **7** (shown [here](#labels)) on the top right side of the editor window to add manual test cases for the problem.
 
 ### 7. Running Test Cases
-- Click on the <img src="res/svg/play_button.png" width="17"/> button on the top right side of the editor window to run the code for all sample and manual test cases.
+- Click on icon **10** (shown [here](#labels)) on the top right side of the editor window to run the code for all sample and manual test cases.
 
 ### 8. Viewing Problem
-- Click on the <img src="res/svg/question_mark.png" width="20"/> button on the top right side of the editor window to open the problem statement on Codeforces in your default browser.
+- Click on icon **9** (shown [here](#labels)) on the top right side of the editor window to open the problem statement on Codeforces in your default browser.
 
 ### 9. Submitting Problem
-- Click on the <img src="res/svg/submit.png" width="18"/> button on the top right side of the editor window to open the submission page of the problem on Codeforces in your default browser.
+- Click on icon **12** (shown [here](#labels)) on the top right side of the editor window to open the submission page of the problem on Codeforces in your default browser.
 
 ### 10. Stress Testing
-- Click on the <img src="res/svg/createStressTestingFiles.png" width="18"/> button on the top right side of the editor window to create the stress testing files called "brute" and "gen". Here "brute" is the code that is a bruteforce solution or any code that gives the correct output and "gen" is the generator file that makes testcases. You need to code both of them. 
+- Click on icon **8** (shown [here](#labels)) on the top right side of the editor window to create the stress testing files called "brute" and "gen". Here "brute" is the code that is a bruteforce solution or any code that gives the correct output and "gen" is the generator file that makes testcases. You need to code both of them. 
   
-  Command line arguments of integers (1,2,3...) are passed to the generator file so as to keep a fixed random seed each time you stress test. A template is initially provided that takes care of this.
+- Command line arguments of integers (1,2,3...) are passed to the generator file so as to keep a fixed random seed each time you stress test. A template is initially provided that takes care of this.
 
-  Once all 3 files compile properly ("soln", "brute" and "gen" files) click on the  <img src="res/svg/stressTest.png" width="18"/>  button to stress test. It will run the "gen" file to create input and compare it against "soln" and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
+- Once all 3 files compile properly (solution, "brute" and "gen" files) click on icon **11** (shown [here](#labels)) to stress test. It will run the "gen" file to create input and compare it against your solution and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
 
 # Contributing Guidelines
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](DEVELOPERDOCS.md) for more help.
