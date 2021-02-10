@@ -7,13 +7,16 @@
 A Visual Studio Code Extension to help **Codeforces** Users ***Code with Convenience.*** This extension is specially for people who want to save time in a live codeforces contest and upsolve problems comfortably. This extension responds quickly to users. It can swiftly filter through the problem list by specifying tags and ratings, create folders for contests and problems containing sample tests of each problem in them and compile and run tests automatically. For added convenience we've created buttons to directly open problem statements and submission pages on the default browser. 
 
 # Demo
-### Folder creation, Run tests, and add tests
-![Promo1](res/GIFS/Demo1.gif)
+### Enter Handle in settings and view problems, contests and profile with submission status on each problem
+![Promo1](res/GIFS/Demo0.gif)
 
-### Open problem statement and submission page
-![Promo2](res/GIFS/Demo2.gif)
+### Create Problem/Contest Folders inclusive of all sample tests, compile and run automatically and get comprehensive verdicts
+![Promo2](res/GIFS/Demo1.gif)
 
 ### Filter through problems
+![Promo2](res/GIFS/Demo2.gif)
+
+### Stress Testing your code
 ![Promo2](res/GIFS/Demo3.gif)
 
 # Features of this Extension
