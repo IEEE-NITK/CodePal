@@ -31,7 +31,8 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Compile and run any program file against the testcases and get comprehensive results.
 - Open problem statement or submission page with a single click, on your default browser. (You must be logged into codeforces before hand to open the submission page successfully)
 - Compiler may be selected and compilation flags can be set through the codepal settings. 
-- Stress testing to find a counter test case for your code.
+- Perform Stress testing to find a counter test case for your code.
+- Get a personalized experience of viewing details of your Codeforces profile and the status of problem submissions made, by entering your Codeforces handle in the codepal settings. 
 
 
 # Languages Supported
@@ -82,19 +83,19 @@ Below are the various clickable icons used in our extension.
 - Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done)
 
 ### 2. Creating Problem Folder
-- Click on icon **6** (shown [here](#labels)) beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on vscode where you want the problem folder)
+- Click on icon **6** (shown [here](#labels)) beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on VS Code where you want the problem folder)
 
 ### 3. Creating Contest Folder
 - Click on the type of contest you want to participate in. (Past, Running or Future)
 - Precise timings and durations of upcoming contests are also shown.
-- Click on icon **3** (shown [here](#labels)) beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on vscode where you want the contest folder)
+- Click on icon **3** (shown [here](#labels)) beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on VS Code where you want the contest folder)
 
 ### 4. Adding Your Own Code Template
-- Press ‘Ctrl + comma(,)’ or go to settings of VS code(icon on bottom left).
+- Press ‘Ctrl + comma(,)’ or go to settings of VS Code (icon on bottom left).
 - Go to extensions and select codepal, and add your template file path to the given space
 
 ### 5. Changing Compilation Language
-- Press ‘Ctrl + comma(,)’ or go to settings of VS code(icon on bottom left).
+- Press ‘Ctrl + comma(,)’ or go to settings of VS Code (icon on bottom left).
 - Go to extensions and select codepal, and choose the compiler you want from the drop down list.
 
 ### 6. Adding Test Cases
@@ -115,6 +116,12 @@ Below are the various clickable icons used in our extension.
 - Command line arguments of integers (1,2,3...) are passed to the generator file so as to keep a fixed random seed each time you stress test. A template is initially provided that takes care of this.
 
 - Once all 3 files compile properly (solution, "brute" and "gen" files) click on icon **11** (shown [here](#labels)) to stress test. It will run the "gen" file to create input and compare it against your solution and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
+
+### 11. User Profile
+- Press ‘Ctrl + comma(,)’ or go to settings of VS Code (icon on bottom left).
+- Go to extensions and select codepal, and add your Codeforces handle to get a personalized experience of the extension.
+- On entering your handle, you will be able to view your profile details in the *User Profile* section of the side bar. 
+- This will also enable you to view the status of problem submissions made on Codeforces, through ticks or crosses against the problem names, denoting whether the submission was accepted or failed. 
 
 # Contributing Guidelines
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](DEVELOPERDOCS.md) for more help.
