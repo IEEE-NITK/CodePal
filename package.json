@@ -294,7 +294,7 @@
 					"group": "profile",
 					"markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
 				},
-				"codepal.numLimitOfTestCases": {
+				"codepal.numberOfStressTestingTestCases": {
 					"type": "number",
 					"default": "",
 					"markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
