@@ -10,7 +10,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 ### Enter Handle in settings and view problems, contests and profile with submission status on each problem
 ![Promo1](res/GIFS/Demo0.gif)
 
-### Create Problem/Contest Folders inclusive of all sample tests, compile and run automatically and get comprehensive verdicts
+### Create Problem/Contest Folders inclusive of all sample tests, compile and run automatically, get comprehensive verdicts and view problem statement and submission webpages. 
 ![Promo2](res/GIFS/Demo1.gif)
 
 ### Filter through problems
