@@ -2,6 +2,12 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.0.0]
+- Added a feature to stress test 
+- Added a feature to accept handle and give a personalized experience by showing submission status on problems and user profile.
+- Added Keyboard shortcuts for many features. 
+- Fixed a bug by killing process after TLE on Linux/Mac
+
 ## [0.0.3]
 - Fixed a bug regarding running of test cases on Windows Operating System, where a process that times out will have to be killed explicitly. 
 
