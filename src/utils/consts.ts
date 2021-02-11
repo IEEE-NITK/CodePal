@@ -182,7 +182,7 @@ random.seed(int(sys.argv[1]))
 
     java:
 `import java.util.*; 
-public class Temp_Class_Name { 
+public class gen { 
     public static void main(String[] args) 
     { 
         Random r = new Random(); 
