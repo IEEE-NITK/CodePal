@@ -75,11 +75,11 @@ Below are the various clickable icons used in our extension.
 12. Open Problem Submission Page on Codeforces
 
 ## Keyboard Shortcuts
-- *Ctrl + Alt + A* : Add Manual Test Cases
-- *Ctrl + Alt + R* : Run Test Cases on Solution File
-- *Ctrl + Alt + O* : Open Problem Statement on Codeforces
-- *Ctrl + Alt + S* : Open Problem Submission Page on Codeforces
-- *Ctrl + Shift + Z* : Force Stop Stress Testing 
+- *Ctrl + Alt + A* (*Cmd + Alt + A* for Mac) : Add Manual Test Cases
+- *Ctrl + Alt + R* (*Cmd + Alt + R* for Mac): Run Test Cases on Solution File
+- *Ctrl + Alt + O* (*Cmd + Alt + O* for Mac) : Open Problem Statement on Codeforces
+- *Ctrl + Alt + S* (*Cmd + Alt + S* for Mac) : Open Problem Submission Page on Codeforces
+- *Ctrl + Shift + Z* (*Cmd + Shift + Z* for Mac) : Force Stop Stress Testing 
 ## Usage Guide to Various Features
 
 ### 1. Filtering Problems
