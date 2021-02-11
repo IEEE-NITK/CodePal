@@ -78,6 +78,11 @@ export const stressTest = async (filePath: string):Promise<void> => {
 
     let solnPath = Utils.pathRefine(filePath, os);
 
+    if (vscode.window.activeTextEditor) {
+        solnPath = vscode.window.activeTextEditor.document.uri.fsPath;
+        solnPath = solnPath.replace(/\\/g, '/');
+    }
+
     await assignValuesToPath(solnPath);
 
     let successfulCompilation: boolean = await compileAllFiles(testsFolderPath, solnPath, brutePath, genPath);

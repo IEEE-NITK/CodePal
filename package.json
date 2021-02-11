@@ -332,6 +332,12 @@
 				"key": "ctrl+shift+z",
 				"mac": "cmd+shift+z",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "codepal.stressTest",
+				"key": "ctrl+alt+z",
+				"mac": "cmd+alt+z",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
 			}
 
 		]
