@@ -162,7 +162,7 @@ int main(signed argc, char* argv[]){
 }  
 `,
 
-    python2:
+    python:
 `import sys, random
 
 random.seed(int(sys.argv[1]))
@@ -171,6 +171,15 @@ random.seed(int(sys.argv[1]))
 
 `,
 
+    python2:
+`import sys, random
+
+random.seed(int(sys.argv[1]))
+
+# generate test cases with same format as given in problem
+
+`,
+    
     python3:
 `import sys, random
 

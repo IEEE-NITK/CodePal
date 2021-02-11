@@ -37,10 +37,12 @@ export const createStressTestingFiles = async (filePath: string):Promise<void> =
         case CompilationLanguages.python3:
             fileExtension = 'py';
             
-            if(compilationLanguage === CompilationLanguages.python2){
-                genTemplateCode = generatorTemplate.python2;
+            if(compilationLanguage === CompilationLanguages.python){
+                genTemplateCode = generatorTemplate.python;
             }
-            else{
+            else if(compilationLanguage === CompilationLanguages.python2){
+                genTemplateCode = generatorTemplate.python2;
+            } else {
                 genTemplateCode = generatorTemplate.python3;
             }
             break;
