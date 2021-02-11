@@ -9,7 +9,7 @@
 	},
 	"publisher": "IEEE-NITK",
 	"icon": "res/svg/logo.png",
-	"version": "0.0.3",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
@@ -30,105 +30,105 @@
 				"command": "codepal.reloadContests",
 				"title": "Refresh contest list",
 				"icon": {
-                    "dark" : "res/svg/refresh.svg",
-                    "light" : "res/svg/refresh.svg"
-                }
+					"dark": "res/svg/refresh.svg",
+					"light": "res/svg/refresh.svg"
+				}
 			},
 			{
 				"command": "codepal.getProblemFilters",
 				"title": "Filter",
-                "icon": {
-                    "dark" : "res/svg/filter.svg",
-                    "light" : "res/svg/filter.svg"
-                }
+				"icon": {
+					"dark": "res/svg/filter.svg",
+					"light": "res/svg/filter.svg"
+				}
 			},
 			{
 				"command": "codepal.reloadProblems",
 				"title": "Refresh problem list",
-                "icon": {
-                    "dark" : "res/svg/refresh.svg",
-                    "light" : "res/svg/refresh.svg"
-                }
+				"icon": {
+					"dark": "res/svg/refresh.svg",
+					"light": "res/svg/refresh.svg"
+				}
 			},
 			{
 				"command": "codepal.createContestDirectory",
 				"title": "Create Contest Folder",
-                "icon": {
-                    "dark" : "res/svg/CreateFolder.png",
-                    "light" : "res/svg/CreateFolder.png"
-                }
+				"icon": {
+					"dark": "res/svg/CreateFolder.png",
+					"light": "res/svg/CreateFolder.png"
+				}
 			},
 			{
 				"command": "codepal.registerContest",
 				"title": "Register for Contest",
-                "icon": {
-                    "dark" : "res/svg/registration.jpeg",
-                    "light" : "res/svg/registration.jpeg"
-                }
+				"icon": {
+					"dark": "res/svg/registration.jpeg",
+					"light": "res/svg/registration.jpeg"
+				}
 			},
 			{
 				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
-                "icon": {
-                    "dark" : "res/svg/CreateFolder.png",
-                    "light" : "res/svg/CreateFolder.png"
-                }
+				"icon": {
+					"dark": "res/svg/CreateFolder.png",
+					"light": "res/svg/CreateFolder.png"
+				}
 			},
 			{
 				"command": "codepal.createContestProblemDirectory",
 				"title": "Create only this problem Folder",
-                "icon": {
-                    "dark" : "res/svg/CreateFolder.png",
-                    "light" : "res/svg/CreateFolder.png"
-                }
+				"icon": {
+					"dark": "res/svg/CreateFolder.png",
+					"light": "res/svg/CreateFolder.png"
+				}
 			},
 			{
 				"command": "codepal.runTestCases",
 				"title": "Run Test Cases",
-                "icon": {
-                    "dark" : "res/svg/play_button.png",
-                    "light" : "res/svg/play_button.png"
-                }
+				"icon": {
+					"dark": "res/svg/play_button.png",
+					"light": "res/svg/play_button.png"
+				}
 			},
 			{
 				"command": "codepal.addTestCases",
 				"title": "Add Test Cases",
-                "icon": {
-                    "dark" : "res/svg/add_TestCase.png",
-                    "light" : "res/svg/add_TestCase.png"
-                }
+				"icon": {
+					"dark": "res/svg/add_TestCase.png",
+					"light": "res/svg/add_TestCase.png"
+				}
 			},
 			{
 				"command": "codepal.openProblemStatement",
 				"title": "Open Problem Statement",
-                "icon": {
-                    "dark" : "res/svg/question_mark.png",
-                    "light" : "res/svg/question_mark.png"
-                }
+				"icon": {
+					"dark": "res/svg/question_mark.png",
+					"light": "res/svg/question_mark.png"
+				}
 			},
 			{
 				"command": "codepal.submitProblem",
 				"title": "Submit Problem",
-                "icon": {
-                    "dark" : "res/svg/submit.svg",
-                    "light" : "res/svg/submit.svg"
-                }
+				"icon": {
+					"dark": "res/svg/submit.svg",
+					"light": "res/svg/submit.svg"
+				}
 			},
 			{
 				"command": "codepal.createStressTestingFiles",
 				"title": "Create Stress Testing Files",
-                "icon": {
-                    "dark" : "res/svg/createStressTestingFiles.svg",
-                    "light" : "res/svg/createStressTestingFiles.svg"
-                }
+				"icon": {
+					"dark": "res/svg/createStressTestingFiles.svg",
+					"light": "res/svg/createStressTestingFiles.svg"
+				}
 			},
 			{
 				"command": "codepal.stressTest",
 				"title": "Stress Test",
-                "icon": {
-                    "dark" : "res/svg/stressTest.png",
-                    "light" : "res/svg/stressTest.png"
-                }
+				"icon": {
+					"dark": "res/svg/stressTest.png",
+					"light": "res/svg/stressTest.png"
+				}
 			},
 			{
 				"command": "codePal.stopStressTesting",
@@ -300,7 +300,6 @@
 					"markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
 				}
 			}
-			
 		},
 		"keybindings": [
 			{
@@ -339,7 +338,6 @@
 				"mac": "cmd+alt+z",
 				"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java"
 			}
-
 		]
 	},
 	"scripts": {
