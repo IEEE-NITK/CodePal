@@ -29,52 +29,110 @@
 			{
 				"command": "codepal.reloadContests",
 				"title": "Refresh contest list",
-				"icon": "res/svg/refresh.svg"
+				"icon": {
+                    "dark" : "res/svg/refresh.svg",
+                    "light" : "res/svg/refresh.svg"
+                }
 			},
 			{
 				"command": "codepal.getProblemFilters",
 				"title": "Filter",
-				"icon": "res/svg/filter.svg"
+                "icon": {
+                    "dark" : "res/svg/filter.svg",
+                    "light" : "res/svg/filter.svg"
+                }
 			},
 			{
 				"command": "codepal.reloadProblems",
 				"title": "Refresh problem list",
-				"icon": "res/svg/refresh.svg"
+                "icon": {
+                    "dark" : "res/svg/refresh.svg",
+                    "light" : "res/svg/refresh.svg"
+                }
 			},
 			{
 				"command": "codepal.createContestDirectory",
 				"title": "Create Contest Folder",
-				"icon": "res/svg/CreateFolder.png"
+                "icon": {
+                    "dark" : "res/svg/CreateFolder.png",
+                    "light" : "res/svg/CreateFolder.png"
+                }
+			},
+			{
+				"command": "codepal.registerContest",
+				"title": "Register for Contest",
+                "icon": {
+                    "dark" : "res/svg/registration.jpeg",
+                    "light" : "res/svg/registration.jpeg"
+                }
 			},
 			{
 				"command": "codepal.createProblemDirectory",
 				"title": "Create Problem Folder",
-				"icon": "res/svg/CreateFolder.png"
+                "icon": {
+                    "dark" : "res/svg/CreateFolder.png",
+                    "light" : "res/svg/CreateFolder.png"
+                }
 			},
 			{
 				"command": "codepal.createContestProblemDirectory",
 				"title": "Create only this problem Folder",
-				"icon": "res/svg/CreateFolder.png"
+                "icon": {
+                    "dark" : "res/svg/CreateFolder.png",
+                    "light" : "res/svg/CreateFolder.png"
+                }
 			},
 			{
 				"command": "codepal.runTestCases",
 				"title": "Run Test Cases",
-				"icon": "res/svg/play_button.png"
+                "icon": {
+                    "dark" : "res/svg/play_button.png",
+                    "light" : "res/svg/play_button.png"
+                }
 			},
 			{
 				"command": "codepal.addTestCases",
 				"title": "Add Test Cases",
-				"icon": "res/svg/add_TestCase.png"
+                "icon": {
+                    "dark" : "res/svg/add_TestCase.png",
+                    "light" : "res/svg/add_TestCase.png"
+                }
 			},
 			{
 				"command": "codepal.openProblemStatement",
 				"title": "Open Problem Statement",
-				"icon": "res/svg/question_mark.png"
+                "icon": {
+                    "dark" : "res/svg/question_mark.png",
+                    "light" : "res/svg/question_mark.png"
+                }
 			},
 			{
 				"command": "codepal.submitProblem",
 				"title": "Submit Problem",
-				"icon": "res/svg/upload.png"
+                "icon": {
+                    "dark" : "res/svg/submit.svg",
+                    "light" : "res/svg/submit.svg"
+                }
+			},
+			{
+				"command": "codepal.createStressTestingFiles",
+				"title": "Create Stress Testing Files",
+                "icon": {
+                    "dark" : "res/svg/createStressTestingFiles.svg",
+                    "light" : "res/svg/createStressTestingFiles.svg"
+                }
+			},
+			{
+				"command": "codepal.stressTest",
+				"title": "Stress Test",
+                "icon": {
+                    "dark" : "res/svg/stressTest.png",
+                    "light" : "res/svg/stressTest.png"
+                }
+			},
+			{
+				"command": "codePal.stopStressTesting",
+				"title": "Stop Stress Testing"
 			}
 		],
 		"viewsContainers": {
@@ -101,6 +159,13 @@
 					"icon": "res/svg/icon.svg",
 					"contextualTitle": "Problems",
 					"visibility": "collapsed"
+				},
+				{
+					"id": "codepalProfile",
+					"name": "User Profile",
+					"icon": "res/svg/icon.svg",
+					"contextualTitle": "Profile",
+					"visibility": "collapsed"
 				}
 			]
 		},
@@ -126,6 +191,11 @@
 				{
 					"command": "codepal.createContestDirectory",
 					"when": "view == codepalContests && viewItem==contest",
+					"group": "inline"
+				},
+				{
+					"command": "codepal.registerContest",
+					"when": "view == codepalContests && viewItem==FutureContest",
 					"group": "inline"
 				},
 				{
@@ -159,6 +229,16 @@
 					"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
 					"command": "codepal.openProblemStatement",
 					"group": "navigation"
+				},
+				{
+					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+					"command": "codepal.stressTest",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+					"command": "codepal.createStressTestingFiles",
+					"group": "navigation"
 				}
 			]
 		},
@@ -168,6 +248,7 @@
 				"codepal.compilationLanguage": {
 					"type": "string",
 					"default": "g++",
+					"group": "language",
 					"enum": [
 						"g++",
 						"gcc",
@@ -186,25 +267,80 @@
 				"codepal.g++ CompilationFlags": {
 					"type": "string",
 					"default": "-std=c++14",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to g++"
 				},
 				"codepal.gccCompilationFlags": {
 					"type": "string",
 					"default": "",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to gcc"
 				},
 				"codepal.pythonCompilationFlags": {
 					"type": "string",
 					"default": "",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to python and python3"
 				},
 				"codepal.javaCompilationFlags": {
 					"type": "string",
 					"default": "",
+					"group": "language",
 					"markdownDescription": "Space separated additional compilation flags passed to java"
+				},
+				"codepal.codeforcesHandle": {
+					"type": "string",
+					"default": "",
+					"group": "profile",
+					"markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
+				},
+				"codepal.numberOfStressTestingTestCases": {
+					"type": "number",
+					"default": "",
+					"markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
 				}
 			}
-		}
+			
+		},
+		"keybindings": [
+			{
+				"command": "codepal.addTestCases",
+				"key": "ctrl+alt+a",
+				"mac": "cmd+alt+a",
+				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+			},
+			{
+				"command": "codepal.runTestCases",
+				"key": "ctrl+alt+r",
+				"mac": "cmd+alt+r",
+				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+			},
+			{
+				"command": "codepal.submitProblem",
+				"key": "ctrl+alt+s",
+				"mac": "cmd+alt+s",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			},
+			{
+				"command": "codepal.openProblemStatement",
+				"key": "ctrl+alt+o",
+				"mac": "cmd+alt+o",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			},
+			{
+				"command": "codepal.stopStressTesting",
+				"key": "ctrl+shift+z",
+				"mac": "cmd+shift+z",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "codepal.stressTest",
+				"key": "ctrl+alt+z",
+				"mac": "cmd+alt+z",
+				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+			}
+
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",

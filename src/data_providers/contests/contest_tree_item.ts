@@ -10,6 +10,7 @@ export class ContestTreeItem extends vscode.TreeItem {
         public readonly type:string='',
         public readonly contest?:ContestClass|undefined,
         public readonly problem?:ProblemClass|undefined, 
+        public readonly iconPath?: string, 
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState);

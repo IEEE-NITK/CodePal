@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 const fs = require("fs");
 import { exec } from "child_process";
 import { reportError } from "./report_error";
-import { Errors, OS } from "../../utils/consts";
+import { Errors, OS, tle } from "../../utils/consts";
 
 import {
     CodepalConfig,
@@ -17,12 +17,14 @@ export const runTestsWithTimeout = async (
     codeOutputFilePath: string,
     testsFolderPath: string,
     stderrFilePath: string,
-    os: number
+    os: number,
+    executableFileName: string = 'a',
+    commandLineArguments: string = '',
 ): Promise<any> => {
     let timeoutHandle: NodeJS.Timeout;
     // Declaring a promise that rejects after 6s
     const timeoutPromise = new Promise((resolve, reject) => {
-        timeoutHandle = setTimeout(() => reject("Time limit exceeded"), 6000);
+        timeoutHandle = setTimeout(() => reject(Errors.timeLimitExceeded), 6000);
     });
 
     let runCommand: string;
@@ -37,18 +39,15 @@ export const runTestsWithTimeout = async (
         case CompilationLanguages.cpp:
             if (os === OS.linuxMac) {
                 // Command for linux
-                executable = `${testsFolderPath}a.out`;
+                executable = `${executableFileName}.out`;
             } else if (os === OS.windows) {
                 // Command for windows
-                executable = `${testsFolderPath}a.exe`;
+                executable = `${executableFileName}.exe`;
             } else {
                 vscode.window.showErrorMessage("Operating System not supported.");
                 return;
             }
-            runCommand = `"${executable}" < "${inputFilePath}" > "${codeOutputFilePath}"`;
-            if(os === OS.windows) {
-                executable = "a.exe";
-            }
+            runCommand = `"${testsFolderPath}${executable}" ${commandLineArguments} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
         case CompilationLanguages.python:
@@ -57,8 +56,11 @@ export const runTestsWithTimeout = async (
             const compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.python);
-            executable = "python.exe";
-            runCommand = `${compilationLanguage} "${solutionFilePath}" ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            executable = (os === OS.windows)
+                ? `python.exe`
+                : `${compilationLanguage}`;
+
+            runCommand = `${compilationLanguage} "${solutionFilePath}" ${commandLineArguments} ${compilationFlags} < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
         case CompilationLanguages.java:
@@ -70,8 +72,10 @@ export const runTestsWithTimeout = async (
                 0,
                 solutionFilePath.lastIndexOf("/")
             );
-            runCommand = `java -cp "${javaClassPath}" ${executable} < "${inputFilePath}" > "${codeOutputFilePath}"`;
-            executable = "java.exe";
+            runCommand = `java -cp "${javaClassPath}" ${executable} ${commandLineArguments} < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            executable = (os === OS.windows)
+                ? "java.exe"
+                : "java";
             break;
 
         default:
@@ -88,28 +92,32 @@ export const runTestsWithTimeout = async (
             return result;
         })
         .catch(async (error) => {
-            if (error ===Errors.timeLimitExceeded) {
+            if (error === Errors.timeLimitExceeded) {
+                tle.tleFlag = true;
                 vscode.window.showErrorMessage("Time limit exceeded!!");
-                if (os === OS.windows) {
-                    // Kill the executing process on windows
-                    exec(
-                        `taskkill /F /IM ${executable}`,
-                        (error: any, stdout: any, stderr: any) => {
-                            if (error) {
-                                console.log(
-                                    `Could not kill timed out process.\nError: ${error.message}`
-                                );
-                            }
-                            if (stderr) {
-                                console.log(
-                                    `Could not kill timed out process.\nstderr: ${stderr}`
-                                );
-                            }
+                let killCommand: string;
+                killCommand = (os === OS.windows) 
+                    ? `taskkill /F /IM ${executable}`
+                    : `pkill -9 ${executable}`;
+                // Kill the executing process
+                exec(
+                    killCommand,
+                    (error: any, stdout: any, stderr: any) => {
+                        if (error) {
+                            console.log(
+                                `Could not kill timed out process.\nError: ${error.message}`
+                            );
                         }
-                    );
-                }
+                        if (stderr) {
+                            console.log(
+                                `Could not kill timed out process.\nstderr: ${stderr}`
+                            );
+                        }
+                    }
+                );
+                return Errors.timeLimitExceeded;
             }
-            return "Run time error";
+            return Errors.runTimeError;
         });
 };
 
@@ -122,6 +130,9 @@ const runTests = async (
         return new Promise(async (resolve, reject) => {
             exec(runCommand, async (error: any, stdout: any, stderr: any) => {
                 if (error) {
+                    if(tle.tleFlag) {
+                        return;
+                    }
                     console.log(`Runtime Error: ${error}`);
                     await reportError(error.message, "Run Time", testsFolderPath);
                     reject(error.message);

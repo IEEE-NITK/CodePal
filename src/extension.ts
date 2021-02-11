@@ -9,8 +9,18 @@ import { runTestCases } from "./features/run_test_cases/run_test_cases";
 import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
-import { Command, TreeViewIDs } from "./utils/consts";
+import {
+    CodepalConfig,
+    codepalConfigName,
+    stressTestingFlag,
+    Command,
+    TreeViewIDs,
+} from "./utils/consts";
+import { ProfileProvider } from "./data_providers/user_profile/profile_data_provider";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
+import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
+import { stressTest } from "./features/stress_test/stress_test";
+import { contestRegistration } from "./features/contest_registration/contest_registration";
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
@@ -21,9 +31,21 @@ export function activate(context: vscode.ExtensionContext) {
 
     const problemProvider = new ProblemsProvider(rootPath);
     const contestsProvider = new ContestsProvider(rootPath);
+    const profileProvider = new ProfileProvider(rootPath);
+    vscode.workspace.onDidChangeConfiguration((event) => {
+        if (
+            event.affectsConfiguration(
+                codepalConfigName + "." + CodepalConfig.codeforcesHandle
+            )
+        ) {
+            profileProvider.refresh();
+        }
+    });
     disposable = [
         vscode.commands.registerCommand(Command.helloWorld, () => {
-            vscode.window.showInformationMessage("Namaste World from IEEE/CodePal!");
+            vscode.window.showInformationMessage(
+                "Namaste World from IEEE/CodePal!"
+            );
         }),
     ];
     disposable.push(
@@ -46,6 +68,15 @@ export function activate(context: vscode.ExtensionContext) {
             Command.createContestDirectory,
             (param: ContestTreeItem) =>
                 createContestDirectory(param.contest, rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.registerContest,
+            async (param: ContestTreeItem) =>{
+                await contestRegistration(param.contest);
+            }
         )
     );
 
@@ -74,8 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
     disposable.push(
         vscode.commands.registerCommand(
             Command.openProblemStatement,
-            (param: any) => 
-                openProblemStatement(String(param))
+            (param: any) => openProblemStatement(String(param))
         )
     );
     disposable.push(
@@ -105,6 +135,32 @@ export function activate(context: vscode.ExtensionContext) {
             problemProvider
         )
     );
+    disposable.push(
+        vscode.window.registerTreeDataProvider(
+            TreeViewIDs.profile,
+            profileProvider
+        )
+    );
+    vscode.commands.registerCommand(
+        Command.createStressTestingFiles,
+        (param: any) => createStressTestingFiles(param)
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(Command.stressTest, (param: any) =>
+            stressTest(param)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.stopStressTesting,
+            (param: any) => {
+                stressTestingFlag.stop = true;
+            }
+        )
+    );
+
     context.subscriptions.push(...disposable);
 }
 export function deactivate() {}

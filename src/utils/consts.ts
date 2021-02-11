@@ -5,6 +5,7 @@ export const enum Command {
     reloadProblems="codepal.reloadProblems",
     reloadContests="codepal.reloadContests",
     createContestDirectory="codepal.createContestDirectory",
+    registerContest = "codepal.registerContest",
     createProblemDirectory="codepal.createProblemDirectory",
     createContestProblemDirectory = "codepal.createContestProblemDirectory",
     runTestCases="codepal.runTestCases",
@@ -12,15 +13,26 @@ export const enum Command {
     submitProblem="codepal.submitProblem",
     addTestCases="codepal.addTestCases",
     getProblemFilters="codepal.getProblemFilters",
+    stressTest = "codepal.stressTest",
+    createStressTestingFiles = "codepal.createStressTestingFiles",
+    stopStressTesting = "codepal.stopStressTesting"
 }
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
-    codeTemplatePath="codeTemplatePath",
+    codeTemplatePath = "codeTemplatePath",
+    codeforcesHandle = "codeforcesHandle",
+   numberOfStressTestingTestCases="numberOfStressTestingTestCases"
 }
 export const enum TreeViewIDs{
     contests="codepalContests",
     problems = "codepalProblems",
+    profile='codepalProfile'
+}
+export const enum SubmissionStatus {
+    unattempted = "unattempted",
+    accepted = "OK",
+    failed = "FAILED"
 }
 export const enum CompilationLanguages {
     cpp = "g++",
@@ -53,13 +65,18 @@ export const enum ContestTreeEnum {
 export const enum ProblemTreeEnum{
     problemContextValue="problem",
 }
+export const enum ProfileTreeEnum{
+    codeforcesHandleUndefined="codeforcesHandleUndefined",
+    codeforcesHandleExists="codeforcesHandleExists"
+}
 export enum RatingsEnum {
     initialFromRating = 0,
     initialToRating = 4000,
 }
 export enum Urls {
     fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
-    fetchProblemSet = "https://codeforces.com/api/problemset.problems"
+    fetchProblemSet = "https://codeforces.com/api/problemset.problems",
+    userInfo= "https://codeforces.com/api/user.info?handles"
 }
 
 export enum OS {
@@ -73,6 +90,7 @@ export const enum ErrorCodes{
 }
 export const enum Errors{
     timeLimitExceeded= "Time limit exceeded",
+    runTimeError = "Run time error"
 }
 export const tagsByOR: string = "*combine tags by OR";
 export const  allTags: string[] = [
@@ -114,3 +132,76 @@ export const  allTags: string[] = [
     "trees",
     "two pointers",
 ];
+
+export const generatorTemplate = {
+    cpp: 
+`#include <bits/stdc++.h>
+
+using namespace std;
+
+signed main(signed argc, char* argv[]){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    srand(atoi(argv[1]));
+    
+    // generate test cases with same format as given in problem
+    
+    return 0;
+}`,
+
+    c:
+`#include <stdio.h>
+#include <stdlib.h> 
+
+int main(signed argc, char* argv[]){
+    srand(atoi(argv[1]));
+    
+    // generate test cases with same format as given in problem
+
+    return 0;
+}  
+`,
+
+    python2:
+`import sys, random
+
+random.seed(int(sys.argv[1]))
+
+# generate test cases with same format as given in problem
+
+`,
+
+    python3:
+`import sys, random
+
+random.seed(int(sys.argv[1]))
+
+# generate test cases with same format as given in problem
+
+`,
+
+    java:
+`import java.util.*; 
+public class Temp_Class_Name { 
+    public static void main(String[] args) 
+    { 
+        Random r = new Random(); 
+        r.setSeed(Integer.parseInt(args[0]));
+        // generate test cases with same format as given in problem
+
+    } 
+} 
+`
+};
+
+export let stressTestingFlag = {
+    stop: false as boolean
+};
+
+export let tle = {
+    tleFlag: false as boolean
+};
+
+export const maxLimitOfTestCases = 10000;
+export const minLimitOfTestCases = 10;
+export const timeLimit = 6000; // 6000 milliseconds

@@ -4,12 +4,17 @@ import { Utils} from "../../utils/utils";
 import { compileFile } from "./compile_solution";
 import { runTestsWithTimeout } from "./run_solution";
 import { platform } from "os";
-import { OS } from "../../utils/consts";
+import { OS, Errors, tle } from "../../utils/consts";
 
 export const runTestCases = async function (filePath: string): Promise<void> {
     // Code for running test cases and returning verdict
     const os = platform() === "win32"?OS.windows : OS.linuxMac;
     let path = Utils.pathRefine(filePath, os);
+
+    if (vscode.window.activeTextEditor) {
+        path = vscode.window.activeTextEditor.document.uri.fsPath;
+        path = path.replace(/\\/g, '/');
+    }
 
     if (!fs.existsSync(path)) {
         vscode.window.showErrorMessage("Problem solution file not found.");
@@ -22,7 +27,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
     const testsFolderPath = problemFolderPath + "Tests/";
 
     if (!fs.existsSync(testsFolderPath)) {
-        vscode.window.showErrorMessage("Tests not found.");
+        vscode.window.showErrorMessage("Tests not found. Please add a test case.");
         return;
     }
 
@@ -37,6 +42,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
 
     let i: number = 1;
     let passed: boolean = true;
+    tle.tleFlag = false;
     while (true) {
         const inputFilePath: string = `${testsFolderPath}input_${i}.txt`;
 
@@ -55,26 +61,35 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                 codeOutputFilePath,
                 testsFolderPath,
                 stderrFilePath,
-                os
+                os,
+                'a',
+                '1'
             );
-            if (runResult === "Run time error") {
-                return;
-            }
 
-            let testResult: boolean = await compareOutputs(
-                outputFilePath,
-                codeOutputFilePath
-            );
             let input: string = await readFile(inputFilePath);
             let expectedOutput: string = await readFile(outputFilePath);
             let codeOutput: string = await readFile(codeOutputFilePath);
+
             let result : string = "";
-            if (testResult===true) {
-                result = result + `Test ${i} Passed\n\n`;
+            let testResult: boolean;
+            if(runResult === Errors.timeLimitExceeded || runResult === Errors.runTimeError) {
+                result = result + `Test ${i} ${runResult}\n\n`;
+                testResult = false;
             }
             else {
-                result = result + `Test ${i} Failed\n\n`;
+                testResult = await compareOutputs(
+                    outputFilePath,
+                    codeOutputFilePath
+                );
+                
+                if (testResult === true) {
+                    result = result + `Test ${i} Passed\n\n`;
+                }
+                else {
+                    result = result + `Test ${i} Failed\n\n`;
+                }
             }
+
             result = result + `Input ${i}: \n${input}\n\nExpected Output : \n${expectedOutput}\n\nObtained Output : \n${codeOutput}\n\n`;
             if (fs.existsSync(stderrFilePath)) {
                 let stderr: string = await readFile(stderrFilePath);
@@ -94,6 +109,9 @@ export const runTestCases = async function (filePath: string): Promise<void> {
                     viewColumn: vscode.ViewColumn.Beside,
                     preserveFocus: true,
                 });
+                if(runResult === Errors.timeLimitExceeded || runResult === Errors.runTimeError) {
+                    return;
+                }
                 if (passed === true) {
                     vscode.window.showErrorMessage(
                         `Test ${i} failed`
@@ -128,7 +146,7 @@ export const runTestCases = async function (filePath: string): Promise<void> {
     }
 };
 
-const compareOutputs = async (
+export const compareOutputs = async (
     outputFilePath: string,
     codeOutputFilePath: string
 ): Promise<boolean> => {
@@ -155,7 +173,7 @@ const refine = (content: string): string => {
     return content;
 };
 
-const readFile = (filePath: string): Promise<string> => {
+export const readFile = (filePath: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, "utf8", (error: any, fileContent: string) => {
             if (error !== null) {

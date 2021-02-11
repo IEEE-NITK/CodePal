@@ -7,7 +7,7 @@ import { CodepalConfig, codepalConfigName, CompilationLanguages, ErrorCodes } fr
 
 let templateCode = ""; // will hold the code that is stored in the path given in settings
 
-const getTemplateCode = async () => {
+export const getTemplateCode = async () => {
     const templatePath = vscode.workspace
         .getConfiguration(codepalConfigName)
         .get<string>(CodepalConfig.codeTemplatePath);
