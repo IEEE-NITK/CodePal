@@ -6,18 +6,8 @@
 
 A Visual Studio Code Extension to help **Codeforces** Users ***Code with Convenience.*** This extension is specially for people who want to save time in a live codeforces contest and upsolve problems comfortably. This extension responds quickly to users. It can swiftly filter through the problem list by specifying tags and ratings, create folders for contests and problems containing sample tests of each problem in them and compile and run tests automatically. For added convenience we've created buttons to directly open problem statements and submission pages on the default browser. 
 
-# Contents 
-1. [Demo](#demo)
-2. [Features](#features)
-3. [Languages Supported](#languages)
-4. [Operating Systems Supported](#operating_systems)
-5. [Usage Guide](#usage)
-6. [Contributing Guidelines](#contributing)
-7. [Changelog](#changelog)
-8. [Lead Maintaniers](#lead_maintainers)
-
 # Demo 
-<a id="demo"></a>
+
 ### Enter Handle in settings and view problems, contests and profile with submission status on each problem
 ![Promo1](res/GIFS/Demo0.gif)
 
@@ -31,7 +21,6 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 ![Promo2](res/GIFS/Demo3.gif)
 
 # Features of this Extension
-<a id="features"></a>
 
 - View Complete ProblemSet List along with their associated tags and ratings. 
 - Swiftly Filter through the ProblemSet by specifying Ratings and Tags.
@@ -48,7 +37,6 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 
 
 # Languages Supported
-<a id="languages"></a>
 
 - C++ (compiler : g++)
 - C (compiler : gcc)
@@ -57,14 +45,12 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python, python2 or python3 depending upon the python command you use on your system to run.
 
 # Operating Systems Supported
-<a id="operating_systems"></a>
 
 - Windows 
 - Linux
 - MAC
 
 # Quickstart
-<a id="quick_start"></a>
 
 1. Install the extension from the VS Code Market Place.
 2. Make sure that the VS code version you are using 1.52 or greater. 
@@ -72,7 +58,6 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 4. Please Keep a folder open in your workspace in VS code while using the extension.
 
 # Usage Guide
-<a id="usage"></a>
 
 <a id="labels"></a>
 Below are the various clickable icons used in our extension. 
@@ -154,12 +139,10 @@ Below are the various clickable icons used in our extension.
 We're glad you'd like to contribute to CodePal. Please claim an issue from the issue list and you may then start working on it. You may also create a new issue incase you'd like to propose a new feature in the extension. Please refer [Developer Docs](DEVELOPERDOCS.md) for more help.
 
 # Changelog 
-<a id="changelog"></a>
 
 All notable changes to codepal can be found [here](CHANGELOG.md)
 
 # Lead Maintainers
-<a id="lead_maintainers"></a>
 
 - [Aditya Chirania](https://github.com/adityachirania)
 - [Niranjan S Yadiyala](https://github.com/niranjansy)
