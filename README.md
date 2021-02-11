@@ -79,6 +79,7 @@ Below are the various clickable icons used in our extension.
 - *Ctrl + Alt + R* (*Cmd + Alt + R* for Mac): Run Test Cases on Solution File
 - *Ctrl + Alt + O* (*Cmd + Alt + O* for Mac) : Open Problem Statement on Codeforces
 - *Ctrl + Alt + S* (*Cmd + Alt + S* for Mac) : Open Problem Submission Page on Codeforces
+- *Ctrl + Alt + Z* (*Cmd + Alt + Z* for Mac) : Start Stress Testing 
 - *Ctrl + Shift + Z* (*Cmd + Shift + Z* for Mac) : Force Stop Stress Testing 
 ## Usage Guide to Various Features
 
