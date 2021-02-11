@@ -120,7 +120,7 @@ Below are the various clickable icons used in our extension.
 ### 10. Stress Testing
 - Click on icon **8** (shown [here](#labels)) on the top right side of the editor window to create the stress testing files called "brute" and "gen". Here "brute" is the code that is a bruteforce solution or any code that gives the correct output and "gen" is the generator file that makes testcases. You need to code both of them. 
 - Command line arguments of integers (1,2,3...) are passed to the generator file so as to keep a fixed random seed each time you stress test. A template is initially provided that takes care of this.
-- Once all 3 files compile properly (solution, "brute" and "gen" files) click on icon **11** (shown [here](#labels)) to stress test. It will run the "gen" file to create input and compare it against your solution and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
+- Once all 3 files compile properly (solution, "brute" and "gen" files) click on icon **11** (shown [here](#labels)), or press *Ctrl + Alt + Z*, to stress test. It will run the "gen" file to create input and compare it against your solution and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
 - Stress testing can be forced to stop on pressing *Ctrl + Shift + Z*.
 
 ### 11. User Profile
