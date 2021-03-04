@@ -133,6 +133,12 @@ export const  allTags: string[] = [
     "two pointers",
 ];
 
+export const statusofproblem: string[] = [
+    "unattempted",
+    "OK",
+    "FAILED",
+];
+
 export const generatorTemplate = {
     cpp: 
 `#include <bits/stdc++.h>
