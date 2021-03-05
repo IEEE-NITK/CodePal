@@ -105,7 +105,7 @@ const validStatus = (
         return false;
     }
 
-    if(status.includes(problem.submissionStatus)){
+    if(status.length === 0 || status.includes(problem.submissionStatus)){
         return true;
     }
     else{
