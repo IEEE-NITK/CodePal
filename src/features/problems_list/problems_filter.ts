@@ -97,13 +97,31 @@ const validTags = (
     }
 };
 
+// returns the true if the problem status is the required one
+const validStatus = (
+    problem: ProblemClass | undefined, 
+    status:string[]): boolean =>{ // 
+    if(problem === undefined || problem.tags === undefined){
+        return false;
+    }
+
+    if(status.length === 0 || status.includes(problem.submissionStatus)){
+        return true;
+    }
+    else{
+        return false;
+    }
+};
+
 // filter the problems from already fetched list
 export const filterProblems = (
     problems : ProblemTreeItem[],
     fromRating : number,
     toRating : number,
-    tags : string[]
+    tags : string[],
+    statuses : string[]
 ) : ProblemTreeItem[] => {
+
 
     let filteredProblems : ProblemTreeItem[] = [];
     problems.forEach(function(problem : ProblemTreeItem) : void{
@@ -112,7 +130,7 @@ export const filterProblems = (
 
         if( currentProblem !== undefined && 
             validRating(currentProblem,fromRating,toRating) === true && 
-            validTags(currentProblem,tags) === true) {
+            validTags(currentProblem,tags) === true && validStatus(currentProblem, statuses)) {
 
             filteredProblems.push(problem);
         }

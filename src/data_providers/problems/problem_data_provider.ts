@@ -12,12 +12,14 @@ export class ProblemsProvider implements vscode.TreeDataProvider<ProblemTreeItem
     private toRating : number;
     private tags : string[];
     private allProblems : ProblemTreeItem[];
+    private statuses : string[];
 
     constructor(private workspaceRoot: string) {
         this.alreadyfetched = false;
         this.fromRating = RatingsEnum.initialFromRating;
         this.toRating = RatingsEnum.initialToRating;
         this.tags = [];
+        this.statuses = [];
         this.allProblems = [];
         this.rootPath = workspaceRoot;
     }
@@ -25,16 +27,17 @@ export class ProblemsProvider implements vscode.TreeDataProvider<ProblemTreeItem
     private _onDidChangeTreeData: vscode.EventEmitter<ProblemTreeItem | undefined | void> = new vscode.EventEmitter<ProblemTreeItem | undefined | void>();
     readonly onDidChangeTreeData: vscode.Event<ProblemTreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
-    refresh(newFromRating : number,newToRating : number,newtags : string[]): void {
+    refresh(newFromRating : number,newToRating : number,newtags : string[], newstatus : string[]): void {
         this.fromRating = newFromRating;
         this.toRating = newToRating;
         this.tags = newtags;
+        this.statuses = newstatus;
         this._onDidChangeTreeData.fire();
     }
     
     reload():void {
         this.alreadyfetched = false;
-        this.refresh(RatingsEnum.initialFromRating,RatingsEnum.initialToRating,[]);
+        this.refresh(RatingsEnum.initialFromRating,RatingsEnum.initialToRating,[],[]);
     }
 
     getTreeItem(
@@ -56,7 +59,7 @@ export class ProblemsProvider implements vscode.TreeDataProvider<ProblemTreeItem
             return this.getAllProblems();
         }
         if (!element) {
-            return filterProblems(this.allProblems,this.fromRating,this.toRating,this.tags);
+            return filterProblems(this.allProblems,this.fromRating,this.toRating,this.tags, this.statuses);
         } else if (element.problem) {
             return this.problemStats(element.problem);
         } 
