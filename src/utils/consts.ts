@@ -133,7 +133,7 @@ export const  allTags: string[] = [
     "two pointers",
 ];
 
-export const statusofproblem: string[] = [
+export const statusOfProblem: string[] = [
     "unattempted",
     "OK",
     "FAILED",

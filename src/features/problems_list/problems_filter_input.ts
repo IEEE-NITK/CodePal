@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ProblemsProvider } from "../../data_providers/problems/problem_data_provider";
-import { allTags, statusofproblem, RatingsEnum } from "../../utils/consts";
+import { allTags, statusOfProblem, RatingsEnum } from "../../utils/consts";
 
 const isNum = (val:string) => /^\d+$/.test(val); // check if a string has only digits
 
@@ -31,7 +31,7 @@ export const problemsFilterInput = async (problemProvider: ProblemsProvider):Pro
             });
 
             const quickPicks = vscode.window.createQuickPick(); // using quickPick to take multiple input
-            quickPicks.items = statusofproblem.map(label => ({ label }));
+            quickPicks.items = statusOfProblem.map(label => ({ label }));
             quickPicks.canSelectMany = true; // enables choosing multiple tags
         
             quickPicks.onDidAccept(() => { 

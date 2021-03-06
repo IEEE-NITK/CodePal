@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { ProblemClass } from "../../classes/problem";
 import { ProblemTreeItem } from "../../data_providers/problems/problem_tree_item";
 import { updateSubmissionStatus } from "./submission_status";
-import { Urls, tagsByOR, statusofproblem, ProblemTreeEnum, SubmissionStatus} from "../../utils/consts";
+import { Urls, tagsByOR, ProblemTreeEnum, SubmissionStatus} from "../../utils/consts";
 import * as path from 'path';
 
 const problemsList = async (
