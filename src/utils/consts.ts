@@ -1,143 +1,143 @@
 export const enum Command {
-  helloWorld = "codepal.helloWorld",
-  setEditorLayout = "vscode.setEditorLayout",
-  vscodeOpen = "vscode.open",
-  reloadProblems = "codepal.reloadProblems",
-  reloadContests = "codepal.reloadContests",
-  copyContestURL = "codepal.copyContestURL",
-  createContestDirectory = "codepal.createContestDirectory",
-  registerContest = "codepal.registerContest",
-  copyProblemURL = "codepal.copyProblemURL",
-  createProblemDirectory = "codepal.createProblemDirectory",
-  createContestProblemDirectory = "codepal.createContestProblemDirectory",
-  runTestCases = "codepal.runTestCases",
-  openProblemStatement = "codepal.openProblemStatement",
-  submitProblem = "codepal.submitProblem",
-  addTestCases = "codepal.addTestCases",
-  getProblemFilters = "codepal.getProblemFilters",
-  stressTest = "codepal.stressTest",
-  createStressTestingFiles = "codepal.createStressTestingFiles",
-  stopStressTesting = "codepal.stopStressTesting"
+    helloWorld = "codepal.helloWorld",
+    setEditorLayout = "vscode.setEditorLayout",
+    vscodeOpen = "vscode.open",
+    reloadProblems = "codepal.reloadProblems",
+    reloadContests = "codepal.reloadContests",
+    copyContestURL = "codepal.copyContestURL",
+    createContestDirectory = "codepal.createContestDirectory",
+    registerContest = "codepal.registerContest",
+    copyProblemURL = "codepal.copyProblemURL",
+    createProblemDirectory = "codepal.createProblemDirectory",
+    createContestProblemDirectory = "codepal.createContestProblemDirectory",
+    runTestCases = "codepal.runTestCases",
+    openProblemStatement = "codepal.openProblemStatement",
+    submitProblem = "codepal.submitProblem",
+    addTestCases = "codepal.addTestCases",
+    getProblemFilters = "codepal.getProblemFilters",
+    stressTest = "codepal.stressTest",
+    createStressTestingFiles = "codepal.createStressTestingFiles",
+    stopStressTesting = "codepal.stopStressTesting"
 }
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
-  compilationLanguage = "compilationLanguage",
-  codeTemplatePath = "codeTemplatePath",
-  codeforcesHandle = "codeforcesHandle",
-  numberOfStressTestingTestCases = "numberOfStressTestingTestCases"
+    compilationLanguage = "compilationLanguage",
+    codeTemplatePath = "codeTemplatePath",
+    codeforcesHandle = "codeforcesHandle",
+    numberOfStressTestingTestCases = "numberOfStressTestingTestCases"
 }
 export const enum TreeViewIDs {
-  contests = "codepalContests",
-  problems = "codepalProblems",
-  profile = 'codepalProfile'
+    contests = "codepalContests",
+    problems = "codepalProblems",
+    profile = 'codepalProfile'
 }
 export const enum SubmissionStatus {
-  unattempted = "unattempted",
-  accepted = "OK",
-  failed = "FAILED"
+    unattempted = "unattempted",
+    accepted = "OK",
+    failed = "FAILED"
 }
 export const enum CompilationLanguages {
-  cpp = "g++",
-  gcc = "gcc",
-  java = "java",
-  python = "python",
-  python2 = "python2",
-  python3 = "python3",
+    cpp = "g++",
+    gcc = "gcc",
+    java = "java",
+    python = "python",
+    python2 = "python2",
+    python3 = "python3",
 }
 export const enum CompilationFlags {
-  cpp = "g++ CompilationFlags",
-  gcc = "gccCompilationFlags",
-  java = "javaCompilationFlags",
-  python = "pythonCompilationFlags",
+    cpp = "g++ CompilationFlags",
+    gcc = "gccCompilationFlags",
+    java = "javaCompilationFlags",
+    python = "pythonCompilationFlags",
 }
 export const enum ContestsPhase {
-  finished = "FINISHED",
-  coding = "CODING",
-  before = "BEFORE",
+    finished = "FINISHED",
+    coding = "CODING",
+    before = "BEFORE",
 }
 export const enum ContestTreeEnum {
-  runningContestType = "Running",
-  futureContestType = "Future",
-  pastContestType = "Past",
-  contestLabel = "contest",
-  futureContestLabel = "FutureContest",
-  contestProblemType = "ContestProblem",
-  contestTypeContextValue = "ContestType",
+    runningContestType = "Running",
+    futureContestType = "Future",
+    pastContestType = "Past",
+    contestLabel = "contest",
+    futureContestLabel = "FutureContest",
+    contestProblemType = "ContestProblem",
+    contestTypeContextValue = "ContestType",
 }
 export const enum ProblemTreeEnum {
-  problemContextValue = "problem",
+    problemContextValue = "problem",
 }
 export const enum ProfileTreeEnum {
-  codeforcesHandleUndefined = "codeforcesHandleUndefined",
-  codeforcesHandleExists = "codeforcesHandleExists"
+    codeforcesHandleUndefined = "codeforcesHandleUndefined",
+    codeforcesHandleExists = "codeforcesHandleExists"
 }
 export enum RatingsEnum {
-  initialFromRating = 0,
-  initialToRating = 4000,
+    initialFromRating = 0,
+    initialToRating = 4000,
 }
 export enum Urls {
-  fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
-  fetchProblemSet = "https://codeforces.com/api/problemset.problems",
-  userInfo = "https://codeforces.com/api/user.info?handles"
+    fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
+    fetchProblemSet = "https://codeforces.com/api/problemset.problems",
+    userInfo = "https://codeforces.com/api/user.info?handles"
 }
 
 export enum OS {
-  linuxMac,
-  windows
+    linuxMac,
+    windows
 }
 export const enum ErrorCodes {
-  fileExists = "EEXIST",
-  folderExists = "EEXIST",
-  noWritePermission = "EACCES",
+    fileExists = "EEXIST",
+    folderExists = "EEXIST",
+    noWritePermission = "EACCES",
 }
 export const enum Errors {
-  timeLimitExceeded = "Time limit exceeded",
-  runTimeError = "Run time error"
+    timeLimitExceeded = "Time limit exceeded",
+    runTimeError = "Run time error"
 }
 export const tagsByOR: string = "*combine tags by OR";
 export const allTags: string[] = [
-  tagsByOR,
-  "2-sat",
-  "binary search",
-  "bitmasks",
-  "brute force",
-  "chinese remainder theorem",
-  "combinatorics",
-  "constructive algorithms",
-  "data structures",
-  "dfs and similar",
-  "divide and conquer",
-  "dp",
-  "dsu",
-  "expression parsing",
-  "fft",
-  "flows",
-  "games",
-  "geometry",
-  "graph matchings",
-  "graphs",
-  "greedy",
-  "hashing",
-  "implementation",
-  "interactive",
-  "math",
-  "matrices",
-  "meet-in-the-middle",
-  "number theory",
-  "probabilities",
-  "schedules",
-  "shortest paths",
-  "sortings",
-  "string suffix structures",
-  "strings",
-  "ternary search",
-  "trees",
-  "two pointers",
+    tagsByOR,
+    "2-sat",
+    "binary search",
+    "bitmasks",
+    "brute force",
+    "chinese remainder theorem",
+    "combinatorics",
+    "constructive algorithms",
+    "data structures",
+    "dfs and similar",
+    "divide and conquer",
+    "dp",
+    "dsu",
+    "expression parsing",
+    "fft",
+    "flows",
+    "games",
+    "geometry",
+    "graph matchings",
+    "graphs",
+    "greedy",
+    "hashing",
+    "implementation",
+    "interactive",
+    "math",
+    "matrices",
+    "meet-in-the-middle",
+    "number theory",
+    "probabilities",
+    "schedules",
+    "shortest paths",
+    "sortings",
+    "string suffix structures",
+    "strings",
+    "ternary search",
+    "trees",
+    "two pointers",
 ];
 
 export const generatorTemplate = {
-  cpp:
-    `#include <bits/stdc++.h>
+    cpp:
+        `#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -151,8 +151,8 @@ signed main(signed argc, char* argv[]){
     return 0;
 }`,
 
-  c:
-    `#include <stdio.h>
+    c:
+        `#include <stdio.h>
 #include <stdlib.h>
 
 int main(signed argc, char* argv[]){
@@ -164,8 +164,8 @@ int main(signed argc, char* argv[]){
 }
 `,
 
-  python:
-    `import sys, random
+    python:
+        `import sys, random
 
 random.seed(int(sys.argv[1]))
 
@@ -173,8 +173,8 @@ random.seed(int(sys.argv[1]))
 
 `,
 
-  python2:
-    `import sys, random
+    python2:
+        `import sys, random
 
 random.seed(int(sys.argv[1]))
 
@@ -182,8 +182,8 @@ random.seed(int(sys.argv[1]))
 
 `,
 
-  python3:
-    `import sys, random
+    python3:
+        `import sys, random
 
 random.seed(int(sys.argv[1]))
 
@@ -191,8 +191,8 @@ random.seed(int(sys.argv[1]))
 
 `,
 
-  java:
-    `import java.util.*;
+    java:
+        `import java.util.*;
 public class gen {
     public static void main(String[] args)
     {
@@ -206,11 +206,11 @@ public class gen {
 };
 
 export let stressTestingFlag = {
-  stop: false as boolean
+    stop: false as boolean
 };
 
 export let tle = {
-  tleFlag: false as boolean
+    tleFlag: false as boolean
 };
 
 export const maxLimitOfTestCases = 10000;
