@@ -3,8 +3,6 @@ import { ContestsProvider } from "./data_providers/contests/contest_data_provide
 import { ContestTreeItem } from "./data_providers/contests/contest_tree_item";
 import { ProblemTreeItem } from "./data_providers/problems/problem_tree_item";
 import { ProblemsProvider } from "./data_providers/problems/problem_data_provider";
-import { copyContestURL } from "./features/copy_url/copy_contest_url";
-import { copyProblemURL } from "./features/copy_url/copy_problem_url";
 import { createContestDirectory } from "./features/folder_creation/contest_folder_creation";
 import { createProblemDirectory } from "./features/folder_creation/problem_folder_creation";
 import { runTestCases } from "./features/run_test_cases/run_test_cases";
@@ -67,13 +65,6 @@ export function activate(context: vscode.ExtensionContext) {
     );
     disposable.push(
         vscode.commands.registerCommand(
-            Command.copyContestURL,
-            (param: ContestTreeItem) =>
-                copyContestURL(param.contest)
-        )
-    );
-    disposable.push(
-        vscode.commands.registerCommand(
             Command.createContestDirectory,
             (param: ContestTreeItem) =>
                 createContestDirectory(param.contest, rootPath)
@@ -83,19 +74,12 @@ export function activate(context: vscode.ExtensionContext) {
     disposable.push(
         vscode.commands.registerCommand(
             Command.registerContest,
-            async (param: ContestTreeItem) => {
+            async (param: ContestTreeItem) =>{
                 await contestRegistration(param.contest);
             }
         )
     );
 
-    disposable.push(
-        vscode.commands.registerCommand(
-            Command.copyProblemURL,
-            (param: ProblemTreeItem) =>
-                copyProblemURL(param.problem)
-        )
-    );
     disposable.push(
         vscode.commands.registerCommand(
             Command.createProblemDirectory,
@@ -179,4 +163,4 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(...disposable);
 }
-export function deactivate() { }
+export function deactivate() {}
