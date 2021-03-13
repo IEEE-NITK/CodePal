@@ -1,380 +1,406 @@
 {
-	"name": "codepal",
-	"displayName": "CodePal",
-	"description": "A VS Code extension to help codeforces users upsolve and give contests conveniently and swiftly",
-	"license": "GPL-3.0-or-later",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/IEEE-NITK/CodePal"
-	},
-	"publisher": "IEEE-NITK",
-	"icon": "res/svg/logo.png",
-	"version": "1.0.0",
-	"engines": {
-		"vscode": "^1.52.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "codepal.helloWorld",
-				"title": "Hello World"
-			},
-			{
-				"command": "codepal.reloadContests",
-				"title": "Refresh contest list",
-				"icon": {
-					"dark": "res/svg/refresh.svg",
-					"light": "res/svg/refresh.svg"
-				}
-			},
-			{
-				"command": "codepal.getProblemFilters",
-				"title": "Filter",
-				"icon": {
-					"dark": "res/svg/filter.svg",
-					"light": "res/svg/filter.svg"
-				}
-			},
-			{
-				"command": "codepal.reloadProblems",
-				"title": "Refresh problem list",
-				"icon": {
-					"dark": "res/svg/refresh.svg",
-					"light": "res/svg/refresh.svg"
-				}
-			},
-			{
-				"command": "codepal.createContestDirectory",
-				"title": "Create Contest Folder",
-				"icon": {
-					"dark": "res/svg/CreateFolder.png",
-					"light": "res/svg/CreateFolder.png"
-				}
-			},
-			{
-				"command": "codepal.registerContest",
-				"title": "Register for Contest",
-				"icon": {
-					"dark": "res/svg/registration.jpeg",
-					"light": "res/svg/registration.jpeg"
-				}
-			},
-			{
-				"command": "codepal.createProblemDirectory",
-				"title": "Create Problem Folder",
-				"icon": {
-					"dark": "res/svg/CreateFolder.png",
-					"light": "res/svg/CreateFolder.png"
-				}
-			},
-			{
-				"command": "codepal.createContestProblemDirectory",
-				"title": "Create only this problem Folder",
-				"icon": {
-					"dark": "res/svg/CreateFolder.png",
-					"light": "res/svg/CreateFolder.png"
-				}
-			},
-			{
-				"command": "codepal.runTestCases",
-				"title": "Run Test Cases",
-				"icon": {
-					"dark": "res/svg/play_button.png",
-					"light": "res/svg/play_button.png"
-				}
-			},
-			{
-				"command": "codepal.addTestCases",
-				"title": "Add Test Cases",
-				"icon": {
-					"dark": "res/svg/add_TestCase.png",
-					"light": "res/svg/add_TestCase.png"
-				}
-			},
-			{
-				"command": "codepal.openProblemStatement",
-				"title": "Open Problem Statement",
-				"icon": {
-					"dark": "res/svg/question_mark.png",
-					"light": "res/svg/question_mark.png"
-				}
-			},
-			{
-				"command": "codepal.submitProblem",
-				"title": "Submit Problem",
-				"icon": {
-					"dark": "res/svg/submit.svg",
-					"light": "res/svg/submit.svg"
-				}
-			},
-			{
-				"command": "codepal.createStressTestingFiles",
-				"title": "Create Stress Testing Files",
-				"icon": {
-					"dark": "res/svg/createStressTestingFiles.svg",
-					"light": "res/svg/createStressTestingFiles.svg"
-				}
-			},
-			{
-				"command": "codepal.stressTest",
-				"title": "Stress Test",
-				"icon": {
-					"dark": "res/svg/stressTest.png",
-					"light": "res/svg/stressTest.png"
-				}
-			},
-			{
-				"command": "codePal.stopStressTesting",
-				"title": "Stop Stress Testing"
-			}
-		],
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "codepal",
-					"title": "CodePal",
-					"icon": "res/svg/brackets.svg"
-				}
-			]
-		},
-		"views": {
-			"codepal": [
-				{
-					"id": "codepalContests",
-					"name": "Contests",
-					"icon": "res/svg/icon.svg",
-					"contextualTitle": "Contests",
-					"visibility": "collapsed"
-				},
-				{
-					"id": "codepalProblems",
-					"name": "Problems",
-					"icon": "res/svg/icon.svg",
-					"contextualTitle": "Problems",
-					"visibility": "collapsed"
-				},
-				{
-					"id": "codepalProfile",
-					"name": "User Profile",
-					"icon": "res/svg/icon.svg",
-					"contextualTitle": "Profile",
-					"visibility": "collapsed"
-				}
-			]
-		},
-		"menus": {
-			"view/title": [
-				{
-					"command": "codepal.reloadContests",
-					"when": "view == codepalContests",
-					"group": "navigation"
-				},
-				{
-					"command": "codepal.getProblemFilters",
-					"when": "view == codepalProblems",
-					"group": "navigation"
-				},
-				{
-					"command": "codepal.reloadProblems",
-					"when": "view == codepalProblems",
-					"group": "navigation"
-				}
-			],
-			"view/item/context": [
-				{
-					"command": "codepal.createContestDirectory",
-					"when": "view == codepalContests && viewItem==contest",
-					"group": "inline"
-				},
-				{
-					"command": "codepal.registerContest",
-					"when": "view == codepalContests && viewItem==FutureContest",
-					"group": "inline"
-				},
-				{
-					"command": "codepal.createProblemDirectory",
-					"when": "view == codepalProblems && viewItem==problem",
-					"group": "inline"
-				},
-				{
-					"command": "codepal.createContestProblemDirectory",
-					"when": "view == codepalContests && viewItem==contestproblem",
-					"group": "inline"
-				}
-			],
-			"editor/title": [
-				{
-					"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
-					"command": "codepal.runTestCases",
-					"group": "navigation"
-				},
-				{
-					"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
-					"command": "codepal.addTestCases",
-					"group": "navigation"
-				},
-				{
-					"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
-					"command": "codepal.submitProblem",
-					"group": "navigation"
-				},
-				{
-					"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
-					"command": "codepal.openProblemStatement",
-					"group": "navigation"
-				},
-				{
-					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
-					"command": "codepal.stressTest",
-					"group": "navigation"
-				},
-				{
-					"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
-					"command": "codepal.createStressTestingFiles",
-					"group": "navigation"
-				}
-			]
-		},
-		"configuration": {
-			"title": "codepal",
-			"properties": {
-				"codepal.compilationLanguage": {
-					"type": "string",
-					"default": "g++",
-					"group": "language",
-					"enum": [
-						"g++",
-						"gcc",
-						"java",
-						"python",
-						"python2",
-						"python3"
-					],
-					"markdownDescription": "Note : Incase of python please choose the python prefix you would generally use on your system to run"
-				},
-				"codepal.codeTemplatePath": {
-					"type": "string",
-					"default": "",
-					"markdownDescription": "The path of the `template` that has to be used when a folder is created"
-				},
-				"codepal.g++ CompilationFlags": {
-					"type": "string",
-					"default": "-std=c++14",
-					"group": "language",
-					"markdownDescription": "Space separated additional compilation flags passed to g++"
-				},
-				"codepal.gccCompilationFlags": {
-					"type": "string",
-					"default": "",
-					"group": "language",
-					"markdownDescription": "Space separated additional compilation flags passed to gcc"
-				},
-				"codepal.pythonCompilationFlags": {
-					"type": "string",
-					"default": "",
-					"group": "language",
-					"markdownDescription": "Space separated additional compilation flags passed to python and python3"
-				},
-				"codepal.javaCompilationFlags": {
-					"type": "string",
-					"default": "",
-					"group": "language",
-					"markdownDescription": "Space separated additional compilation flags passed to java"
-				},
-				"codepal.codeforcesHandle": {
-					"type": "string",
-					"default": "",
-					"group": "profile",
-					"markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
-				},
-				"codepal.numberOfStressTestingTestCases": {
-					"type": "number",
-					"default": "",
-					"markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
-				}
-			}
-		},
-		"keybindings": [
-			{
-				"command": "codepal.addTestCases",
-				"key": "ctrl+alt+a",
-				"mac": "cmd+alt+a",
-				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
-			},
-			{
-				"command": "codepal.runTestCases",
-				"key": "ctrl+alt+r",
-				"mac": "cmd+alt+r",
-				"when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
-			},
-			{
-				"command": "codepal.submitProblem",
-				"key": "ctrl+alt+s",
-				"mac": "cmd+alt+s",
-				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
-			},
-			{
-				"command": "codepal.openProblemStatement",
-				"key": "ctrl+alt+o",
-				"mac": "cmd+alt+o",
-				"when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
-			},
-			{
-				"command": "codepal.stopStressTesting",
-				"key": "ctrl+shift+z",
-				"mac": "cmd+shift+z",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "codepal.stressTest",
-				"key": "ctrl+alt+z",
-				"mac": "cmd+alt+z",
-				"when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run package",
-		"compile": "webpack --config ./build/node-extension.webpack.config.js",
-		"watch": "webpack --watch --config ./build/node-extension.webpack.config.js",
-		"package": "webpack --mode production --devtool hidden-source-map --config ./build/node-extension.webpack.config.js",
-		"test-compile": "tsc -p ./",
-		"test-watch": "tsc -watch -p ./",
-		"pretest": "yarn run test-compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/cheerio": "^0.22.23",
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.4",
-		"@types/node": "^14.11.2",
-		"@types/node-fetch": "^2.5.7",
-		"@types/selenium-webdriver": "^4.0.11",
-		"@types/vscode": "^1.52.0",
-		"@typescript-eslint/eslint-plugin": "^4.9.0",
-		"@typescript-eslint/parser": "^4.9.0",
-		"eslint": "^7.15.0",
-		"glob": "^7.1.6",
-		"mocha": "^8.1.3",
-		"ts-loader": "^8.0.11",
-		"typescript": "^4.1.2",
-		"vscode-test": "^1.4.1",
-		"webpack": "^5.10.0",
-		"webpack-cli": "^4.2.0"
-	},
-	"dependencies": {
-		"axios": "^0.21.1",
-		"cheerio": "^1.0.0-rc.5",
-		"child_process": "^1.0.2",
-		"fs": "^0.0.1-security",
-		"node-fetch": "^2.6.1"
-	}
+    "name": "codepal",
+    "displayName": "CodePal",
+    "description": "A VS Code extension to help codeforces users upsolve and give contests conveniently and swiftly",
+    "license": "GPL-3.0-or-later",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/IEEE-NITK/CodePal"
+    },
+    "publisher": "IEEE-NITK",
+    "icon": "res/svg/logo.png",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "codepal.helloWorld",
+                "title": "Hello World"
+            },
+            {
+                "command": "codepal.reloadContests",
+                "title": "Refresh contest list",
+                "icon": {
+                    "dark": "res/svg/refresh.svg",
+                    "light": "res/svg/refresh.svg"
+                }
+            },
+            {
+                "command": "codepal.getProblemFilters",
+                "title": "Filter",
+                "icon": {
+                    "dark": "res/svg/filter.svg",
+                    "light": "res/svg/filter.svg"
+                }
+            },
+            {
+                "command": "codepal.reloadProblems",
+                "title": "Refresh problem list",
+                "icon": {
+                    "dark": "res/svg/refresh.svg",
+                    "light": "res/svg/refresh.svg"
+                }
+            },
+            {
+                "command": "codepal.copyContestURL",
+                "title": "Copy Contest URL",
+                "icon": {
+                    "dark": "res/svg/copy.png",
+                    "light": "res/svg/copy.png"
+                }
+            },
+            {
+                "command": "codepal.createContestDirectory",
+                "title": "Create Contest Folder",
+                "icon": {
+                    "dark": "res/svg/CreateFolder.png",
+                    "light": "res/svg/CreateFolder.png"
+                }
+            },
+            {
+                "command": "codepal.registerContest",
+                "title": "Register for Contest",
+                "icon": {
+                    "dark": "res/svg/registration.jpeg",
+                    "light": "res/svg/registration.jpeg"
+                }
+            },
+            {
+                "command": "codepal.copyProblemURL",
+                "title": "Copy Problem URL",
+                "icon": {
+                    "dark": "res/svg/copy.png",
+                    "light": "res/svg/copy.png"
+                }
+            },
+            {
+                "command": "codepal.createProblemDirectory",
+                "title": "Create Problem Folder",
+                "icon": {
+                    "dark": "res/svg/CreateFolder.png",
+                    "light": "res/svg/CreateFolder.png"
+                }
+            },
+            {
+                "command": "codepal.createContestProblemDirectory",
+                "title": "Create only this problem Folder",
+                "icon": {
+                    "dark": "res/svg/CreateFolder.png",
+                    "light": "res/svg/CreateFolder.png"
+                }
+            },
+            {
+                "command": "codepal.runTestCases",
+                "title": "Run Test Cases",
+                "icon": {
+                    "dark": "res/svg/play_button.png",
+                    "light": "res/svg/play_button.png"
+                }
+            },
+            {
+                "command": "codepal.addTestCases",
+                "title": "Add Test Cases",
+                "icon": {
+                    "dark": "res/svg/add_TestCase.png",
+                    "light": "res/svg/add_TestCase.png"
+                }
+            },
+            {
+                "command": "codepal.openProblemStatement",
+                "title": "Open Problem Statement",
+                "icon": {
+                    "dark": "res/svg/question_mark.png",
+                    "light": "res/svg/question_mark.png"
+                }
+            },
+            {
+                "command": "codepal.submitProblem",
+                "title": "Submit Problem",
+                "icon": {
+                    "dark": "res/svg/submit.svg",
+                    "light": "res/svg/submit.svg"
+                }
+            },
+            {
+                "command": "codepal.createStressTestingFiles",
+                "title": "Create Stress Testing Files",
+                "icon": {
+                    "dark": "res/svg/createStressTestingFiles.svg",
+                    "light": "res/svg/createStressTestingFiles.svg"
+                }
+            },
+            {
+                "command": "codepal.stressTest",
+                "title": "Stress Test",
+                "icon": {
+                    "dark": "res/svg/stressTest.png",
+                    "light": "res/svg/stressTest.png"
+                }
+            },
+            {
+                "command": "codePal.stopStressTesting",
+                "title": "Stop Stress Testing"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "codepal",
+                    "title": "CodePal",
+                    "icon": "res/svg/brackets.svg"
+                }
+            ]
+        },
+        "views": {
+            "codepal": [
+                {
+                    "id": "codepalContests",
+                    "name": "Contests",
+                    "icon": "res/svg/icon.svg",
+                    "contextualTitle": "Contests",
+                    "visibility": "collapsed"
+                },
+                {
+                    "id": "codepalProblems",
+                    "name": "Problems",
+                    "icon": "res/svg/icon.svg",
+                    "contextualTitle": "Problems",
+                    "visibility": "collapsed"
+                },
+                {
+                    "id": "codepalProfile",
+                    "name": "User Profile",
+                    "icon": "res/svg/icon.svg",
+                    "contextualTitle": "Profile",
+                    "visibility": "collapsed"
+                }
+            ]
+        },
+        "menus": {
+            "view/title": [
+                {
+                    "command": "codepal.reloadContests",
+                    "when": "view == codepalContests",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codepal.getProblemFilters",
+                    "when": "view == codepalProblems",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codepal.reloadProblems",
+                    "when": "view == codepalProblems",
+                    "group": "navigation"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "codepal.copyContestURL",
+                    "when": "view == codepalContests && viewItem==contest",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.createContestDirectory",
+                    "when": "view == codepalContests && viewItem==contest",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.registerContest",
+                    "when": "view == codepalContests && viewItem==FutureContest",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.copyProblemURL",
+                    "when": "view == codepalProblems && viewItem==problem",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.createProblemDirectory",
+                    "when": "view == codepalProblems && viewItem==problem",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.createContestProblemDirectory",
+                    "when": "view == codepalContests && viewItem==contestproblem",
+                    "group": "inline"
+                }
+            ],
+            "editor/title": [
+                {
+                    "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+                    "command": "codepal.runTestCases",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+                    "command": "codepal.addTestCases",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
+                    "command": "codepal.submitProblem",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
+                    "command": "codepal.openProblemStatement",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+                    "command": "codepal.stressTest",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+                    "command": "codepal.createStressTestingFiles",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "codepal",
+            "properties": {
+                "codepal.compilationLanguage": {
+                    "type": "string",
+                    "default": "g++",
+                    "group": "language",
+                    "enum": [
+                        "g++",
+                        "gcc",
+                        "java",
+                        "python",
+                        "python2",
+                        "python3"
+                    ],
+                    "markdownDescription": "Note : Incase of python please choose the python prefix you would generally use on your system to run"
+                },
+                "codepal.codeTemplatePath": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "The path of the `template` that has to be used when a folder is created"
+                },
+                "codepal.g++ CompilationFlags": {
+                    "type": "string",
+                    "default": "-std=c++14",
+                    "group": "language",
+                    "markdownDescription": "Space separated additional compilation flags passed to g++"
+                },
+                "codepal.gccCompilationFlags": {
+                    "type": "string",
+                    "default": "",
+                    "group": "language",
+                    "markdownDescription": "Space separated additional compilation flags passed to gcc"
+                },
+                "codepal.pythonCompilationFlags": {
+                    "type": "string",
+                    "default": "",
+                    "group": "language",
+                    "markdownDescription": "Space separated additional compilation flags passed to python and python3"
+                },
+                "codepal.javaCompilationFlags": {
+                    "type": "string",
+                    "default": "",
+                    "group": "language",
+                    "markdownDescription": "Space separated additional compilation flags passed to java"
+                },
+                "codepal.codeforcesHandle": {
+                    "type": "string",
+                    "default": "",
+                    "group": "profile",
+                    "markdownDescription": "Specify your handle on Codeforces to get a more personalized environment"
+                },
+                "codepal.numberOfStressTestingTestCases": {
+                    "type": "number",
+                    "default": "",
+                    "markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
+                }
+            }
+        },
+        "keybindings": [
+            {
+                "command": "codepal.addTestCases",
+                "key": "ctrl+alt+a",
+                "mac": "cmd+alt+a",
+                "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+            },
+            {
+                "command": "codepal.runTestCases",
+                "key": "ctrl+alt+r",
+                "mac": "cmd+alt+r",
+                "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+            },
+            {
+                "command": "codepal.submitProblem",
+                "key": "ctrl+alt+s",
+                "mac": "cmd+alt+s",
+                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+            },
+            {
+                "command": "codepal.openProblemStatement",
+                "key": "ctrl+alt+o",
+                "mac": "cmd+alt+o",
+                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+            },
+            {
+                "command": "codepal.stopStressTesting",
+                "key": "ctrl+shift+z",
+                "mac": "cmd+shift+z",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "codepal.stressTest",
+                "key": "ctrl+alt+z",
+                "mac": "cmd+alt+z",
+                "when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run package",
+        "compile": "webpack --config ./build/node-extension.webpack.config.js",
+        "watch": "webpack --watch --config ./build/node-extension.webpack.config.js",
+        "package": "webpack --mode production --devtool hidden-source-map --config ./build/node-extension.webpack.config.js",
+        "test-compile": "tsc -p ./",
+        "test-watch": "tsc -watch -p ./",
+        "pretest": "yarn run test-compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/cheerio": "^0.22.23",
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.4",
+        "@types/node": "^14.11.2",
+        "@types/node-fetch": "^2.5.7",
+        "@types/selenium-webdriver": "^4.0.11",
+        "@types/vscode": "^1.52.0",
+        "@typescript-eslint/eslint-plugin": "^4.9.0",
+        "@typescript-eslint/parser": "^4.9.0",
+        "eslint": "^7.15.0",
+        "glob": "^7.1.6",
+        "mocha": "^8.1.3",
+        "ts-loader": "^8.0.11",
+        "typescript": "^4.1.2",
+        "vscode-test": "^1.4.1",
+        "webpack": "^5.10.0",
+        "webpack-cli": "^4.2.0"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "cheerio": "^1.0.0-rc.5",
+        "child_process": "^1.0.2",
+        "fs": "^0.0.1-security",
+        "node-fetch": "^2.6.1"
+    }
 }
