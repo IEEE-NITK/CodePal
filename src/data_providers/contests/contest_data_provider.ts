@@ -64,26 +64,25 @@ export class ContestsProvider implements vscode.TreeDataProvider<ContestTreeItem
         let i: number = 0;
         contest.problems.forEach((problem) => {
             
-            if(i<submissionList.length) {
+            if (i < submissionList.length) {
                 let submission = submissionList[i];
-                
-                while(problem.index > submission.problem.index) {
+
+                while (problem.index >= submission.problem.index) {
+
+                    if (problem.index === submission.problem.index) {
+                        if (submission.verdict === "OK") {
+                            problem.submissionStatus = SubmissionStatus.accepted;
+                            break;
+                        } else if (problem.submissionStatus !== SubmissionStatus.accepted) {
+                            problem.submissionStatus = SubmissionStatus.failed;
+                        }
+                    }
+
                     i = i + 1;
-                    if(i === submissionList.length) {
+                    if (i === submissionList.length) {
                         break;
                     }
                     submission = submissionList[i];
-                }
-                
-                if(i < submissionList.length) {
-                    if(problem.index === submission.problem.index) {
-                        if(submission.verdict === "OK") {
-                            problem.submissionStatus = SubmissionStatus.accepted;
-                        } else if(problem.submissionStatus !== SubmissionStatus.accepted) {
-                            problem.submissionStatus = SubmissionStatus.failed;
-                        }
-                        i = i + 1;
-                    }
                 }
             }
         });

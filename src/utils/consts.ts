@@ -2,17 +2,19 @@ export const enum Command {
     helloWorld = "codepal.helloWorld",
     setEditorLayout = "vscode.setEditorLayout",
     vscodeOpen = "vscode.open",
-    reloadProblems="codepal.reloadProblems",
-    reloadContests="codepal.reloadContests",
-    createContestDirectory="codepal.createContestDirectory",
+    reloadProblems = "codepal.reloadProblems",
+    reloadContests = "codepal.reloadContests",
+    copyContestURL = "codepal.copyContestURL",
+    createContestDirectory = "codepal.createContestDirectory",
     registerContest = "codepal.registerContest",
-    createProblemDirectory="codepal.createProblemDirectory",
+    copyProblemURL = "codepal.copyProblemURL",
+    createProblemDirectory = "codepal.createProblemDirectory",
     createContestProblemDirectory = "codepal.createContestProblemDirectory",
-    runTestCases="codepal.runTestCases",
-    openProblemStatement="codepal.openProblemStatement",
-    submitProblem="codepal.submitProblem",
-    addTestCases="codepal.addTestCases",
-    getProblemFilters="codepal.getProblemFilters",
+    runTestCases = "codepal.runTestCases",
+    openProblemStatement = "codepal.openProblemStatement",
+    submitProblem = "codepal.submitProblem",
+    addTestCases = "codepal.addTestCases",
+    getProblemFilters = "codepal.getProblemFilters",
     stressTest = "codepal.stressTest",
     createStressTestingFiles = "codepal.createStressTestingFiles",
     stopStressTesting = "codepal.stopStressTesting"
@@ -22,12 +24,12 @@ export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
     codeTemplatePath = "codeTemplatePath",
     codeforcesHandle = "codeforcesHandle",
-   numberOfStressTestingTestCases="numberOfStressTestingTestCases"
+    numberOfStressTestingTestCases = "numberOfStressTestingTestCases"
 }
-export const enum TreeViewIDs{
-    contests="codepalContests",
+export const enum TreeViewIDs {
+    contests = "codepalContests",
     problems = "codepalProblems",
-    profile='codepalProfile'
+    profile = 'codepalProfile'
 }
 export const enum SubmissionStatus {
     unattempted = "unattempted",
@@ -37,7 +39,7 @@ export const enum SubmissionStatus {
 export const enum CompilationLanguages {
     cpp = "g++",
     gcc = "gcc",
-    java="java",
+    java = "java",
     python = "python",
     python2 = "python2",
     python3 = "python3",
@@ -45,8 +47,8 @@ export const enum CompilationLanguages {
 export const enum CompilationFlags {
     cpp = "g++ CompilationFlags",
     gcc = "gccCompilationFlags",
-    java="javaCompilationFlags",
-    python="pythonCompilationFlags",
+    java = "javaCompilationFlags",
+    python = "pythonCompilationFlags",
 }
 export const enum ContestsPhase {
     finished = "FINISHED",
@@ -62,12 +64,12 @@ export const enum ContestTreeEnum {
     contestProblemType = "ContestProblem",
     contestTypeContextValue = "ContestType",
 }
-export const enum ProblemTreeEnum{
-    problemContextValue="problem",
+export const enum ProblemTreeEnum {
+    problemContextValue = "problem",
 }
-export const enum ProfileTreeEnum{
-    codeforcesHandleUndefined="codeforcesHandleUndefined",
-    codeforcesHandleExists="codeforcesHandleExists"
+export const enum ProfileTreeEnum {
+    codeforcesHandleUndefined = "codeforcesHandleUndefined",
+    codeforcesHandleExists = "codeforcesHandleExists"
 }
 export enum RatingsEnum {
     initialFromRating = 0,
@@ -76,24 +78,24 @@ export enum RatingsEnum {
 export enum Urls {
     fetchContestsList = "https://codeforces.com/api/contest.list?gym=false",
     fetchProblemSet = "https://codeforces.com/api/problemset.problems",
-    userInfo= "https://codeforces.com/api/user.info?handles"
+    userInfo = "https://codeforces.com/api/user.info?handles"
 }
 
 export enum OS {
     linuxMac,
     windows
 }
-export const enum ErrorCodes{
-    fileExists="EEXIST",
-    folderExists="EEXIST",
-    noWritePermission="EACCES",
+export const enum ErrorCodes {
+    fileExists = "EEXIST",
+    folderExists = "EEXIST",
+    noWritePermission = "EACCES",
 }
-export const enum Errors{
-    timeLimitExceeded= "Time limit exceeded",
+export const enum Errors {
+    timeLimitExceeded = "Time limit exceeded",
     runTimeError = "Run time error"
 }
 export const tagsByOR: string = "*combine tags by OR";
-export const  allTags: string[] = [
+export const allTags: string[] = [
     tagsByOR,
     "2-sat",
     "binary search",
@@ -133,9 +135,15 @@ export const  allTags: string[] = [
     "two pointers",
 ];
 
+export const statusOfProblem: string[] = [
+    "unattempted",
+    "OK",
+    "FAILED",
+];
+
 export const generatorTemplate = {
-    cpp: 
-`#include <bits/stdc++.h>
+    cpp:
+        `#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -143,27 +151,27 @@ signed main(signed argc, char* argv[]){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     srand(atoi(argv[1]));
-    
+
     // generate test cases with same format as given in problem
-    
+
     return 0;
 }`,
 
     c:
-`#include <stdio.h>
-#include <stdlib.h> 
+        `#include <stdio.h>
+#include <stdlib.h>
 
 int main(signed argc, char* argv[]){
     srand(atoi(argv[1]));
-    
+
     // generate test cases with same format as given in problem
 
     return 0;
-}  
+}
 `,
 
     python:
-`import sys, random
+        `import sys, random
 
 random.seed(int(sys.argv[1]))
 
@@ -172,16 +180,16 @@ random.seed(int(sys.argv[1]))
 `,
 
     python2:
-`import sys, random
+        `import sys, random
 
 random.seed(int(sys.argv[1]))
 
 # generate test cases with same format as given in problem
 
 `,
-    
+
     python3:
-`import sys, random
+        `import sys, random
 
 random.seed(int(sys.argv[1]))
 
@@ -190,16 +198,16 @@ random.seed(int(sys.argv[1]))
 `,
 
     java:
-`import java.util.*; 
-public class gen { 
-    public static void main(String[] args) 
-    { 
-        Random r = new Random(); 
+        `import java.util.*;
+public class gen {
+    public static void main(String[] args)
+    {
+        Random r = new Random();
         r.setSeed(Integer.parseInt(args[0]));
         // generate test cases with same format as given in problem
 
-    } 
-} 
+    }
+}
 `
 };
 
