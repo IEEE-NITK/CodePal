@@ -2,8 +2,13 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.0.1]
+- Added a feature to filter problems based on submission status.
+- Added a feature to copy the link of Codeforces problems and contests.
+- Fixed a bug related to displaying submission status of contest problems.
+
 ## [1.0.0]
-- Added a feature to stress test 
+- Added a feature to stress test.
 - Added a feature to accept handle and give a personalized experience by showing submission status on problems and user profile.
 - Added Keyboard shortcuts for many features. 
 - Fixed a bug by killing process after TLE on Linux/Mac
