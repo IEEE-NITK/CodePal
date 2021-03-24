@@ -23,7 +23,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 # Features of this Extension
 
 - View Complete ProblemSet List along with their associated tags and ratings. 
-- Swiftly Filter through the ProblemSet by specifying Ratings and Tags.
+- Swiftly Filter through the ProblemSet by specifying Ratings, Tags and Submission Status.
 - View Currently running, Upcoming and all Past contests and also view the precise start date, time and duration of upcoming contests. 
 - Fast Folder Creation on a single click for Contests from the Codeforces contest list and Problems from the Codeforces problem list.
   - Folder for a contest contains a folder for each problem and also contain all sample test cases and program files for each problem.
@@ -92,6 +92,7 @@ Below are the various clickable icons used in our extension.
 - Add the lower bound for problem’s rating. (Default lower bound is 0)
 - Add the upper bound for problem’s rating. (Default upper bound is 4000)
 - Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done)
+- Tick the submission status of the problems you want to view. 
 
 ### 2. Creating Problem Folder
 - Click on icon **6** (shown [here](#labels)) beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on VS Code where you want the problem folder)
