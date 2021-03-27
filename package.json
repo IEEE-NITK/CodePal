@@ -67,6 +67,14 @@
                 }
             },
             {
+                "command": "codepal.manualContestFolderCreation",
+                "title": "Manually Create Contest Folder",
+                "icon": {
+                    "dark": "res/svg/CreateFolder.png",
+                    "light": "res/svg/CreateFolder.png"
+                }
+            },
+            {
                 "command": "codepal.registerContest",
                 "title": "Register for Contest",
                 "icon": {
@@ -85,6 +93,14 @@
             {
                 "command": "codepal.createProblemDirectory",
                 "title": "Create Problem Folder",
+                "icon": {
+                    "dark": "res/svg/CreateFolder.png",
+                    "light": "res/svg/CreateFolder.png"
+                }
+            },
+            {
+                "command": "codepal.manualProblemFolderCreation",
+                "title": "Manually Create Problem Folder",
                 "icon": {
                     "dark": "res/svg/CreateFolder.png",
                     "light": "res/svg/CreateFolder.png"
@@ -193,12 +209,22 @@
                     "group": "navigation"
                 },
                 {
+                    "command": "codepal.manualContestFolderCreation",
+                    "when": "view == codepalContests",
+                    "group": "navigation"
+                },
+                {
                     "command": "codepal.getProblemFilters",
                     "when": "view == codepalProblems",
                     "group": "navigation"
                 },
                 {
                     "command": "codepal.reloadProblems",
+                    "when": "view == codepalProblems",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codepal.manualProblemFolderCreation",
                     "when": "view == codepalProblems",
                     "group": "navigation"
                 }

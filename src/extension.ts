@@ -23,6 +23,8 @@ import { problemsFilterInput } from "./features/problems_list/problems_filter_in
 import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
 import { stressTest } from "./features/stress_test/stress_test";
 import { contestRegistration } from "./features/contest_registration/contest_registration";
+import { manualProblemFolderCreation } from "./features/folder_creation/manual_problem_folder";
+import { manualContestFolderCreation } from "./features/folder_creation/manual_contest_folder";
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
@@ -96,11 +98,26 @@ export function activate(context: vscode.ExtensionContext) {
                 copyProblemURL(param.problem)
         )
     );
+
     disposable.push(
         vscode.commands.registerCommand(
             Command.createProblemDirectory,
             (param: ProblemTreeItem) =>
                 createProblemDirectory(param.problem, rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.manualProblemFolderCreation,
+            () => manualProblemFolderCreation(rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.manualContestFolderCreation,
+            () => manualContestFolderCreation(rootPath)
         )
     );
 

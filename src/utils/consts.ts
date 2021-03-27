@@ -17,7 +17,9 @@ export const enum Command {
     getProblemFilters = "codepal.getProblemFilters",
     stressTest = "codepal.stressTest",
     createStressTestingFiles = "codepal.createStressTestingFiles",
-    stopStressTesting = "codepal.stopStressTesting"
+    stopStressTesting = "codepal.stopStressTesting",
+    manualProblemFolderCreation = "codepal.manualProblemFolderCreation",
+    manualContestFolderCreation = "codepal.manualContestFolderCreation"
 }
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
