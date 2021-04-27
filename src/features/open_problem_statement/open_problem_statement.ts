@@ -4,6 +4,7 @@ import * as fs from "fs";
 import {Utils} from "../../utils/utils";
 import { OS } from "../../utils/consts";
 export const openProblemStatement = (path: string) => {
+    console.log(path);
     try {
         path = Utils.pathRefine(path, platform() === "win32"?OS.windows : OS.linuxMac);
         console.log(path);
