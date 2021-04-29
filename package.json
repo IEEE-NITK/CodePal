@@ -83,6 +83,14 @@
                 }
             },
             {
+                "command": "codepal.openContest",
+                "title": "Open Contest Page",
+                "icon": {
+                    "dark": "res/svg/question_mark.png",
+                    "light": "res/svg/question_mark.png"
+                }
+            },
+            {
                 "command": "codepal.copyProblemURL",
                 "title": "Copy Problem URL",
                 "icon": {
@@ -132,6 +140,30 @@
             },
             {
                 "command": "codepal.openProblemStatement",
+                "title": "Open Problem Statement",
+                "icon": {
+                    "dark": "res/svg/question_mark.png",
+                    "light": "res/svg/question_mark.png"
+                }
+            },
+            {
+                "command": "codepal.openProblemURL",
+                "title": "Open Problem Statement",
+                "icon": {
+                    "dark": "res/svg/question_mark.png",
+                    "light": "res/svg/question_mark.png"
+                }
+            },
+            {
+                "command": "codepal.copyContestProblemURL",
+                "title": "Copy Problem URL",
+                "icon": {
+                    "dark": "res/svg/copy.png",
+                    "light": "res/svg/copy.png"
+                }
+            },
+            {
+                "command": "codepal.openContestProblem",
                 "title": "Open Problem Statement",
                 "icon": {
                     "dark": "res/svg/question_mark.png",
@@ -236,6 +268,11 @@
                     "group": "inline"
                 },
                 {
+                    "command": "codepal.openContest",
+                    "when": "view == codepalContests && viewItem==contest",
+                    "group": "inline"
+                },
+                {
                     "command": "codepal.createContestDirectory",
                     "when": "view == codepalContests && viewItem==contest",
                     "group": "inline"
@@ -246,17 +283,32 @@
                     "group": "inline"
                 },
                 {
-                    "command": "codepal.copyProblemURL",
-                    "when": "view == codepalProblems && viewItem==problem",
-                    "group": "inline"
-                },
-                {
                     "command": "codepal.createProblemDirectory",
                     "when": "view == codepalProblems && viewItem==problem",
                     "group": "inline"
                 },
                 {
+                    "when": "view == codepalProblems && viewItem==problem",
+                    "command": "codepal.openProblemURL",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.copyProblemURL",
+                    "when": "view == codepalProblems && viewItem==problem",
+                    "group": "inline"
+                },
+                {
                     "command": "codepal.createContestProblemDirectory",
+                    "when": "view == codepalContests && viewItem==contestproblem",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.copyContestProblemURL",
+                    "when": "view == codepalContests && viewItem==contestproblem",
+                    "group": "inline"
+                },
+                {
+                    "command": "codepal.openContestProblem",
                     "when": "view == codepalContests && viewItem==contestproblem",
                     "group": "inline"
                 }

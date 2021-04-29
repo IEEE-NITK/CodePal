@@ -11,6 +11,8 @@ import { runTestCases } from "./features/run_test_cases/run_test_cases";
 import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
+import { openProblemURL } from "./features/open_problem_statement/open_problem_from_problem_list";
+import { openContest } from "./features/open_problem_statement/open_contest";
 import {
     CodepalConfig,
     codepalConfigName,
@@ -76,6 +78,13 @@ export function activate(context: vscode.ExtensionContext) {
     );
     disposable.push(
         vscode.commands.registerCommand(
+            Command.openContest,
+            (param: ContestTreeItem) =>
+                openContest(param.contest)
+        )
+    );
+    disposable.push(
+        vscode.commands.registerCommand(
             Command.createContestDirectory,
             (param: ContestTreeItem) =>
                 createContestDirectory(param.contest, rootPath)
@@ -96,6 +105,14 @@ export function activate(context: vscode.ExtensionContext) {
             Command.copyProblemURL,
             (param: ProblemTreeItem) =>
                 copyProblemURL(param.problem)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.openProblemURL,
+            (param: ProblemTreeItem) =>
+                openProblemURL(param.problem)
         )
     );
 
@@ -126,6 +143,22 @@ export function activate(context: vscode.ExtensionContext) {
             Command.createContestProblemDirectory,
             (param: ContestTreeItem) =>
                 createProblemDirectory(param.problem, rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.openContestProblem,
+            (param: ContestTreeItem) =>
+                openProblemURL(param.problem)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.copyContestProblemURL,
+            (param: ContestTreeItem) =>
+                copyProblemURL(param.problem)
         )
     );
 
