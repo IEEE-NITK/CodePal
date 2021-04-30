@@ -11,6 +11,8 @@ import { runTestCases } from "./features/run_test_cases/run_test_cases";
 import { addTestCases } from "./features/run_test_cases/add_test_cases";
 import { submitProblem } from "./features/submit_problem/submit_problem";
 import { openProblemStatement } from "./features/open_problem_statement/open_problem_statement";
+import { openProblemURL } from "./features/open_problem_statement/open_problem_from_problem_list";
+import { openContest } from "./features/open_problem_statement/open_contest";
 import {
     CodepalConfig,
     codepalConfigName,
@@ -23,6 +25,8 @@ import { problemsFilterInput } from "./features/problems_list/problems_filter_in
 import { createStressTestingFiles } from "./features/stress_test/createStressTestingFiles";
 import { stressTest } from "./features/stress_test/stress_test";
 import { contestRegistration } from "./features/contest_registration/contest_registration";
+import { manualProblemFolderCreation } from "./features/folder_creation/manual_problem_folder";
+import { manualContestFolderCreation } from "./features/folder_creation/manual_contest_folder";
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
@@ -74,6 +78,13 @@ export function activate(context: vscode.ExtensionContext) {
     );
     disposable.push(
         vscode.commands.registerCommand(
+            Command.openContest,
+            (param: ContestTreeItem) =>
+                openContest(param.contest)
+        )
+    );
+    disposable.push(
+        vscode.commands.registerCommand(
             Command.createContestDirectory,
             (param: ContestTreeItem) =>
                 createContestDirectory(param.contest, rootPath)
@@ -96,6 +107,15 @@ export function activate(context: vscode.ExtensionContext) {
                 copyProblemURL(param.problem)
         )
     );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.openProblemURL,
+            (param: ProblemTreeItem) =>
+                openProblemURL(param.problem)
+        )
+    );
+
     disposable.push(
         vscode.commands.registerCommand(
             Command.createProblemDirectory,
@@ -106,9 +126,39 @@ export function activate(context: vscode.ExtensionContext) {
 
     disposable.push(
         vscode.commands.registerCommand(
+            Command.manualProblemFolderCreation,
+            () => manualProblemFolderCreation(rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.manualContestFolderCreation,
+            () => manualContestFolderCreation(rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
             Command.createContestProblemDirectory,
             (param: ContestTreeItem) =>
                 createProblemDirectory(param.problem, rootPath)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.openContestProblem,
+            (param: ContestTreeItem) =>
+                openProblemURL(param.problem)
+        )
+    );
+
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.copyContestProblemURL,
+            (param: ContestTreeItem) =>
+                copyProblemURL(param.problem)
         )
     );
 

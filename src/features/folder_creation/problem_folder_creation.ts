@@ -23,17 +23,7 @@ export const getTemplateCode = async () => {
     return data;
 };
 
-export const createProblemDirectory = async (
-    problem: ProblemClass | undefined,
-    folderPath: string
-): Promise<void> => {
-    if (problem === undefined) {
-        return;
-    }
-    let problemName : string = problem.name;
-    problemName = problemName.replace(/[^a-zA-Z 0-9.]+/g,'');
-    problemName = problemName.replace(/[^a-zA-Z0-9]/g,'_');
-    const problemFolderPath = folderPath + `${problem.index}_${problemName}/`;
+export const getFileExtension = (): string => {
 
     const compilationLanguage = vscode.workspace
         .getConfiguration(codepalConfigName)
@@ -63,6 +53,23 @@ export const createProblemDirectory = async (
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();
     }
+
+    return fileExtension;
+};
+
+export const createProblemDirectory = async (
+    problem: ProblemClass | undefined,
+    folderPath: string
+): Promise<void> => {
+    if (problem === undefined) {
+        return;
+    }
+    let problemName : string = problem.name;
+    problemName = problemName.replace(/[^a-zA-Z 0-9.]+/g,'');
+    problemName = problemName.replace(/[^a-zA-Z0-9]/g,'_');
+    const problemFolderPath = folderPath + `${problem.index}_${problemName}/`;
+
+    const fileExtension = getFileExtension();
 
     const problemFilePath =
         problemFolderPath + `${problem.index}_${problemName}.${fileExtension}`;
