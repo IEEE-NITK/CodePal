@@ -8,6 +8,10 @@ export const enum Command {
     createContestDirectory = "codepal.createContestDirectory",
     registerContest = "codepal.registerContest",
     copyProblemURL = "codepal.copyProblemURL",
+    copyContestProblemURL = "codepal.copyContestProblemURL",
+    openContest = "codepal.openContest",
+    openProblemURL = "codepal.openProblemURL",
+    openContestProblem = "codepal.openContestProblem",
     createProblemDirectory = "codepal.createProblemDirectory",
     createContestProblemDirectory = "codepal.createContestProblemDirectory",
     runTestCases = "codepal.runTestCases",
@@ -17,12 +21,15 @@ export const enum Command {
     getProblemFilters = "codepal.getProblemFilters",
     stressTest = "codepal.stressTest",
     createStressTestingFiles = "codepal.createStressTestingFiles",
-    stopStressTesting = "codepal.stopStressTesting"
+    stopStressTesting = "codepal.stopStressTesting",
+    manualProblemFolderCreation = "codepal.manualProblemFolderCreation",
+    manualContestFolderCreation = "codepal.manualContestFolderCreation"
 }
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
     codeTemplatePath = "codeTemplatePath",
+    generatorTemplatePath = "generatorTemplatePath",
     codeforcesHandle = "codeforcesHandle",
     numberOfStressTestingTestCases = "numberOfStressTestingTestCases"
 }

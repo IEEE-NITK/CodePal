@@ -56,6 +56,9 @@ const contestsList = async (
                     arr.push(c);
                 }
             }
+            if(contestsType === ContestTreeEnum.futureContestType) {
+                arr.reverse();
+            }
             return arr;
         });
 };

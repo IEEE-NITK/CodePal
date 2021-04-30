@@ -12,7 +12,10 @@ export const submitProblem = async (path: string) => {
             path = vscode.window.activeTextEditor.document.uri.fsPath;
             path = path.replace(/\\/g, '/');
         }
-
+        // ************ copying code to the clipboard **********************
+        const code = fs.readFileSync(path).toString();
+        vscode.env.clipboard.writeText(code); 
+        //******************************************************************
         const jsonPath = path.substr(0, path.lastIndexOf("/")) + `/.problem.json`;
         const jsonData = JSON.parse(fs.readFileSync(jsonPath).toString());
         vscode.env.openExternal(vscode.Uri.parse(`https://codeforces.com/contest/${jsonData.contestID}/submit/${jsonData.index}`, true));
