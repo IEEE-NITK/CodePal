@@ -2,6 +2,13 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.1.0] 
+- Added feature to manually create a folder for any problem or contest (No of problems to be specified manually along with name of contest or problem). 
+- Added a feature to automatically copy code written by user when he clicks submit button. 
+- Add a button in tree view to open problem statement to view problem before creating folder.
+- Fixed [Issue #63](https://github.com/IEEE-NITK/CodePal/issues/63) by displaying future contests in ascending order. 
+- Fixed [Issue #58](https://github.com/IEEE-NITK/CodePal/issues/58) by adding a provision in settings to specify generator file template path. 
+
 ## [1.0.1]
 - Added a feature to filter problems based on submission status.
 - Added a feature to copy the link of Codeforces problems and contests.
