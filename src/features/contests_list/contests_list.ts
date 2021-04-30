@@ -56,7 +56,7 @@ const contestsList = async (
                     arr.push(c);
                 }
             }
-            if(contestType === ContestTreeEnum.futureContestType) {
+            if(contestsType === ContestTreeEnum.futureContestType) {
                 arr.reverse();
             }
             return arr;
