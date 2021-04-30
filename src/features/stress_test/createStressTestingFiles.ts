@@ -4,6 +4,23 @@ import { Utils} from "../../utils/utils";
 import { platform } from "os";
 import { OS, generatorTemplate, CompilationLanguages, CodepalConfig, codepalConfigName } from "../../utils/consts";
 import { getTemplateCode } from "../folder_creation/problem_folder_creation";
+import { readFileSync as fs_readFileSync } from "fs";
+
+export const getGenTemplateCode = async () => {
+    const templatePath = vscode.workspace
+        .getConfiguration(codepalConfigName)
+        .get<string>(CodepalConfig.generatorTemplatePath);
+    let data = "";
+    try {
+        if (templatePath) {
+            data = fs_readFileSync(templatePath, "ascii").toString();
+        }
+    } catch (e) {
+        vscode.window.showErrorMessage("Error fetching generator template. Please make sure path is valid.");
+    }
+
+    return data;
+};
 
 export const createStressTestingFiles = async (filePath: string):Promise<void> => {
     const os = platform() === "win32"?OS.windows : OS.linuxMac;
@@ -19,7 +36,7 @@ export const createStressTestingFiles = async (filePath: string):Promise<void> =
     
 
     let fileExtension: string;
-    let genTemplateCode:string;
+    let genTemplateCode:string = await getGenTemplateCode();
 
     switch(compilationLanguage) {
         case CompilationLanguages.gcc:
@@ -79,11 +96,20 @@ export const createStressTestingFiles = async (filePath: string):Promise<void> =
             }
         });
     }
+    
+    // if the user has setup their own generator template then that is used
+    let userGenTemplate:string = await getGenTemplateCode();
+        
+    if(userGenTemplate !== ''){
+        genTemplateCode = userGenTemplate;
+    }
+
+    //this happens when an unknown coding language is used, I think
+    if(genTemplateCode === ''){
+        genTemplateCode = templateCode; 
+    }
 
     // creating gen.cpp if it doesnt exist
-    if(genTemplateCode === ''){
-        genTemplateCode = templateCode;
-    }
     if(!fs.existsSync(genPath)) {
         fs.writeFile(genPath, genTemplateCode, function (err: any, result: any) {
             if (err) {
