@@ -28,6 +28,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Fast Folder Creation on a single click for Contests from the Codeforces contest list and Problems from the Codeforces problem list.
   - Folder for a contest contains a folder for each problem and also contain all sample test cases and program files for each problem.
   - Folder for a problem consists of all its sample test cases and a program file loaded with a template whose path may be specified in the settings.
+  - Manually create a folder for a contest or problem by specifying its name and the number of problems in it. 
 - Add additional tests to any problem.
 - Compile and run any program file against the testcases and get comprehensive results.
 - Open problem statement or submission page with a single click, on your default browser. (You must be logged into codeforces before hand to open the submission page successfully)
@@ -67,7 +68,7 @@ Below are the various clickable icons used in our extension.
 ## Key to Icons:
 1. Reload Contest List
 2. Future Contest Registration on Codeforces
-3. Contest Folder Creation
+3. Contest Folder Creation 
 4. Reload Problem List  
 5. Problem Filter Based on Rating and Tags
 6. Problem Folder Creation
@@ -133,6 +134,9 @@ Below are the various clickable icons used in our extension.
 - Go to extensions and select codepal, and add your Codeforces handle to get a personalized experience of the extension.
 - On entering your handle, you will be able to view your profile details in the *User Profile* section of the side bar. 
 - This will also enable you to view the status of problem submissions made on Codeforces, through ticks or crosses against the problem names, denoting whether the submission was accepted or failed. 
+
+## Note
+Certain minor changes shall be documented in the usage guide in the next release. 
 
 # Contributing Guidelines
 <a id="contributing"></a>
