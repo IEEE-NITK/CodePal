@@ -290,6 +290,11 @@
                     "default": "",
                     "markdownDescription": "The path of the `template` that has to be used when a folder is created"
                 },
+                "codepal.generatorTemplatePath": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "The path of the generator `template` that has to be used when stress testing is invoked"
+                },
                 "codepal.g++ CompilationFlags": {
                     "type": "string",
                     "default": "-std=c++14",

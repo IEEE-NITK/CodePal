@@ -23,6 +23,7 @@ export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
     compilationLanguage = "compilationLanguage",
     codeTemplatePath = "codeTemplatePath",
+    generatorTemplatePath = "generatorTemplatePath",
     codeforcesHandle = "codeforcesHandle",
     numberOfStressTestingTestCases = "numberOfStressTestingTestCases"
 }
