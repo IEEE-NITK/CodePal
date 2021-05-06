@@ -38,8 +38,8 @@
                 "command": "codepal.getProblemFilters",
                 "title": "Filter",
                 "icon": {
-                    "dark": "res/svg/filter.svg",
-                    "light": "res/svg/filter.svg"
+                    "dark": "res/svg/filter.png",
+                    "light": "res/svg/filter.png"
                 }
             },
             {
@@ -78,8 +78,8 @@
                 "command": "codepal.registerContest",
                 "title": "Register for Contest",
                 "icon": {
-                    "dark": "res/svg/registration.jpeg",
-                    "light": "res/svg/registration.jpeg"
+                    "dark": "res/svg/registration.png",
+                    "light": "res/svg/registration.png"
                 }
             },
             {
@@ -182,8 +182,8 @@
                 "command": "codepal.createStressTestingFiles",
                 "title": "Create Stress Testing Files",
                 "icon": {
-                    "dark": "res/svg/createStressTestingFiles.svg",
-                    "light": "res/svg/createStressTestingFiles.svg"
+                    "dark": "res/svg/createStressTestingFiles.png",
+                    "light": "res/svg/createStressTestingFiles.png"
                 }
             },
             {
