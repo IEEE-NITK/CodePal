@@ -2,6 +2,9 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.1.1]
+- Fixed icon dimensions according to the new VS Code update 1.56.0.
+
 ## [1.1.0] 
 - Added feature to manually create a folder for any problem or contest (No of problems to be specified manually along with name of contest or problem). 
 - Added a feature to automatically copy code written by user when he clicks submit button. 
