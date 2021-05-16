@@ -95,7 +95,9 @@ export enum OS {
 export const enum ErrorCodes {
     fileExists = "EEXIST",
     folderExists = "EEXIST",
-    noWritePermission = "EACCES",
+    notFound = "ENOENT",
+    noAccessPermission = "EACCES",
+    noWritePermission = "EROFS" 
 }
 export const enum Errors {
     timeLimitExceeded = "Time limit exceeded",
