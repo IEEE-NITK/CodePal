@@ -40,7 +40,7 @@ export const manualProblemFolderCreation = async (
         if (err.code === ErrorCodes.folderExists) {
             vscode.window.showErrorMessage("Problem folder already exists");
         } else if(err.code === ErrorCodes.noAccessPermission) {
-            vscode.window.showErrorMessage("No write permission.\nPlease open a folder in your workspace.");
+            vscode.window.showErrorMessage("No access permission.\nPlease open a folder in your workspace.");
         } else if(err.code === ErrorCodes.noWritePermission) {
             vscode.window.showErrorMessage("No write permission.\nPlease open a folder in your workspace.");
         } else{
