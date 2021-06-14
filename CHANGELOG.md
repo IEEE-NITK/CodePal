@@ -2,6 +2,9 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.1.2]
+- Add more meaningful error messages. 
+
 ## [1.1.1]
 - Fixed icon dimensions according to the new VS Code update 1.56.0.
 
