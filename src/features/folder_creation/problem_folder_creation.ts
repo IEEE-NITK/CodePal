@@ -16,8 +16,12 @@ export const getTemplateCode = async () => {
         if (templatePath) {
             data = fs_readFileSync(templatePath, "ascii").toString();
         }
-    } catch (e) {
-        vscode.window.showErrorMessage("error fetching templatecode");
+    } catch (err) {
+        if (err.code === ErrorCodes.notFound) {
+            vscode.window.showErrorMessage("Template path specied does not exist.");
+        } else {
+            vscode.window.showErrorMessage("Error reading template code.");
+        }
     }
 
     return data;
@@ -98,9 +102,11 @@ export const createProblemDirectory = async (
     } 
     catch (err) {
         if (err.code === ErrorCodes.folderExists) {
-            vscode.window.showErrorMessage("Problem folder already exists");
-        } else if(err.code ===ErrorCodes.noWritePermission) {
-            vscode.window.showErrorMessage("No write permission.\nPlease open a folder with write permissions.");
+            vscode.window.showErrorMessage("Problem folder already exists.");
+        } else if(err.code === ErrorCodes.noAccessPermission) {
+            vscode.window.showErrorMessage("No access permission.\nPlease open a folder in your workspace.");
+        } else if(err.code === ErrorCodes.noWritePermission) {
+            vscode.window.showErrorMessage("No write permission.\nPlease open a folder in your workspace.");
         } else{
             vscode.window.showErrorMessage("Could not create folder.\nUnknown error occurred");
         }
