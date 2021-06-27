@@ -222,12 +222,15 @@ public class gen {
 }
 `,
     kotlin:
-        `import java.util.Random
+        `import java.util.*
 
         val random = Random()
         
         fun rand(from: Int, to: Int) : Int {
             return random.nextInt(to - from) + from
+        }
+        fun main(){
+            var r = rand(1, 100);
         }
 `
 };
