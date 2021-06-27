@@ -50,6 +50,8 @@ export const enum CompilationLanguages {
     python = "python",
     python2 = "python2",
     python3 = "python3",
+    kotlin =  "kotlin"
+
 }
 export const enum CompilationFlags {
     cpp = "g++ CompilationFlags",

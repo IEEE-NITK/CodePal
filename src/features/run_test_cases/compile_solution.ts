@@ -74,6 +74,11 @@ export const compileFile = async (
             compileCommand = `javac "${solutionFilePath}" ${compilationFlags}`;
             break;
 
+        case CompilationLanguages.kotlin:
+            compileCommand = `kotlinc ${solutionFilePath} -include-runtime -d ${testsFolderPath}${outputFileName}.jar`;
+            console.log("lodu");
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();
@@ -83,7 +88,10 @@ export const compileFile = async (
         return new Promise(async (resolve, reject) => {
             exec(compileCommand, async (error: any, stdout: any, stderr: any) => {
                 if (error) {
+                    console.log(error);
+                    console.log(compileCommand);
                     await reportError(error.message, "Compilation", testsFolderPath);
+                    console.log("Lodu");
                     reject(error.message);
                     return;
                 }
@@ -97,6 +105,7 @@ export const compileFile = async (
             });
         });
     } catch (err) {
+        console.log("Lodu");
         console.log(err);
     }
 };

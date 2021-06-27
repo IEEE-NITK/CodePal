@@ -315,12 +315,12 @@
             ],
             "editor/title": [
                 {
-                    "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+                    "when": "resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
                     "command": "codepal.runTestCases",
                     "group": "navigation"
                 },
                 {
-                    "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+                    "when": "resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
                     "command": "codepal.addTestCases",
                     "group": "navigation"
                 },
@@ -359,7 +359,8 @@
                         "java",
                         "python",
                         "python2",
-                        "python3"
+                        "python3",
+                        "kotlin"
                     ],
                     "markdownDescription": "Note : Incase of python please choose the python prefix you would generally use on your system to run"
                 },
