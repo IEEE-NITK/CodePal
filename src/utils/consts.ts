@@ -220,6 +220,15 @@ public class gen {
 
     }
 }
+`,
+    kotlin:
+        `import java.util.Random
+
+        val random = Random()
+        
+        fun rand(from: Int, to: Int) : Int {
+            return random.nextInt(to - from) + from
+        }
 `
 };
 
