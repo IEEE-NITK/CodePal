@@ -75,7 +75,7 @@ export const compileFile = async (
             break;
 
         case CompilationLanguages.kotlin:
-            compileCommand = `kotlinc ${solutionFilePath} -include-runtime -d ${testsFolderPath}${outputFileName}.jar`;
+            compileCommand = `kotlinc "${solutionFilePath}" -include-runtime -d "${testsFolderPath}${outputFileName}.jar"`;
             console.log("lodu");
             break;
 
