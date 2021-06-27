@@ -398,6 +398,12 @@
                     "group": "language",
                     "markdownDescription": "Space separated additional compilation flags passed to java"
                 },
+                "codepal.kotlinCompilationFlags": {
+                    "type": "string",
+                    "default": "",
+                    "group": "language",
+                    "markdownDescription": "Space separated additional compilation flags passed to kotlin"
+                },
                 "codepal.codeforcesHandle": {
                     "type": "string",
                     "default": "",
