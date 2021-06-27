@@ -69,6 +69,11 @@ export const createStressTestingFiles = async (filePath: string):Promise<void> =
             genTemplateCode = generatorTemplate.java;
             break;
 
+        case CompilationLanguages.kotlin:
+            fileExtension = 'kt';
+            genTemplateCode = generatorTemplate.kotlin;
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();
