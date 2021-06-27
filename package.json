@@ -416,25 +416,25 @@
                 "command": "codepal.addTestCases",
                 "key": "ctrl+alt+a",
                 "mac": "cmd+alt+a",
-                "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+                "when": "resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
             },
             {
                 "command": "codepal.runTestCases",
                 "key": "ctrl+alt+r",
                 "mac": "cmd+alt+r",
-                "when": "resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+                "when": "resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
             },
             {
                 "command": "codepal.submitProblem",
                 "key": "ctrl+alt+s",
                 "mac": "cmd+alt+s",
-                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
             },
             {
                 "command": "codepal.openProblemStatement",
                 "key": "ctrl+alt+o",
                 "mac": "cmd+alt+o",
-                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
             },
             {
                 "command": "codepal.stopStressTesting",
@@ -446,7 +446,7 @@
                 "command": "codepal.stressTest",
                 "key": "ctrl+alt+z",
                 "mac": "cmd+alt+z",
-                "when": "resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java"
+                "when": "resourceFilename != gen.kt && resourceFilename != brute.kt && resourceExtname == .kt || resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java"
             }
         ]
     },

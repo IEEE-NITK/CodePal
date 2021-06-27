@@ -58,6 +58,7 @@ export const enum CompilationFlags {
     gcc = "gccCompilationFlags",
     java = "javaCompilationFlags",
     python = "pythonCompilationFlags",
+    kotlin = "kotlinCompilationFlags",
 }
 export const enum ContestsPhase {
     finished = "FINISHED",
