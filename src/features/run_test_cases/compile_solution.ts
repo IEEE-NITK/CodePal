@@ -75,8 +75,10 @@ export const compileFile = async (
             break;
 
         case CompilationLanguages.kotlin:
-            compileCommand = `kotlinc "${solutionFilePath}" -include-runtime -d "${testsFolderPath}${outputFileName}.jar"`;
-            console.log("lodu");
+            compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.kotlin);
+            compileCommand = `kotlinc "${solutionFilePath}" -include-runtime -d "${testsFolderPath}${outputFileName}.jar" ${compilationFlags}`;
             break;
 
         default:
@@ -91,7 +93,6 @@ export const compileFile = async (
                     console.log(error);
                     console.log(compileCommand);
                     await reportError(error.message, "Compilation", testsFolderPath);
-                    console.log("Lodu");
                     reject(error.message);
                     return;
                 }
@@ -105,7 +106,6 @@ export const compileFile = async (
             });
         });
     } catch (err) {
-        console.log("Lodu");
         console.log(err);
     }
 };

@@ -79,11 +79,11 @@ export const runTestsWithTimeout = async (
             break;
 
         case CompilationLanguages.kotlin:
-            const kotlinClassPath: string = solutionFilePath.slice(
-                0,
-                solutionFilePath.lastIndexOf("/")
-            );
-            console.log(solutionFilePath);
+            // const kotlinClassPath: string = solutionFilePath.slice(
+            //     0,
+            //     solutionFilePath.lastIndexOf("/")
+            // );
+            // console.log(kotlinClassPath);
             runCommand = `java -jar "${testsFolderPath}a.jar" < "${inputFilePath}" > "${codeOutputFilePath}"`;
             break;
 
