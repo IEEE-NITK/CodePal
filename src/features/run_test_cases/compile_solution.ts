@@ -90,8 +90,6 @@ export const compileFile = async (
         return new Promise(async (resolve, reject) => {
             exec(compileCommand, async (error: any, stdout: any, stderr: any) => {
                 if (error) {
-                    console.log(error);
-                    console.log(compileCommand);
                     await reportError(error.message, "Compilation", testsFolderPath);
                     reject(error.message);
                     return;
