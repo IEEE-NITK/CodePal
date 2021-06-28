@@ -85,6 +85,9 @@ export const runTestsWithTimeout = async (
             // );
             // console.log(kotlinClassPath);
             runCommand = `java -jar "${testsFolderPath}a.jar" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            executable = (os === OS.windows)
+                ? "java.exe"
+                : "java";
             break;
 
         default:
