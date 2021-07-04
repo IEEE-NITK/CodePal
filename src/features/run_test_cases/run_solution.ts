@@ -78,6 +78,18 @@ export const runTestsWithTimeout = async (
                 : "java";
             break;
 
+        case CompilationLanguages.kotlin:
+            // const kotlinClassPath: string = solutionFilePath.slice(
+            //     0,
+            //     solutionFilePath.lastIndexOf("/")
+            // );
+            // console.log(kotlinClassPath);
+            runCommand = `java -jar "${testsFolderPath}${executableFileName}.jar" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            executable = (os === OS.windows)
+                ? "java.exe"
+                : "java";
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();

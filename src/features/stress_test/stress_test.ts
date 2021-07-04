@@ -50,6 +50,10 @@ const assignValuesToPath = async (solnPath: string):Promise<void> => {
             fileExtension = 'java';
             break;
 
+        case CompilationLanguages.kotlin:
+            fileExtension = 'kt';
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();

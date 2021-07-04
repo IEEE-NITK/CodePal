@@ -53,6 +53,10 @@ export const getFileExtension = (): string => {
             fileExtension = 'java';
             break;
 
+        case CompilationLanguages.kotlin:
+            fileExtension = 'kt';
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();

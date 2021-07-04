@@ -74,6 +74,13 @@ export const compileFile = async (
             compileCommand = `javac "${solutionFilePath}" ${compilationFlags}`;
             break;
 
+        case CompilationLanguages.kotlin:
+            compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.kotlin);
+            compileCommand = `kotlinc "${solutionFilePath}" -include-runtime -d "${testsFolderPath}${outputFileName}.jar" ${compilationFlags}`;
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();

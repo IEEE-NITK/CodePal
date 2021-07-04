@@ -50,12 +50,15 @@ export const enum CompilationLanguages {
     python = "python",
     python2 = "python2",
     python3 = "python3",
+    kotlin =  "kotlin"
+
 }
 export const enum CompilationFlags {
     cpp = "g++ CompilationFlags",
     gcc = "gccCompilationFlags",
     java = "javaCompilationFlags",
     python = "pythonCompilationFlags",
+    kotlin = "kotlinCompilationFlags",
 }
 export const enum ContestsPhase {
     finished = "FINISHED",
@@ -217,6 +220,18 @@ public class gen {
 
     }
 }
+`,
+    kotlin:
+        `import java.util.*
+
+        val random = Random()
+        
+        fun rand(from: Int, to: Int) : Int {
+            return random.nextInt(to - from) + from
+        }
+        fun main(){
+            var r = rand(1, 100);
+        }
 `
 };
 
