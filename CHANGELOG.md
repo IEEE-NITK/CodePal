@@ -2,6 +2,9 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.2.0]
+- Add Kotlin support
+
 ## [1.1.2]
 - Add more meaningful error messages. 
 
