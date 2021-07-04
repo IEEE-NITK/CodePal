@@ -84,7 +84,7 @@ export const runTestsWithTimeout = async (
             //     solutionFilePath.lastIndexOf("/")
             // );
             // console.log(kotlinClassPath);
-            runCommand = `java -jar "${testsFolderPath}a.jar" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            runCommand = `java -jar "${testsFolderPath}${executableFileName}.jar" < "${inputFilePath}" > "${codeOutputFilePath}"`;
             executable = (os === OS.windows)
                 ? "java.exe"
                 : "java";
