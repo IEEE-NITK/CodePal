@@ -2,6 +2,7 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 const fs = require("fs").promises;
 import { assert } from 'console';
+import { isRCPCTokenRequired,getCookie } from '../utils/scraper';
 
 import {ProblemClass} from "./problem";
 
@@ -27,9 +28,25 @@ export class ContestClass{
     }
 
     async init(){
+        let rcpcValue = "";
+        try{
+            const response = await axios.get("https://codeforces.com");
+            let [_,a,b,c] = isRCPCTokenRequired(response);
+            rcpcValue = getCookie(a,b,c);
+            console.log(rcpcValue);
+            // somehow get rcpc_value
+        } catch(err) {
+            console.log(err);
+        }
         try{
             assert(this.type !== "FUTURE");
-            const { data } = await axios.get(this.contestLink);
+            // const rcpcValue = "6164ef00544d3b5266657b2349cea803";
+            const { data } = await axios.get(this.contestLink,{
+                headers: {
+                    // eslint-disable-next-line @typescript-eslint/naming-convention
+                    Cookie: `RCPC=${rcpcValue}; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/`,
+                }
+            });
                                     
             const $ = cheerio.load(data);
 

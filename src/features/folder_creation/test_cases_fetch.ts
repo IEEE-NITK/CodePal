@@ -3,12 +3,30 @@ const axios = require('axios');
 const fs = require("fs").promises;
 import * as vscode from "vscode";
 import { ProblemClass } from '../../classes/problem';
+import { isRCPCTokenRequired,getCookie } from '../../utils/scraper';
 
 
-const getInputOutput = async (problem: ProblemClass) => {  
+const getInputOutput = async (problem: ProblemClass) => {
+    let rcpcValue = "";
+    try{
+        const response = await axios.get("https://codeforces.com");
+        let [_,a,b,c] = isRCPCTokenRequired(response);
+        rcpcValue = getCookie(a,b,c);
+        console.log(rcpcValue);
+        // somehow get rcpc_value
+    } catch(err) {
+        console.log(err);
+    }  
     try {
+        // const rcpcValue = "6164ef00544d3b5266657b2349cea803";
         const { data } = await axios.get(
-            `https://codeforces.com/contest/${problem.contestID}/problem/${problem.index}`
+            `https://codeforces.com/contest/${problem.contestID}/problem/${problem.index}`,
+            {
+                headers: {
+                    // eslint-disable-next-line @typescript-eslint/naming-convention
+                    Cookie: `RCPC=${rcpcValue}; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/`,
+                }
+            }
         );
         const $ = cheerio.load(data);
         const postTitleInput = $('div > div.input > pre');
