@@ -1,5 +1,5 @@
 # CodePal 
-![Build Status](https://github.com/IEEE-NITK/codepal/actions/workflows/lint.yml/badge.svg)
+<!-- ![Build Status](https://github.com/IEEE-NITK/codepal/actions/workflows/lint.yml/badge.svg) -->
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.png)](https://www.gnu.org/licenses/gpl-3.0)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/IEEE-NITK.codepal)](https://marketplace.visualstudio.com/items?itemName=IEEE-NITK.codepal)
 [![](https://img.shields.io/visual-studio-marketplace/v/IEEE-NITK.codepal.png?color=green)](https://marketplace.visualstudio.com/items?itemName=IEEE-NITK.codepal) 
@@ -135,6 +135,23 @@ Below are the various clickable icons used in our extension.
 - Go to extensions and select codepal, and add your Codeforces handle to get a personalized experience of the extension.
 - On entering your handle, you will be able to view your profile details in the *User Profile* section of the side bar. 
 - This will also enable you to view the status of problem submissions made on Codeforces, through ticks or crosses against the problem names, denoting whether the submission was accepted or failed. 
+
+### 12. Atcoder Library Support
+- Press *Ctrl + comma(,)* or go to settings of VS Code (icon on bottom left).
+- Go to extensions and select codepal, and check the "Enable Atcoder Library Support" checkbox.
+- You can now use the atcoder library header files (for eg, "#include <atcoder/all>") without any extra setup.
+- To submit on Online Judges that don't support ACL (atcoder library), you can click on icon **13** (shown [here](#labels)). This creates a new file called "combined.cpp" that includes all the atcoder header files used explicitly. You can now submit "combined.cpp" on any Online Judge. For more information check [here](https://atcoder.github.io/ac-library/production/document_en/appendix.html).
+- To read the ACL documentation you can click on icon **14** (shown [here](#labels)).
+
+### 13. C++ Intellisense autocomplete support for Atcoder Library
+- Download the "atcoder" folder from [here](https://github.com/atcoder/ac-library). Copy the file path of "atcoder" folder in your local system. 
+- Open settings.json. Add the below line anywhere settings.json file 
+``` 
+"C_Cpp.default.includePath": ["{insert path of atcoder library here without curly bracket}","${workspaceFolder}/**"],
+```
+- For example, I have downloaded the "atcoder" folder and it is inside my "CP_templates" folder.
+<img src="res/svg/AclIntellisense.png"/>
+
 
 ## Note
 Certain minor changes shall be documented in the usage guide in the next release. 

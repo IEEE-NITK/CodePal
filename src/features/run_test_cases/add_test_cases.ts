@@ -59,12 +59,12 @@ export const addTestCases = async function (filePath: string): Promise<void> {
     vscode.commands.executeCommand(
         Command.vscodeOpen,
         vscode.Uri.file(addedOutputFilePath),
-        vscode.ViewColumn.Two
+        vscode.ViewColumn.Three
     );
 
     vscode.commands.executeCommand(
         Command.vscodeOpen,
         vscode.Uri.file(addedInputFilePath),
-        vscode.ViewColumn.One
+        vscode.ViewColumn.Two
     );
 };

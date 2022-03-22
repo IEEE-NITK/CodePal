@@ -133,7 +133,7 @@ export const runTestsWithTimeout = async (
         });
 };
 
-const runTests = async (
+export const runTests = async (
     runCommand: string,
     testsFolderPath: string,
     stderrFilePath: string

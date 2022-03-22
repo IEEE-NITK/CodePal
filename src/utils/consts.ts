@@ -23,7 +23,9 @@ export const enum Command {
     createStressTestingFiles = "codepal.createStressTestingFiles",
     stopStressTesting = "codepal.stopStressTesting",
     manualProblemFolderCreation = "codepal.manualProblemFolderCreation",
-    manualContestFolderCreation = "codepal.manualContestFolderCreation"
+    manualContestFolderCreation = "codepal.manualContestFolderCreation",
+    openAclDocumentation = "codepal.openAclDocumentation",
+    creatAclCombinedFile = "codepal.createAclCombinedFile"
 }
 export const codepalConfigName = "codepal";
 export const enum CodepalConfig {
@@ -31,7 +33,8 @@ export const enum CodepalConfig {
     codeTemplatePath = "codeTemplatePath",
     generatorTemplatePath = "generatorTemplatePath",
     codeforcesHandle = "codeforcesHandle",
-    numberOfStressTestingTestCases = "numberOfStressTestingTestCases"
+    numberOfStressTestingTestCases = "numberOfStressTestingTestCases",
+    enableAclSupport = "enableAclSupport"
 }
 export const enum TreeViewIDs {
     contests = "codepalContests",
@@ -237,6 +240,12 @@ public class gen {
 
 export let stressTestingFlag = {
     stop: false as boolean
+};
+
+export let extensionPaths = {
+    path: '' as String,
+    libraryPath: '' as String,
+    expanderPyPath: '' as String
 };
 
 export let tle = {

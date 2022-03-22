@@ -19,6 +19,7 @@ import {
     stressTestingFlag,
     Command,
     TreeViewIDs,
+    extensionPaths
 } from "./utils/consts";
 import { ProfileProvider } from "./data_providers/user_profile/profile_data_provider";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
@@ -27,7 +28,22 @@ import { stressTest } from "./features/stress_test/stress_test";
 import { contestRegistration } from "./features/contest_registration/contest_registration";
 import { manualProblemFolderCreation } from "./features/folder_creation/manual_problem_folder";
 import { manualContestFolderCreation } from "./features/folder_creation/manual_contest_folder";
+import { openAclDocumentation } from "./features/ACL/openAclDocumentation";
+import { createAclCombinedFile } from "./features/ACL/createAclCombinedFile";
 
+function initExtensionPaths(){
+    let extensionPath:string|undefined = vscode.extensions.getExtension('IEEE-NITK.codepal')?.extensionUri.path;
+
+    //TODO: maybe take this from the user through setttings. They might have their own edited atcoder library version
+    if(extensionPath !== undefined){   
+        extensionPaths.path = extensionPath;
+        extensionPaths.expanderPyPath = extensionPath + '/res/library/expander.py';
+        extensionPaths.libraryPath = extensionPath + '/res/library';
+    }
+    else{
+        vscode.window.showErrorMessage('Unable to get path of Codepal extension');
+    }
+};
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "codepal" is now active!');
     let disposable: vscode.Disposable[];
@@ -35,6 +51,11 @@ export function activate(context: vscode.ExtensionContext) {
         ? vscode.workspace.workspaceFolders[0].uri.fsPath + "/"
         : "/";
 
+    initExtensionPaths();
+    let aclSupportEnabled:boolean = vscode.workspace
+        .getConfiguration(codepalConfigName)
+        .get<boolean>(CodepalConfig.enableAclSupport, false);
+    
     const problemProvider = new ProblemsProvider(rootPath);
     const contestsProvider = new ContestsProvider(rootPath);
     const profileProvider = new ProfileProvider(rootPath);
@@ -226,7 +247,21 @@ export function activate(context: vscode.ExtensionContext) {
             }
         )
     );
+        
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.openAclDocumentation,
+            (param: any) => openAclDocumentation()
+        )
+    );
 
+    disposable.push(
+        vscode.commands.registerCommand(
+            Command.creatAclCombinedFile,
+            (param: any) => createAclCombinedFile(param)
+        )
+    );
+    
     context.subscriptions.push(...disposable);
 }
 export function deactivate() { }
