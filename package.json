@@ -374,7 +374,7 @@
                     "group": "navigation"
                 },
                 {
-                    "when": "resourceExtname == .cpp",
+                    "when": "resourceExtname == .cpp && config.codepal.enableAclDocumentationButton",
                     "command": "codepal.openAclDocumentation",
                     "group": "navigation"
                 }
@@ -453,6 +453,11 @@
                     "type": "boolean",
                     "default": "",
                     "markdownDescription": "Enable Atcoder Library support"
+                },
+                "codepal.enableAclDocumentationButton": {
+                    "type": "boolean",
+                    "default": "",
+                    "markdownDescription": "Enable button that links to ACL documentation website"
                 }
             }
         },

@@ -34,7 +34,8 @@ export const enum CodepalConfig {
     generatorTemplatePath = "generatorTemplatePath",
     codeforcesHandle = "codeforcesHandle",
     numberOfStressTestingTestCases = "numberOfStressTestingTestCases",
-    enableAclSupport = "enableAclSupport"
+    enableAclSupport = "enableAclSupport",
+    enableAclDocumentationButton = "enableAclDocumentationButton"
 }
 export const enum TreeViewIDs {
     contests = "codepalContests",
