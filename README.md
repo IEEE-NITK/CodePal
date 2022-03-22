@@ -139,9 +139,10 @@ Below are the various clickable icons used in our extension.
 ### 12. Atcoder Library Support
 - Press *Ctrl + comma(,)* or go to settings of VS Code (icon on bottom left).
 - Go to extensions and select codepal, and check the "Enable Atcoder Library Support" checkbox.
+- Go to extensions and select codepal, and check the "Enable Atcoder Documentation Button" checkbox if you want that button to be visible in the menu.
 - You can now use the atcoder library header files (for eg, "#include <atcoder/all>") without any extra setup.
 - To submit on Online Judges that don't support ACL (atcoder library), you can click on icon **13** (shown [here](#labels)). This creates a new file called "combined.cpp" that includes all the atcoder header files used explicitly. You can now submit "combined.cpp" on any Online Judge. For more information check [here](https://atcoder.github.io/ac-library/production/document_en/appendix.html).
-- To read the ACL documentation you can click on icon **14** (shown [here](#labels)).
+- To read the ACL documentation you can click on icon **14** (shown [here](#labels)) if you have enabled it in settings.
 
 ### 13. C++ Intellisense autocomplete support for Atcoder Library
 - Download the "atcoder" folder from [here](https://github.com/atcoder/ac-library). Copy the file path of "atcoder" folder in your local system. 
