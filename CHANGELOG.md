@@ -2,6 +2,10 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
+## [1.3.0]
+- Fix window presentation error while adding new testcases.
+- Add AtCoder Library support for C++
+
 ## [1.2.0]
 - Add Kotlin support
 

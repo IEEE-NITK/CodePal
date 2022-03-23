@@ -187,11 +187,35 @@
                 }
             },
             {
+                "command": "codepal.createStressTestingFiles",
+                "title": "Create Stress Testing Files",
+                "icon": {
+                    "dark": "res/svg/createStressTestingFiles.png",
+                    "light": "res/svg/createStressTestingFiles.png"
+                }
+            },
+            {
                 "command": "codepal.stressTest",
                 "title": "Stress Test",
                 "icon": {
                     "dark": "res/svg/stressTest.png",
                     "light": "res/svg/stressTest.png"
+                }
+            },
+            {
+                "command": "codepal.createAclCombinedFile",
+                "title": "Create ACL combined file",
+                "icon": {
+                    "dark": "res/svg/createAclCombinedFile.png",
+                    "light": "res/svg/createAclCombinedFile.png"
+                }
+            },
+            {
+                "command": "codepal.openAclDocumentation",
+                "title": "Open ACL Documentation",
+                "icon": {
+                    "dark": "res/svg/openAclDocumentation.png",
+                    "light": "res/svg/openAclDocumentation.png"
                 }
             },
             {
@@ -343,6 +367,16 @@
                     "when": "resourceFilename != gen.kt && resourceFilename != brute.kt && resourceExtname == .kt || resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
                     "command": "codepal.createStressTestingFiles",
                     "group": "navigation"
+                },
+                {
+                    "when": "resourceFilename != combined.cpp && resourceExtname == .cpp",
+                    "command": "codepal.createAclCombinedFile",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceExtname == .cpp && config.codepal.enableAclDocumentationButton",
+                    "command": "codepal.openAclDocumentation",
+                    "group": "navigation"
                 }
             ]
         },
@@ -414,6 +448,16 @@
                     "type": "number",
                     "default": "",
                     "markdownDescription": "Enter number of testcases the stress testing generator should make. [10-10000]"
+                },
+                "codepal.enableAclSupport": {
+                    "type": "boolean",
+                    "default": "",
+                    "markdownDescription": "Enable Atcoder Library support"
+                },
+                "codepal.enableAclDocumentationButton": {
+                    "type": "boolean",
+                    "default": "",
+                    "markdownDescription": "Enable button that links to ACL documentation website"
                 }
             }
         },
