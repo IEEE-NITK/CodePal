@@ -9,16 +9,19 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 # Demo 
 
 ### Enter Handle in settings and view problems, contests and profile with submission status on each problem
-![Promo1](res/GIFS/Demo0.gif)
+![Promo1](https://i.ibb.co/F5y4bXb/Demo0.gif)
 
 ### Create Problem/Contest Folders inclusive of all sample tests, compile and run automatically, get comprehensive verdicts and view problem statement and submission webpages. 
-![Promo2](res/GIFS/Demo1.gif)
+![Promo2](https://i.ibb.co/5jMz4g3/Demo1.gif)
 
 ### Filter through problems
-![Promo2](res/GIFS/Demo2.gif)
+![Promo3](https://i.ibb.co/xmMpczF/Demo2.gif)
 
 ### Stress Testing your code
-![Promo2](res/GIFS/Demo3.gif)
+![Promo4](https://i.ibb.co/zFQKf0G/Demo3.gif)
+
+### Use the Atcoder Library
+![Promo5](https://i.ibb.co/99Pyy9f/Demo4.gif)
 
 # Features of this Extension
 
@@ -35,7 +38,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Compiler may be selected and compilation flags can be set through the codepal settings. 
 - Perform Stress testing to find a counter test case for your code.
 - Get a personalized experience of viewing details of your Codeforces profile and the status of problem submissions made, by entering your Codeforces handle in the codepal settings. 
-
+- Use the [Atcoder Library](https://codeforces.com/blog/entry/82400) in C++ without any extra setup.
 
 # Languages Supported
 
