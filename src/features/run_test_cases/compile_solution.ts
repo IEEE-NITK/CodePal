@@ -8,6 +8,7 @@ import {
     CodepalConfig,
     CompilationFlags,
     CompilationLanguages,
+    extensionPaths
 } from "../../utils/consts";
 
 export const compileFile = async (
@@ -40,6 +41,10 @@ export const compileFile = async (
         });
     }
 
+    let aclSupportEnabled:boolean = vscode.workspace
+        .getConfiguration(codepalConfigName)
+        .get<boolean>(CodepalConfig.enableAclSupport, false);
+                        
     let compileCommand: string;
     let compilationFlags: String | undefined;
     switch (compilationLanguage) {
@@ -47,6 +52,11 @@ export const compileFile = async (
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.cpp);
+            
+            if(aclSupportEnabled === true){
+                compilationFlags += ` -I "${extensionPaths.libraryPath}"`;
+            }
+
             if(platform() === "win32"){
                 compileCommand = `g++ -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
             }
@@ -59,6 +69,7 @@ export const compileFile = async (
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.gcc);
+            
             if(platform() === "win32"){
                 compileCommand = `gcc -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
             }
