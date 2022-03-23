@@ -19,7 +19,8 @@ import {
     stressTestingFlag,
     Command,
     TreeViewIDs,
-    extensionPaths
+    extensionPaths,
+    OS
 } from "./utils/consts";
 import { ProfileProvider } from "./data_providers/user_profile/profile_data_provider";
 import { problemsFilterInput } from "./features/problems_list/problems_filter_input";
@@ -30,12 +31,19 @@ import { manualProblemFolderCreation } from "./features/folder_creation/manual_p
 import { manualContestFolderCreation } from "./features/folder_creation/manual_contest_folder";
 import { openAclDocumentation } from "./features/ACL/openAclDocumentation";
 import { createAclCombinedFile } from "./features/ACL/createAclCombinedFile";
+import { platform } from "os";
 
 function initExtensionPaths(){
     let extensionPath:string|undefined = vscode.extensions.getExtension('IEEE-NITK.codepal')?.extensionUri.path;
 
     //TODO: maybe take this from the user through setttings. They might have their own edited atcoder library version
     if(extensionPath !== undefined){   
+        const os = platform() === "win32"? OS.windows : OS.linuxMac;
+
+        if(os === OS.windows){
+            // In windows there is an extra '/' in the beginning that causes problems
+            extensionPath = extensionPath.slice(1);
+        }
         extensionPaths.path = extensionPath;
         extensionPaths.expanderPyPath = extensionPath + '/res/library/expander.py';
         extensionPaths.libraryPath = extensionPath + '/res/library';
