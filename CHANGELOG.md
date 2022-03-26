@@ -2,7 +2,7 @@
 
 All notable changes to the "codepal" extension will be documented in this file.
 
-## [1.3.0]
+## [1.4.0]
 - Fix window presentation error while adding new testcases.
 - Add AtCoder Library support for C++
 
