@@ -1,5 +1,4 @@
 # CodePal 
-<!-- ![Build Status](https://github.com/IEEE-NITK/codepal/actions/workflows/lint.yml/badge.svg) -->
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.png)](https://www.gnu.org/licenses/gpl-3.0)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/IEEE-NITK.codepal)](https://marketplace.visualstudio.com/items?itemName=IEEE-NITK.codepal)
 [![](https://img.shields.io/visual-studio-marketplace/v/IEEE-NITK.codepal.png?color=green)](https://marketplace.visualstudio.com/items?itemName=IEEE-NITK.codepal) 
@@ -67,21 +66,30 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 <a id="labels"></a>
 Below are the various clickable icons used in our extension. 
 
-<img src="res/svg/IconLabels.png"/>
+<!-- <img src="res/svg/IconLabels.png"/> -->
+<img src="https://i.ibb.co/gRrpCYc/demo.png">
 
 ## Key to Icons:
-1. Reload Contest List
-2. Future Contest Registration on Codeforces
-3. Contest Folder Creation 
-4. Reload Problem List  
-5. Problem Filter Based on Rating and Tags
-6. Problem Folder Creation
-7. Add Manual Test Cases
-8. Create Stress Testing Files
-9. Open Problem Statement on Codeforces
-10. Run Test Cases on Solution File
-11. Perform Stress Testing 
-12. Open Problem Submission Page on Codeforces
+1. Custom Contest Folder Creation 
+2. Reload Contest List
+3. Future Contest Registration on Codeforces
+4. Copy link to Contest  
+5. Contest Folder creation with all problems of contest
+6. Open Contest link on Codeforces
+7. Problem Filter Based on Rating and Tags
+8. Custom Problem Folder Creation
+9. Reload Problem list
+10. Copy link to Problem
+11. Problem folder creation with testcases
+12. Open Problem link on Codeforces
+13. Add Manual Test Cases
+14. Create ACL combined file (only C++)
+15. Create Stress Testing Files
+16. Open ACL documentation (enable in settings)
+17. Open Problem Statement on Codeforces
+18. Run Test Cases on Solution File
+19. Perform Stress Testing 
+20. Open Problem Submission Page on Codeforces
 
 ## Keyboard Shortcuts
 - *Ctrl + Alt + A* (*Cmd + Alt + A* for Mac) : Add Manual Test Cases
