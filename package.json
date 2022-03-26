@@ -9,7 +9,7 @@
     },
     "publisher": "IEEE-NITK",
     "icon": "res/svg/logo.png",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "engines": {
         "vscode": "^1.52.0"
     },
