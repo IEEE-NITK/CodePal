@@ -91,6 +91,17 @@ export const compileFile = async (
                 .get<String>(CompilationFlags.kotlin);
             compileCommand = `kotlinc "${solutionFilePath}" -include-runtime -d "${testsFolderPath}${outputFileName}.jar" ${compilationFlags}`;
             break;
+        case CompilationLanguages.haskell:
+            compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.haskell);
+            if(platform() === "win32"){
+                compileCommand = `ghc -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            else{
+                compileCommand = `ghc -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            break;
 
         default:
             vscode.window.showErrorMessage("Language used is not supported");

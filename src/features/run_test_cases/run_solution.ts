@@ -37,6 +37,7 @@ export const runTestsWithTimeout = async (
     switch (compilationLanguage) {
         case CompilationLanguages.gcc:
         case CompilationLanguages.cpp:
+        case CompilationLanguages.haskell:
             if (os === OS.linuxMac) {
                 // Command for linux
                 executable = `${executableFileName}.out`;
