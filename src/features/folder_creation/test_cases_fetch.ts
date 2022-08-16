@@ -35,8 +35,19 @@ const getInputOutput = async (problem: ProblemClass) => {
         let input: string[] = [];
         let output: string[] = [];
 
-        postTitleInput.each((i: Number, element: string) => {
-            input.push($(element).html().replace(/<br>/g, '\n'));
+        postTitleInput.each((i: Number, element: any) => {
+            let testBlock: string = "";
+
+            if (element.children.length > 1){ // there is mutli-test highlighting enabled 
+                element.children.forEach((testLine: any) => {
+                    testBlock += $(testLine).html() + '\n';
+                });;
+            }
+            else{
+                testBlock = $(element).html().replace(/<br>/g, '\n');
+            }
+            
+            input.push(testBlock);
         });
         postTitleOutput.each((i: Number, element: string) => {
             output.push($(element).html().replace(/<br>/g, '\n'));
