@@ -46,6 +46,7 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Java (compiler : javac)
 - Python
 - Kotlin
+- Haskell (compiler: ghc) [stress testing is not supported]
 - Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python, python2 or python3 depending upon the python command you use on your system to run.
 
 # Operating Systems Supported
