@@ -339,27 +339,27 @@
             ],
             "editor/title": [
                 {
-                    "when": "resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+                    "when": "resourceExtname == .rs || resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
                     "command": "codepal.runTestCases",
                     "group": "navigation"
                 },
                 {
-                    "when": "resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
+                    "when": "resourceExtname == .rs || resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java",
                     "command": "codepal.addTestCases",
                     "group": "navigation"
                 },
                 {
-                    "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
+                    "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.rs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
                     "command": "codepal.submitProblem",
                     "group": "navigation"
                 },
                 {
-                    "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
+                    "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.rs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'",
                     "command": "codepal.openProblemStatement",
                     "group": "navigation"
                 },
                 {
-                    "when": "resourceFilename != gen.hs && resourceFilename != brute.hs && resourceExtname == .hs || resourceFilename != gen.kt && resourceFilename != brute.kt && resourceExtname == .kt || resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
+                    "when": "resourceFilename != gen.rs && resourceFilename != brute.rs && resourceExtname == .rs || resourceFilename != gen.hs && resourceFilename != brute.hs && resourceExtname == .hs || resourceFilename != gen.kt && resourceFilename != brute.kt && resourceExtname == .kt || resourceFilename != gen.cpp && resourceFilename != brute.cpp && resourceExtname == .cpp || resourceFilename != gen.c && resourceFilename != brute.c && resourceExtname == .c || resourceFilename != gen.py && resourceFilename != brute.py && resourceExtname == .py || resourceFilename != gen.java && resourceFilename != brute.java && resourceExtname == .java",
                     "command": "codepal.stressTest",
                     "group": "navigation"
                 },
@@ -395,7 +395,8 @@
                         "python2",
                         "python3",
                         "kotlin",
-                        "haskell"
+                        "haskell",
+                        "rust"
                     ],
                     "markdownDescription": "Note : Incase of python please choose the python prefix you would generally use on your system to run"
                 },
@@ -445,6 +446,12 @@
                     "group": "language",
                     "markdownDescription": "Space separated additional compilation flags passed to haskell"
                 },
+                "codepal.rustCompilationFlags": {
+                    "type": "string",
+                    "default": "",
+                    "group": "language",
+                    "markdownDescription": "Space separated additional compilation flags passed to rust"
+                },
                 "codepal.codeforcesHandle": {
                     "type": "string",
                     "default": "",
@@ -473,25 +480,25 @@
                 "command": "codepal.addTestCases",
                 "key": "ctrl+alt+a",
                 "mac": "cmd+alt+a",
-                "when": "resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+                "when": "resourceExtname == .rs || resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
             },
             {
                 "command": "codepal.runTestCases",
                 "key": "ctrl+alt+r",
                 "mac": "cmd+alt+r",
-                "when": "resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
+                "when": "resourceExtname == .rs || resourceExtname == .hs || resourceExtname == .kt || resourceExtname == .cpp || resourceExtname == .c || resourceExtname == .py || resourceExtname == .java"
             },
             {
                 "command": "codepal.submitProblem",
                 "key": "ctrl+alt+s",
                 "mac": "cmd+alt+s",
-                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.rs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
             },
             {
                 "command": "codepal.openProblemStatement",
                 "key": "ctrl+alt+o",
                 "mac": "cmd+alt+o",
-                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
+                "when": "resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.rs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.hs$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.kt$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.cpp$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.c$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.py$/' || resource =~ '/.*[A-Z][1-9]?_.*/[A-Z][1-9]?_.*\\.java$/'"
             },
             {
                 "command": "codepal.stopStressTesting",
@@ -542,6 +549,7 @@
         "cheerio": "^1.0.0-rc.10",
         "child_process": "^1.0.2",
         "fs": "^0.0.1-security",
-        "node-fetch": "^2.6.1"
+        "node-fetch": "^2.6.1",
+        "problem-matcher": "^1.1.0"
     }
 }

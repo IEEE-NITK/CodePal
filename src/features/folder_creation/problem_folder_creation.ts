@@ -56,9 +56,15 @@ export const getFileExtension = (): string => {
         case CompilationLanguages.kotlin:
             fileExtension = 'kt';
             break;
+        
         case CompilationLanguages.haskell:
             fileExtension = 'hs';
             break;
+
+        case CompilationLanguages.rust:
+            fileExtension = 'rs';
+            break;
+
         default:
             vscode.window.showErrorMessage("Language used is not supported");
             throw Error();

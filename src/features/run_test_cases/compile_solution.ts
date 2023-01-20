@@ -84,7 +84,7 @@ export const compileFile = async (
                 .get<String>(CompilationFlags.java);
             compileCommand = `javac "${solutionFilePath}" ${compilationFlags}`;
             break;
-
+        
         case CompilationLanguages.kotlin:
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
@@ -100,6 +100,17 @@ export const compileFile = async (
             }
             else{
                 compileCommand = `ghc -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            break;
+        case CompilationLanguages.rust:
+            compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.rust);
+            if(platform() === "win32"){
+                compileCommand = `rustc -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            else{
+                compileCommand = `rustc -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
             }
             break;
 

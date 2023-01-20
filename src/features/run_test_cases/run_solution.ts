@@ -90,6 +90,17 @@ export const runTestsWithTimeout = async (
                 ? "java.exe"
                 : "java";
             break;
+        case CompilationLanguages.rust:
+            // const rustClassPath: string = solutionFilePath.slice(
+            //     0,
+            //     solutionFilePath.lastIndexOf("/")
+            // );
+            // console.log(rustClassPath);
+            runCommand = `rustc "${testsFolderPath}${executableFileName}.out" < "${inputFilePath}" > "${codeOutputFilePath}"`;
+            executable = (os === OS.windows)
+                ? "rust.exe"
+                : "rust";
+            break;
 
         default:
             vscode.window.showErrorMessage("Language used is not supported");
