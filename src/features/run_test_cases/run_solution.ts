@@ -38,6 +38,7 @@ export const runTestsWithTimeout = async (
         case CompilationLanguages.gcc:
         case CompilationLanguages.cpp:
         case CompilationLanguages.haskell:
+        case CompilationLanguages.rust:
             if (os === OS.linuxMac) {
                 // Command for linux
                 executable = `${executableFileName}.out`;
@@ -89,17 +90,6 @@ export const runTestsWithTimeout = async (
             executable = (os === OS.windows)
                 ? "java.exe"
                 : "java";
-            break;
-        case CompilationLanguages.rust:
-            // const rustClassPath: string = solutionFilePath.slice(
-            //     0,
-            //     solutionFilePath.lastIndexOf("/")
-            // );
-            // console.log(rustClassPath);
-            runCommand = `rustc "${testsFolderPath}${executableFileName}.out" < "${inputFilePath}" > "${codeOutputFilePath}"`;
-            executable = (os === OS.windows)
-                ? "rust.exe"
-                : "rust";
             break;
 
         default:
