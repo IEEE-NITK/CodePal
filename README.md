@@ -46,6 +46,8 @@ A Visual Studio Code Extension to help **Codeforces** Users ***Code with Conveni
 - Java (compiler : javac)
 - Python
 - Kotlin
+- Haskell (compiler: ghc) [stress testing is not supported]
+- Rust [stress testing is not supported]
 - Note : You may add additional compilation flags through the codepal settings (example : -std=c++14) and also choose between python, python2 or python3 depending upon the python command you use on your system to run.
 
 # Operating Systems Supported
@@ -101,19 +103,19 @@ Below are the various clickable icons used in our extension.
 ## Usage Guide to Various Features
 
 ### 1. Filtering Problems
-- Click on icon **5** (shown [here](#labels)) to filter the problem set.
+- Click on icon **7** (shown [here](#labels)) to filter the problem set.
 - Add the lower bound for problem’s rating. (Default lower bound is 0)
 - Add the upper bound for problem’s rating. (Default upper bound is 4000)
 - Tick the tags you want for the problems. (If no tags are selected, no tag-based filtering is done)
 - Tick the submission status of the problems you want to view. 
 
 ### 2. Creating Problem Folder
-- Click on icon **6** (shown [here](#labels)) beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on VS Code where you want the problem folder)
+- Click on icon **11** (shown [here](#labels)) beside the problem name to create and open a problem folder containing the solution file and test cases. (Make sure you have opened a folder on VS Code where you want the problem folder)
 
 ### 3. Creating Contest Folder
 - Click on the type of contest you want to participate in. (Past, Running or Future)
 - Precise timings and durations of upcoming contests are also shown.
-- Click on icon **3** (shown [here](#labels)) beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on VS Code where you want the contest folder)
+- Click on icon **5** (shown [here](#labels)) beside the contest name to create and open a contest folder containing the problems folders of each problem of the contest. (Make sure you have opened a folder on VS Code where you want the contest folder)
 
 ### 4. Adding Your Own Code Template
 - Press *Ctrl + comma(,)* or go to settings of VS Code (icon on bottom left).
@@ -124,21 +126,21 @@ Below are the various clickable icons used in our extension.
 - Go to extensions and select codepal, and choose the compiler you want from the drop down list.
 
 ### 6. Adding Test Cases
-- Click on icon **7** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + A*, to add manual test cases for the problem.
+- Click on icon **13** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + A*, to add manual test cases for the problem.
 
 ### 7. Running Test Cases
-- Click on icon **10** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + R*, to run the code for all sample and manual test cases.
+- Click on icon **18** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + R*, to run the code for all sample and manual test cases.
 
 ### 8. Viewing Problem
-- Click on icon **9** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + O*, to open the problem statement on Codeforces in your default browser.
+- Click on icon **17** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + O*, to open the problem statement on Codeforces in your default browser.
 
 ### 9. Submitting Problem
-- Click on icon **12** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + S*, to open the submission page of the problem on Codeforces in your default browser.
+- Click on icon **20** (shown [here](#labels)) on the top right side of the editor window, or press *Ctrl + Alt + S*, to open the submission page of the problem on Codeforces in your default browser.
 
 ### 10. Stress Testing
-- Click on icon **8** (shown [here](#labels)) on the top right side of the editor window to create the stress testing files called "brute" and "gen". Here "brute" is the code that is a bruteforce solution or any code that gives the correct output and "gen" is the generator file that makes testcases. You need to code both of them. 
+- Click on icon **15** (shown [here](#labels)) on the top right side of the editor window to create the stress testing files called "brute" and "gen". Here "brute" is the code that is a bruteforce solution or any code that gives the correct output and "gen" is the generator file that makes testcases. You need to code both of them. 
 - Command line arguments of integers (1,2,3...) are passed to the generator file so as to keep a fixed random seed each time you stress test. A template is initially provided that takes care of this.
-- Once all 3 files compile properly (solution, "brute" and "gen" files) click on icon **11** (shown [here](#labels)), or press *Ctrl + Alt + Z*, to stress test. It will run the "gen" file to create input and compare it against your solution and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
+- Once all 3 files compile properly (solution, "brute" and "gen" files) click on icon **19** (shown [here](#labels)), or press *Ctrl + Alt + Z*, to stress test. It will run the "gen" file to create input and compare it against your solution and "brute". If they differ then it is reported else it moves to the next case. By defualt it will run for a number of 100 test cases but this can be changed in the settings.
 - Stress testing can be forced to stop on pressing *Ctrl + Shift + Z*.
 
 ### 11. User Profile
@@ -152,8 +154,8 @@ Below are the various clickable icons used in our extension.
 - Go to extensions and select codepal, and check the "Enable Atcoder Library Support" checkbox.
 - Go to extensions and select codepal, and check the "Enable Atcoder Documentation Button" checkbox if you want that button to be visible in the menu.
 - You can now use the atcoder library header files (for eg, "#include <atcoder/all>") without any extra setup.
-- To submit on Online Judges that don't support ACL (atcoder library), you can click on icon **13** (shown [here](#labels)). This creates a new file called "combined.cpp" that includes all the atcoder header files used explicitly. You can now submit "combined.cpp" on any Online Judge. For more information check [here](https://atcoder.github.io/ac-library/production/document_en/appendix.html).
-- To read the ACL documentation you can click on icon **14** (shown [here](#labels)) if you have enabled it in settings.
+- To submit on Online Judges that don't support ACL (atcoder library), you can click on icon **14** (shown [here](#labels)). This creates a new file called "combined.cpp" that includes all the atcoder header files used explicitly. You can now submit "combined.cpp" on any Online Judge. For more information check [here](https://atcoder.github.io/ac-library/production/document_en/appendix.html).
+- To read the ACL documentation you can click on icon **16** (shown [here](#labels)) if you have enabled it in settings.
 
 ### 13. C++ Intellisense autocomplete support for Atcoder Library
 - Download the "atcoder" folder from [here](https://github.com/atcoder/ac-library). Copy the file path of "atcoder" folder in your local system. 

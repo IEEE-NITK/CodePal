@@ -54,8 +54,9 @@ export const enum CompilationLanguages {
     python = "python",
     python2 = "python2",
     python3 = "python3",
-    kotlin =  "kotlin"
-
+    kotlin =  "kotlin",
+    haskell = "haskell",
+    rust = "rust"
 }
 export const enum CompilationFlags {
     cpp = "g++ CompilationFlags",
@@ -63,6 +64,8 @@ export const enum CompilationFlags {
     java = "javaCompilationFlags",
     python = "pythonCompilationFlags",
     kotlin = "kotlinCompilationFlags",
+    haskell = "haskellCompilationFlags",
+    rust = "rustCompilationFlags"
 }
 export const enum ContestsPhase {
     finished = "FINISHED",

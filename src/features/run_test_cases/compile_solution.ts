@@ -84,12 +84,34 @@ export const compileFile = async (
                 .get<String>(CompilationFlags.java);
             compileCommand = `javac "${solutionFilePath}" ${compilationFlags}`;
             break;
-
+        
         case CompilationLanguages.kotlin:
             compilationFlags = vscode.workspace
                 .getConfiguration(codepalConfigName)
                 .get<String>(CompilationFlags.kotlin);
             compileCommand = `kotlinc "${solutionFilePath}" -include-runtime -d "${testsFolderPath}${outputFileName}.jar" ${compilationFlags}`;
+            break;
+        case CompilationLanguages.haskell:
+            compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.haskell);
+            if(platform() === "win32"){
+                compileCommand = `ghc -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            else{
+                compileCommand = `ghc -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            break;
+        case CompilationLanguages.rust:
+            compilationFlags = vscode.workspace
+                .getConfiguration(codepalConfigName)
+                .get<String>(CompilationFlags.rust);
+            if(platform() === "win32"){
+                compileCommand = `rustc -o "${testsFolderPath}${outputFileName}.exe" "${solutionFilePath}" ${compilationFlags}`;
+            }
+            else{
+                compileCommand = `rustc -o "${testsFolderPath}${outputFileName}.out" "${solutionFilePath}" ${compilationFlags}`;
+            }
             break;
 
         default:
